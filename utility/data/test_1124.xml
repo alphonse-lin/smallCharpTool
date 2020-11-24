@@ -1,0 +1,437 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Cities>
+  <City Name="Hong Kong">
+    <TypeofBuilding>
+      <TypeofBuilding>Hong Kong</TypeofBuilding>
+    </TypeofBuilding>
+    <Office>
+      <HighQuality>21,700 - 30,900+</HighQuality>
+      <MediumQuality>17,900 - 21,800</MediumQuality>
+      <OrdinaryQuality>15,300 - 19,200</OrdinaryQuality>
+    </Office>
+    <ShoppingCentre>
+      <HighQuality1>27,100 - 32,500+
+</HighQuality1>
+      <MediumQuality1>21,500 - 26,500</MediumQuality1>
+    </ShoppingCentre>
+    <Residential>
+      <HighRise_HighQuality>22,500 - 33,400+</HighRise_HighQuality>
+      <HighRise_BetterQuality>16,300 - 19,300</HighRise_BetterQuality>
+      <HighRise_OrdinaryQuality>14,800 - 16,100</HighRise_OrdinaryQuality>
+      <House_HighQuality>32,400 - 48,400+</House_HighQuality>
+      <House_MediumQuality>22,100 - 27,900</House_MediumQuality>
+      <Clubhouse>29,500 - 48,000+</Clubhouse>
+      <Externalworks_landscaping>3,800 - 8,500+</Externalworks_landscaping>
+    </Residential>
+    <Hotel>
+      <Five-Star>32,100 - 39,700+
+</Five-Star>
+      <Three-Star>26,900 - 31,500</Three-Star>
+    </Hotel>
+    <Industrial>
+      <Landlord_HighRise>10,100 - 12,400
+</Landlord_HighRise>
+      <EndUser_LowRise>13,100 - 19,700</EndUser_LowRise>
+    </Industrial>
+  </City>
+  <City Name="Macau">
+    <TypeofBuilding>
+      <Basement_upto2Levels>19,800 - 27,400+
+</Basement_upto2Levels>
+      <Multi-Storey>8,900 - 11,500</Multi-Storey>
+      <TypeofBuilding>Macau</TypeofBuilding>
+    </TypeofBuilding>
+    <Office>
+      <HighQuality>17,100 - 22,000+</HighQuality>
+      <MediumQuality>N/A</MediumQuality>
+      <OrdinaryQuality>10,600 - 14,400</OrdinaryQuality>
+    </Office>
+    <ShoppingCentre>
+      <HighQuality1>21,900 - 26,700+
+</HighQuality1>
+      <MediumQuality1>N/A</MediumQuality1>
+    </ShoppingCentre>
+    <Residential>
+      <HighRise_HighQuality>14,200 - 19,700+</HighRise_HighQuality>
+      <HighRise_BetterQuality>N/A</HighRise_BetterQuality>
+      <HighRise_OrdinaryQuality>7,900 - 9,600</HighRise_OrdinaryQuality>
+      <House_HighQuality>N/A</House_HighQuality>
+      <House_MediumQuality>N/A</House_MediumQuality>
+      <Clubhouse>N/A</Clubhouse>
+      <Externalworks_landscaping>N/A</Externalworks_landscaping>
+    </Residential>
+    <Hotel>
+      <Five-Star>28,700 - 34,800+
+</Five-Star>
+      <Three-Star>22,700 - 25,500</Three-Star>
+    </Hotel>
+    <Industrial>
+      <Landlord_HighRise>N/A
+</Landlord_HighRise>
+      <EndUser_LowRise>N/A</EndUser_LowRise>
+    </Industrial>
+  </City>
+  <City Name="北京">
+    <TypeofBuilding>
+      <Basement_upto2Levels>10,300 - 12,900+
+</Basement_upto2Levels>
+      <Multi-Storey>N/A</Multi-Storey>
+      <TypeofBuilding>北京</TypeofBuilding>
+    </TypeofBuilding>
+    <Office>
+      <HighQuality>8,500 - 12,600</HighQuality>
+      <MediumQuality>N/A</MediumQuality>
+      <OrdinaryQuality>4,250 - 5,900</OrdinaryQuality>
+    </Office>
+    <ShoppingCentre>
+      <HighQuality1>8,600 - 13,400
+</HighQuality1>
+      <MediumQuality1>6,800 - 8,600</MediumQuality1>
+    </ShoppingCentre>
+    <Residential>
+      <HighRise_HighQuality>4,900 - 6,800</HighRise_HighQuality>
+      <HighRise_BetterQuality>N/A</HighRise_BetterQuality>
+      <HighRise_OrdinaryQuality>2,750 - 3,700</HighRise_OrdinaryQuality>
+      <House_HighQuality>5,350 - 7,600</House_HighQuality>
+      <House_MediumQuality>3,600 - 4,650</House_MediumQuality>
+      <Clubhouse>N/A</Clubhouse>
+      <Externalworks_landscaping>N/A</Externalworks_landscaping>
+    </Residential>
+    <Hotel>
+      <Five-Star>14,400 - 19,100
+</Five-Star>
+      <Three-Star>10,800 - 13,900</Three-Star>
+    </Hotel>
+    <Industrial>
+      <Landlord_HighRise>2,950 - 4,000
+</Landlord_HighRise>
+      <EndUser_LowRise>4,150 - 7,400</EndUser_LowRise>
+    </Industrial>
+  </City>
+  <City Name="成都">
+    <TypeofBuilding>
+      <Basement_upto2Levels>4,250 -  7,300
+</Basement_upto2Levels>
+      <Multi-Storey>N/A</Multi-Storey>
+      <TypeofBuilding>成都</TypeofBuilding>
+    </TypeofBuilding>
+    <Office>
+      <HighQuality>7,200 - 10,400</HighQuality>
+      <MediumQuality>N/A</MediumQuality>
+      <OrdinaryQuality>3,900 - 5,200</OrdinaryQuality>
+    </Office>
+    <ShoppingCentre>
+      <HighQuality1>7,700 - 11,900
+</HighQuality1>
+      <MediumQuality1>6,200 - 7,800</MediumQuality1>
+    </ShoppingCentre>
+    <Residential>
+      <HighRise_HighQuality>4,050 - 5,700</HighRise_HighQuality>
+      <HighRise_BetterQuality>N/A</HighRise_BetterQuality>
+      <HighRise_OrdinaryQuality>2,450 - 3,350</HighRise_OrdinaryQuality>
+      <House_HighQuality>4,450 - 6,300</House_HighQuality>
+      <House_MediumQuality>3,050 - 3,950</House_MediumQuality>
+      <Clubhouse>N/A</Clubhouse>
+      <Externalworks_landscaping>N/A</Externalworks_landscaping>
+    </Residential>
+    <Hotel>
+      <Five-Star>12,100 - 15,700
+</Five-Star>
+      <Three-Star>9,100 - 11,500</Three-Star>
+    </Hotel>
+    <Industrial>
+      <Landlord_HighRise>2,600 - 3,650
+</Landlord_HighRise>
+      <EndUser_LowRise>3,750 - 6,700</EndUser_LowRise>
+    </Industrial>
+  </City>
+  <City Name="广州">
+    <TypeofBuilding>
+      <Basement_upto2Levels>3,850 -  6,300
+</Basement_upto2Levels>
+      <Multi-Storey>N/A</Multi-Storey>
+      <TypeofBuilding>广州</TypeofBuilding>
+    </TypeofBuilding>
+    <Office>
+      <HighQuality>7,800 - 11,800</HighQuality>
+      <MediumQuality>N/A</MediumQuality>
+      <OrdinaryQuality>4,100 - 5,500</OrdinaryQuality>
+    </Office>
+    <ShoppingCentre>
+      <HighQuality1>8,300 - 12,700
+</HighQuality1>
+      <MediumQuality1>6,700 - 8,200</MediumQuality1>
+    </ShoppingCentre>
+    <Residential>
+      <HighRise_HighQuality>4,500 -  6,200</HighRise_HighQuality>
+      <HighRise_BetterQuality>N/A</HighRise_BetterQuality>
+      <HighRise_OrdinaryQuality>2,650 - 3,550</HighRise_OrdinaryQuality>
+      <House_HighQuality>4,900 - 6,900</House_HighQuality>
+      <House_MediumQuality>3,350 - 4,300</House_MediumQuality>
+      <Clubhouse>N/A</Clubhouse>
+      <Externalworks_landscaping>N/A</Externalworks_landscaping>
+    </Residential>
+    <Hotel>
+      <Five-Star>14,000 - 18,100
+</Five-Star>
+      <Three-Star>10,300 - 12,700</Three-Star>
+    </Hotel>
+    <Industrial>
+      <Landlord_HighRise>2,850 - 3,850
+</Landlord_HighRise>
+      <EndUser_LowRise>3,950 - 7,300</EndUser_LowRise>
+    </Industrial>
+  </City>
+  <City Name="上海">
+    <TypeofBuilding>
+      <Basement_upto2Levels>4,050 - 7,000</Basement_upto2Levels>
+      <Multi-Storey>N/A</Multi-Storey>
+      <TypeofBuilding>上海</TypeofBuilding>
+    </TypeofBuilding>
+    <Office>
+      <HighQuality>8,200 - 12,200</HighQuality>
+      <MediumQuality>N/A</MediumQuality>
+      <OrdinaryQuality>4,250 - 5,600</OrdinaryQuality>
+    </Office>
+    <ShoppingCentre>
+      <HighQuality1>8,500 - 13,100
+</HighQuality1>
+      <MediumQuality1>6,800 - 8,600</MediumQuality1>
+    </ShoppingCentre>
+    <Residential>
+      <HighRise_HighQuality>4,600 - 6,600</HighRise_HighQuality>
+      <HighRise_BetterQuality>N/A</HighRise_BetterQuality>
+      <HighRise_OrdinaryQuality>2,650 - 3,600</HighRise_OrdinaryQuality>
+      <House_HighQuality>5,050 - 7,300</House_HighQuality>
+      <House_MediumQuality>3,450 - 4,550</House_MediumQuality>
+      <Clubhouse>N/A</Clubhouse>
+      <Externalworks_landscaping>N/A</Externalworks_landscaping>
+    </Residential>
+    <Hotel>
+      <Five-Star>14,200 - 18,800
+</Five-Star>
+      <Three-Star>10,400 - 13,500</Three-Star>
+    </Hotel>
+    <Industrial>
+      <Landlord_HighRise>2,850 - 4,000
+</Landlord_HighRise>
+      <EndUser_LowRise>4,100 - 7,300</EndUser_LowRise>
+    </Industrial>
+  </City>
+  <City Name="深圳">
+    <TypeofBuilding>
+      <Basement_upto2Levels>4,450 -  7,400</Basement_upto2Levels>
+      <Multi-Storey>N/A</Multi-Storey>
+      <TypeofBuilding>深圳</TypeofBuilding>
+    </TypeofBuilding>
+    <Office>
+      <HighQuality>7,600 - 11,300</HighQuality>
+      <MediumQuality>N/A</MediumQuality>
+      <OrdinaryQuality>4,000 -  5,350</OrdinaryQuality>
+    </Office>
+    <ShoppingCentre>
+      <HighQuality1>8,100 - 12,400
+</HighQuality1>
+      <MediumQuality1>6,500 - 8,000</MediumQuality1>
+    </ShoppingCentre>
+    <Residential>
+      <HighRise_HighQuality>4,350 - 5,900</HighRise_HighQuality>
+      <HighRise_BetterQuality>N/A</HighRise_BetterQuality>
+      <HighRise_OrdinaryQuality>2,600 - 3,500</HighRise_OrdinaryQuality>
+      <House_HighQuality>4,600 - 6,600</House_HighQuality>
+      <House_MediumQuality>3,200 - 4,100</House_MediumQuality>
+      <Clubhouse>N/A</Clubhouse>
+      <Externalworks_landscaping>N/A</Externalworks_landscaping>
+    </Residential>
+    <Hotel>
+      <Five-Star>13,100 - 17,300
+</Five-Star>
+      <Three-Star>9,900 - 12,700</Three-Star>
+    </Hotel>
+    <Industrial>
+      <Landlord_HighRise>2,750 - 3,750
+</Landlord_HighRise>
+      <EndUser_LowRise>3,850 - 7,200</EndUser_LowRise>
+    </Industrial>
+  </City>
+  <City Name="天津">
+    <TypeofBuilding>
+      <Basement_upto2Levels>4,050 -  6,800</Basement_upto2Levels>
+      <Multi-Storey>N/A</Multi-Storey>
+      <TypeofBuilding>天津</TypeofBuilding>
+    </TypeofBuilding>
+    <Office>
+      <HighQuality>7,900 - 12,100</HighQuality>
+      <MediumQuality>N/A</MediumQuality>
+      <OrdinaryQuality>4,100 - 5,600</OrdinaryQuality>
+    </Office>
+    <ShoppingCentre>
+      <HighQuality1>N/A
+</HighQuality1>
+      <MediumQuality1>N/A</MediumQuality1>
+    </ShoppingCentre>
+    <Residential>
+      <HighRise_HighQuality>4,550 - 6,400</HighRise_HighQuality>
+      <HighRise_BetterQuality>N/A</HighRise_BetterQuality>
+      <HighRise_OrdinaryQuality>2,600 - 3,600</HighRise_OrdinaryQuality>
+      <House_HighQuality>4,850 - 7,100</House_HighQuality>
+      <House_MediumQuality>3,450 - 4,350</House_MediumQuality>
+      <Clubhouse>N/A</Clubhouse>
+      <Externalworks_landscaping>N/A</Externalworks_landscaping>
+    </Residential>
+    <Hotel>
+      <Five-Star>13,600 - 18,200
+</Five-Star>
+      <Three-Star>10,100 - 13,300</Three-Star>
+    </Hotel>
+    <Industrial>
+      <Landlord_HighRise>2,800 - 3,800
+</Landlord_HighRise>
+      <EndUser_LowRise>3,950 - 7,200</EndUser_LowRise>
+    </Industrial>
+  </City>
+  <City Name="武汉">
+    <TypeofBuilding>
+      <Basement_upto2Levels>4,050 -  6,800</Basement_upto2Levels>
+      <Multi-Storey>N/A</Multi-Storey>
+      <TypeofBuilding>武汉</TypeofBuilding>
+    </TypeofBuilding>
+    <Office>
+      <HighQuality>7,500 - 11,100</HighQuality>
+      <MediumQuality>N/A</MediumQuality>
+      <OrdinaryQuality>3,900 - 5,200</OrdinaryQuality>
+    </Office>
+    <ShoppingCentre>
+      <HighQuality1>N/A
+</HighQuality1>
+      <MediumQuality1>N/A</MediumQuality1>
+    </ShoppingCentre>
+    <Residential>
+      <HighRise_HighQuality>4,200 -  6,050</HighRise_HighQuality>
+      <HighRise_BetterQuality>N/A</HighRise_BetterQuality>
+      <HighRise_OrdinaryQuality>2,450 - 3,350</HighRise_OrdinaryQuality>
+      <House_HighQuality>4,600 - 6,700</House_HighQuality>
+      <House_MediumQuality>3,200 - 4,200</House_MediumQuality>
+      <Clubhouse>N/A</Clubhouse>
+      <Externalworks_landscaping>N/A</Externalworks_landscaping>
+    </Residential>
+    <Hotel>
+      <Five-Star>13,100 - 17,100
+</Five-Star>
+      <Three-Star>9,700 - 12,400</Three-Star>
+    </Hotel>
+    <Industrial>
+      <Landlord_HighRise>2,650 - 3,650
+</Landlord_HighRise>
+      <EndUser_LowRise>3,750 - 6,700</EndUser_LowRise>
+    </Industrial>
+  </City>
+  <City Name="无锡">
+    <TypeofBuilding>
+      <Basement_upto2Levels>4,050 -  6,800</Basement_upto2Levels>
+      <Multi-Storey>N/A</Multi-Storey>
+      <TypeofBuilding>无锡</TypeofBuilding>
+    </TypeofBuilding>
+    <Office>
+      <HighQuality>8,100 - 12,300</HighQuality>
+      <MediumQuality>N/A</MediumQuality>
+      <OrdinaryQuality>4,200 - 5,700</OrdinaryQuality>
+    </Office>
+    <ShoppingCentre>
+      <HighQuality1>N/A
+</HighQuality1>
+      <MediumQuality1>N/A</MediumQuality1>
+    </ShoppingCentre>
+    <Residential>
+      <HighRise_HighQuality>4,650 - 6,600</HighRise_HighQuality>
+      <HighRise_BetterQuality>N/A</HighRise_BetterQuality>
+      <HighRise_OrdinaryQuality>2,650 - 3,600</HighRise_OrdinaryQuality>
+      <House_HighQuality>5,150 - 7,300</House_HighQuality>
+      <House_MediumQuality>3,450 - 4,450</House_MediumQuality>
+      <Clubhouse>N/A</Clubhouse>
+      <Externalworks_landscaping>N/A</Externalworks_landscaping>
+    </Residential>
+    <Hotel>
+      <Five-Star>14,100 - 18,700
+</Five-Star>
+      <Three-Star>10,400 - 13,500</Three-Star>
+    </Hotel>
+    <Industrial>
+      <Landlord_HighRise>2,850 - 3,950
+</Landlord_HighRise>
+      <EndUser_LowRise>4,100 - 7,300</EndUser_LowRise>
+    </Industrial>
+  </City>
+  <City Name="西安">
+    <TypeofBuilding>
+      <Basement_upto2Levels>4,150 -  7,100</Basement_upto2Levels>
+      <Multi-Storey>N/A</Multi-Storey>
+      <TypeofBuilding>西安</TypeofBuilding>
+    </TypeofBuilding>
+    <Office>
+      <HighQuality>7,500 - 11,100</HighQuality>
+      <MediumQuality>N/A</MediumQuality>
+      <OrdinaryQuality>3,850 - 5,150</OrdinaryQuality>
+    </Office>
+    <ShoppingCentre>
+      <HighQuality1>N/A
+</HighQuality1>
+      <MediumQuality1>N/A</MediumQuality1>
+    </ShoppingCentre>
+    <Residential>
+      <HighRise_HighQuality>4,200 - 6,100</HighRise_HighQuality>
+      <HighRise_BetterQuality>N/A</HighRise_BetterQuality>
+      <HighRise_OrdinaryQuality>2,450 - 3,350</HighRise_OrdinaryQuality>
+      <House_HighQuality>4,600 - 6,700</House_HighQuality>
+      <House_MediumQuality>3,200 - 4,200</House_MediumQuality>
+      <Clubhouse>N/A</Clubhouse>
+      <Externalworks_landscaping>N/A</Externalworks_landscaping>
+    </Residential>
+    <Hotel>
+      <Five-Star>12,900 - 17,100
+</Five-Star>
+      <Three-Star>9,500 - 12,300</Three-Star>
+    </Hotel>
+    <Industrial>
+      <Landlord_HighRise>2,650 - 3,650
+</Landlord_HighRise>
+      <EndUser_LowRise>3,750 - 6,700</EndUser_LowRise>
+    </Industrial>
+  </City>
+  <City Name="珠海">
+    <TypeofBuilding>
+      <Basement_upto2Levels>4,100 -  6,800</Basement_upto2Levels>
+      <Multi-Storey>N/A</Multi-Storey>
+      <TypeofBuilding>珠海</TypeofBuilding>
+    </TypeofBuilding>
+    <Office>
+      <HighQuality>7,500 - 11,100</HighQuality>
+      <MediumQuality>N/A</MediumQuality>
+      <OrdinaryQuality>3,850 - 5,200</OrdinaryQuality>
+    </Office>
+    <ShoppingCentre>
+      <HighQuality1>N/A
+</HighQuality1>
+      <MediumQuality1>N/A</MediumQuality1>
+    </ShoppingCentre>
+    <Residential>
+      <HighRise_HighQuality>4,200 - 6,100</HighRise_HighQuality>
+      <HighRise_BetterQuality>N/A</HighRise_BetterQuality>
+      <HighRise_OrdinaryQuality>2,450 - 3,350</HighRise_OrdinaryQuality>
+      <House_HighQuality>4,600 - 6,700</House_HighQuality>
+      <House_MediumQuality>3,200 - 4,200</House_MediumQuality>
+      <Clubhouse>N/A</Clubhouse>
+      <Externalworks_landscaping>N/A</Externalworks_landscaping>
+    </Residential>
+    <Hotel>
+      <Five-Star>12,900 - 17,100
+</Five-Star>
+      <Three-Star>9,500 - 12,400</Three-Star>
+    </Hotel>
+    <Industrial>
+      <Landlord_HighRise>2,650 - 3,650
+</Landlord_HighRise>
+      <EndUser_LowRise>3,750 - 6,700</EndUser_LowRise>
+    </Industrial>
+  </City>
+</Cities>

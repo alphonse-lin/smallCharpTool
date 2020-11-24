@@ -7,6 +7,7 @@ using System.Data;
 using System.Xml;
 using System.IO;
 using System.Data.OleDb;
+using System.Xml.Linq;
 
 namespace utility
 {
@@ -15,82 +16,32 @@ namespace utility
         static void Main(string[] args)
         {
             string excelPath = @"E:\114_temp\008_代码集\002_extras\smallCharpTool\utility\data\造价表2.xlsx";
-            string xmlPath = @"E:\114_temp\008_代码集\002_extras\smallCharpTool\utility\data\造价表2_temp.xml";
-            //var ds= ExcelToDS(excelPath);
+            string xmlPath = @"E:\114_temp\008_代码集\002_extras\smallCharpTool\utility\data\test_1124.xml";
 
-            ReadExcel2Xml(excelPath, xmlPath);
+            Excel2Xml(excelPath,xmlPath, "Sheet2");
             Console.WriteLine("finished");
             Console.ReadLine();
         }
 
-        private static void ReadExcel2XmlCfgAndDoExchange(string filePath)
-        {
-            XmlDocument xmlDoc = new XmlDocument();
-            xmlDoc.Load(filePath);
-            if (xmlDoc == null)
-            {
-                Console.WriteLine("Read Excel2Xml Failed!");
-                return;
-            }
-            XmlNodeList resList = xmlDoc.GetElementsByTagName("item");
-            for (int i = 0; i < resList.Count; i++)
-            {
-                XmlNode node = resList.Item(i);
-                string ExcelPath = node.Attributes["excelPath"].Value;
-                string XmlPath = node.Attributes["xmlPath"].Value;
-                XmlDocument outXmlDoc = Excel2Xml(ExcelPath);
-                CreateXml(outXmlDoc, XmlPath);
-            }
-        }
-
-        private static void ReadExcel2Xml(string ExcelPath, string XmlPath)
-        {
-            XmlDocument outXmlDoc = Excel2Xml(ExcelPath);
-            CreateXml(outXmlDoc, XmlPath);
-        }
-
-        private static void CreateXml(XmlDocument xmlDoc, string xmlName)
-        {
-            XmlWriterSettings ws = new XmlWriterSettings();
-            ws.NewLineHandling = NewLineHandling.Entitize;
-            ws.Encoding = System.Text.Encoding.UTF8;
-            ws.Indent = true;
-            XmlWriter writer = XmlWriter.Create(xmlName, ws);
-            writer.WriteStartElement("root");
-            XmlNodeList resList = xmlDoc.GetElementsByTagName("item");
-            for (int i = 0; i < resList.Count; ++i)
-            {
-                XmlNode node = resList.Item(i);
-                //写入子节点
-                writer.WriteStartElement("item");
-                System.Collections.IEnumerator erator = node.GetEnumerator();
-                while (erator.MoveNext())
-                {
-                    //写入属性
-                    writer.WriteAttributeString(((XmlNode)erator.Current).Name, ((XmlNode)erator.Current).InnerText);
-                }
-                writer.WriteEndElement();
-            }
-            writer.Close();
-        }
-
-        private static XmlDocument Excel2Xml(string excelFilePath)
+        private static XmlDocument Excel2Xml(string excelFilePath, string exportXmlPath,string sheetTitle)
         {
             XmlDocument excelData = new XmlDocument();
             DataSet excelTableDataSet = new DataSet();
-            StreamReader excelContent = new StreamReader(excelFilePath, System.Text.Encoding.Default);
             string stringConnectToExcelFile = string.Format("provider=Microsoft.Jet.OLEDB.4.0;data source={0};Extended Properties=Excel 8.0;", excelFilePath);
-            System.Data.OleDb.OleDbConnection oleConnectionToExcelFile = new System.Data.OleDb.OleDbConnection(stringConnectToExcelFile);
-            System.Data.OleDb.OleDbDataAdapter oleDataAdapterForGetExcelTable = new System.Data.OleDb.OleDbDataAdapter(
-                string.Format("select * from [Sheet2$]"), oleConnectionToExcelFile);
+            OleDbConnection oleConnectionToExcelFile = new OleDbConnection(stringConnectToExcelFile);
+            OleDbDataAdapter oleDataAdapterForGetExcelTable = new OleDbDataAdapter(
+                string.Format($"select * from [{sheetTitle}$]"), oleConnectionToExcelFile);
             try
             {
-                oleDataAdapterForGetExcelTable.Fill(excelTableDataSet, "item");
+                oleDataAdapterForGetExcelTable.Fill(excelTableDataSet, "city");
             }
             catch (System.Exception ex)
             {
                 Console.WriteLine("error:" + ex.Message);
             }
+
+            CreateNewXElement(excelTableDataSet, exportXmlPath);
+
             string excelOutputXml = "tmp.xml";
             excelTableDataSet.WriteXml(excelOutputXml);
 
@@ -98,20 +49,83 @@ namespace utility
             File.Delete(excelOutputXml);
             return excelData;
         }
-
-        private static DataSet ExcelToDS(string Path)
+        
+        private static void CreateNewXElement(DataSet execelDataset, string testPath)
         {
-            string strConn = "Provider=Microsoft.Jet.OLEDB.4.0;" + "Data Source=" + Path + ";" + "Extended Properties=Excel 8.0;";
-            OleDbConnection conn = new OleDbConnection(strConn);
-            conn.Open();
-            string strExcel = "";
-            OleDbDataAdapter myCommand = null;
-            DataSet ds = null;
-            strExcel = "select * from [sheet1$]";
-            myCommand = new OleDbDataAdapter(strExcel, strConn);
-            ds = new DataSet();
-            myCommand.Fill(ds, "table1");
-            return ds;
+            var XElements = new List<XElement>();//cities
+            var XElement = new List<XElement>();//city
+            var valueXElement = new List<XElement>();//value
+
+            var rowLength = new List<int>();
+            var rowTotalCount = execelDataset.Tables[0].Rows.Count;
+            var columnData = execelDataset.Tables[0].Columns;
+            var columnList = new List<string>();
+
+            for (int rowId = 0; rowId < rowTotalCount; rowId++)
+            {
+
+                var idRecord = 0;
+                var rowList = execelDataset.Tables[0].Rows[rowId].ItemArray.ToList();
+
+                var typeXElement = new List<XElement>();//type
+
+                for (int columnId = 0; columnId < columnData.Count; columnId++)
+                {
+                    columnList.Add(columnData[columnId].ColumnName.Replace(" ", ""));
+                    if (rowList[columnId].ToString().Length == 0)
+                    {
+                        var singleTypeXElement = new XElement(columnList[idRecord], valueXElement); //type->office
+                        typeXElement.Add(singleTypeXElement);
+
+                        valueXElement = new List<XElement>();
+                        idRecord = columnId;
+                        continue;
+                    }
+                    else
+                    {
+                        var tempName = columnList[columnId];
+                        var tempValue = rowList[columnId];
+                        var name = tempName;
+                        if (tempName.Contains("$"))
+                        {
+                            name = tempName.Replace("Sheet2$.", "");
+                        }
+                        var singleXElement = new XElement(name, tempValue);
+                        valueXElement.Add(singleXElement);//value
+                    }
+                }
+                var singleCity = new XElement("City", new XAttribute("Name", rowList[0]), typeXElement);
+                XElement.Add(singleCity);
+            }
+
+            var doc = new XDocument(new XElement("Cities", XElement));
+            doc.Save(testPath);
         }
+
+        #region 数据结构测试
+        private static void CreateStructuredXml(string testPath)
+        {
+            var doc = new XDocument(
+            new XElement("Cities",
+                new XElement("City", new XAttribute("Name", "HongKong"),
+                    new XElement("Offices",
+                        new XElement("HighQuaility", "21700,30900"),
+                        new XElement("MediumQuaility", "17900,21800"),
+                        new XElement("OrdinaryQuaility", "15300,19200")),
+                    new XElement("Hotel",
+                        new XElement("HighQuaility", "21700,30900"),
+                        new XElement("MediumQuaility", "17900,21800"),
+                        new XElement("OrdinaryQuaility", "15300,19200")
+            )),
+                new XElement("City", new XAttribute("Name", "北京"),
+                    new XElement("Offices",
+                        new XElement("HighQuaility", "21700,30900"),
+                        new XElement("MediumQuaility", "17900,21800"),
+                        new XElement("OrdinaryQuaility", "15300,19200")
+            ))));
+            doc.Save(testPath);
+        }
+        #endregion
     }
 }
+    

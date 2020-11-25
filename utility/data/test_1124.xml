@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Cities>
-  <City Name="Hong Kong">
+  <City Id="0">
     <TypeofBuilding>
       <TypeofBuilding>Hong Kong</TypeofBuilding>
     </TypeofBuilding>
@@ -11,12 +11,12 @@
     </Office>
     <ShoppingCentre>
       <HighQuality1>27100,32500+
-      </HighQuality1>
+</HighQuality1>
       <MediumQuality1>21500,26500</MediumQuality1>
     </ShoppingCentre>
     <Residential>
       <HighRise_HighQuality>22500,33400+</HighRise_HighQuality>
-      <HighRise_BetterQuality>16300,19300</HighRise_BetterQuality>
+      <HighRise_MediumQuality>16300,19300</HighRise_MediumQuality>
       <HighRise_OrdinaryQuality>14800,16100</HighRise_OrdinaryQuality>
       <House_HighQuality>32400,48400+</House_HighQuality>
       <House_MediumQuality>22100,27900</House_MediumQuality>
@@ -25,20 +25,22 @@
     </Residential>
     <Hotel>
       <Five-Star>32100,39700+
-      </Five-Star>
+</Five-Star>
       <Three-Star>26900,31500</Three-Star>
     </Hotel>
     <Industrial>
       <Landlord_HighRise>10100,12400
-      </Landlord_HighRise>
+</Landlord_HighRise>
       <EndUser_LowRise>13100,19700</EndUser_LowRise>
     </Industrial>
-  </City>
-  <City Name="Macau">
-    <TypeofBuilding>
+    <Carpark>
       <Basement_upto2Levels>19800,27400+
-      </Basement_upto2Levels>
+</Basement_upto2Levels>
       <Multi-Storey>8900,11500</Multi-Storey>
+    </Carpark>
+  </City>
+  <City Id="1">
+    <TypeofBuilding>
       <TypeofBuilding>Macau</TypeofBuilding>
     </TypeofBuilding>
     <Office>
@@ -48,12 +50,12 @@
     </Office>
     <ShoppingCentre>
       <HighQuality1>21900,26700+
-      </HighQuality1>
+</HighQuality1>
       <MediumQuality1>N/A</MediumQuality1>
     </ShoppingCentre>
     <Residential>
       <HighRise_HighQuality>14200,19700+</HighRise_HighQuality>
-      <HighRise_BetterQuality>N/A</HighRise_BetterQuality>
+      <HighRise_MediumQuality>N/A</HighRise_MediumQuality>
       <HighRise_OrdinaryQuality>7900,9600</HighRise_OrdinaryQuality>
       <House_HighQuality>N/A</House_HighQuality>
       <House_MediumQuality>N/A</House_MediumQuality>
@@ -62,20 +64,22 @@
     </Residential>
     <Hotel>
       <Five-Star>28700,34800+
-      </Five-Star>
+</Five-Star>
       <Three-Star>22700,25500</Three-Star>
     </Hotel>
     <Industrial>
       <Landlord_HighRise>N/A
-      </Landlord_HighRise>
+</Landlord_HighRise>
       <EndUser_LowRise>N/A</EndUser_LowRise>
     </Industrial>
-  </City>
-  <City Name="北京">
-    <TypeofBuilding>
+    <Carpark>
       <Basement_upto2Levels>10300,12900+
-      </Basement_upto2Levels>
+</Basement_upto2Levels>
       <Multi-Storey>N/A</Multi-Storey>
+    </Carpark>
+  </City>
+  <City Id="2">
+    <TypeofBuilding>
       <TypeofBuilding>北京</TypeofBuilding>
     </TypeofBuilding>
     <Office>
@@ -85,12 +89,12 @@
     </Office>
     <ShoppingCentre>
       <HighQuality1>8600,13400
-      </HighQuality1>
+</HighQuality1>
       <MediumQuality1>6800,8600</MediumQuality1>
     </ShoppingCentre>
     <Residential>
       <HighRise_HighQuality>4900,6800</HighRise_HighQuality>
-      <HighRise_BetterQuality>N/A</HighRise_BetterQuality>
+      <HighRise_MediumQuality>N/A</HighRise_MediumQuality>
       <HighRise_OrdinaryQuality>2750,3700</HighRise_OrdinaryQuality>
       <House_HighQuality>5350,7600</House_HighQuality>
       <House_MediumQuality>3600,4650</House_MediumQuality>
@@ -99,20 +103,22 @@
     </Residential>
     <Hotel>
       <Five-Star>14400,19100
-      </Five-Star>
+</Five-Star>
       <Three-Star>10800,13900</Three-Star>
     </Hotel>
     <Industrial>
       <Landlord_HighRise>2950,4000
-      </Landlord_HighRise>
+</Landlord_HighRise>
       <EndUser_LowRise>4150,7400</EndUser_LowRise>
     </Industrial>
-  </City>
-  <City Name="成都">
-    <TypeofBuilding>
+    <Carpark>
       <Basement_upto2Levels>4250, 7300
-      </Basement_upto2Levels>
+</Basement_upto2Levels>
       <Multi-Storey>N/A</Multi-Storey>
+    </Carpark>
+  </City>
+  <City Id="3">
+    <TypeofBuilding>
       <TypeofBuilding>成都</TypeofBuilding>
     </TypeofBuilding>
     <Office>
@@ -122,12 +128,12 @@
     </Office>
     <ShoppingCentre>
       <HighQuality1>7700,11900
-      </HighQuality1>
+</HighQuality1>
       <MediumQuality1>6200,7800</MediumQuality1>
     </ShoppingCentre>
     <Residential>
       <HighRise_HighQuality>4050,5700</HighRise_HighQuality>
-      <HighRise_BetterQuality>N/A</HighRise_BetterQuality>
+      <HighRise_MediumQuality>N/A</HighRise_MediumQuality>
       <HighRise_OrdinaryQuality>2450,3350</HighRise_OrdinaryQuality>
       <House_HighQuality>4450,6300</House_HighQuality>
       <House_MediumQuality>3050,3950</House_MediumQuality>
@@ -136,20 +142,22 @@
     </Residential>
     <Hotel>
       <Five-Star>12100,15700
-      </Five-Star>
+</Five-Star>
       <Three-Star>9100,11500</Three-Star>
     </Hotel>
     <Industrial>
       <Landlord_HighRise>2600,3650
-      </Landlord_HighRise>
+</Landlord_HighRise>
       <EndUser_LowRise>3750,6700</EndUser_LowRise>
     </Industrial>
-  </City>
-  <City Name="广州">
-    <TypeofBuilding>
+    <Carpark>
       <Basement_upto2Levels>3850, 6300
-      </Basement_upto2Levels>
+</Basement_upto2Levels>
       <Multi-Storey>N/A</Multi-Storey>
+    </Carpark>
+  </City>
+  <City Id="4">
+    <TypeofBuilding>
       <TypeofBuilding>广州</TypeofBuilding>
     </TypeofBuilding>
     <Office>
@@ -159,12 +167,12 @@
     </Office>
     <ShoppingCentre>
       <HighQuality1>8300,12700
-      </HighQuality1>
+</HighQuality1>
       <MediumQuality1>6700,8200</MediumQuality1>
     </ShoppingCentre>
     <Residential>
       <HighRise_HighQuality>4500, 6200</HighRise_HighQuality>
-      <HighRise_BetterQuality>N/A</HighRise_BetterQuality>
+      <HighRise_MediumQuality>N/A</HighRise_MediumQuality>
       <HighRise_OrdinaryQuality>2650,3550</HighRise_OrdinaryQuality>
       <House_HighQuality>4900,6900</House_HighQuality>
       <House_MediumQuality>3350,4300</House_MediumQuality>
@@ -173,19 +181,21 @@
     </Residential>
     <Hotel>
       <Five-Star>14000,18100
-      </Five-Star>
+</Five-Star>
       <Three-Star>10300,12700</Three-Star>
     </Hotel>
     <Industrial>
       <Landlord_HighRise>2850,3850
-      </Landlord_HighRise>
+</Landlord_HighRise>
       <EndUser_LowRise>3950,7300</EndUser_LowRise>
     </Industrial>
-  </City>
-  <City Name="上海">
-    <TypeofBuilding>
+    <Carpark>
       <Basement_upto2Levels>4050,7000</Basement_upto2Levels>
       <Multi-Storey>N/A</Multi-Storey>
+    </Carpark>
+  </City>
+  <City Id="5">
+    <TypeofBuilding>
       <TypeofBuilding>上海</TypeofBuilding>
     </TypeofBuilding>
     <Office>
@@ -195,12 +205,12 @@
     </Office>
     <ShoppingCentre>
       <HighQuality1>8500,13100
-      </HighQuality1>
+</HighQuality1>
       <MediumQuality1>6800,8600</MediumQuality1>
     </ShoppingCentre>
     <Residential>
       <HighRise_HighQuality>4600,6600</HighRise_HighQuality>
-      <HighRise_BetterQuality>N/A</HighRise_BetterQuality>
+      <HighRise_MediumQuality>N/A</HighRise_MediumQuality>
       <HighRise_OrdinaryQuality>2650,3600</HighRise_OrdinaryQuality>
       <House_HighQuality>5050,7300</House_HighQuality>
       <House_MediumQuality>3450,4550</House_MediumQuality>
@@ -209,19 +219,21 @@
     </Residential>
     <Hotel>
       <Five-Star>14200,18800
-      </Five-Star>
+</Five-Star>
       <Three-Star>10400,13500</Three-Star>
     </Hotel>
     <Industrial>
       <Landlord_HighRise>2850,4000
-      </Landlord_HighRise>
+</Landlord_HighRise>
       <EndUser_LowRise>4100,7300</EndUser_LowRise>
     </Industrial>
-  </City>
-  <City Name="深圳">
-    <TypeofBuilding>
+    <Carpark>
       <Basement_upto2Levels>4450, 7400</Basement_upto2Levels>
       <Multi-Storey>N/A</Multi-Storey>
+    </Carpark>
+  </City>
+  <City Id="6">
+    <TypeofBuilding>
       <TypeofBuilding>深圳</TypeofBuilding>
     </TypeofBuilding>
     <Office>
@@ -231,12 +243,12 @@
     </Office>
     <ShoppingCentre>
       <HighQuality1>8100,12400
-      </HighQuality1>
+</HighQuality1>
       <MediumQuality1>6500,8000</MediumQuality1>
     </ShoppingCentre>
     <Residential>
       <HighRise_HighQuality>4350,5900</HighRise_HighQuality>
-      <HighRise_BetterQuality>N/A</HighRise_BetterQuality>
+      <HighRise_MediumQuality>N/A</HighRise_MediumQuality>
       <HighRise_OrdinaryQuality>2600,3500</HighRise_OrdinaryQuality>
       <House_HighQuality>4600,6600</House_HighQuality>
       <House_MediumQuality>3200,4100</House_MediumQuality>
@@ -245,19 +257,21 @@
     </Residential>
     <Hotel>
       <Five-Star>13100,17300
-      </Five-Star>
+</Five-Star>
       <Three-Star>9900,12700</Three-Star>
     </Hotel>
     <Industrial>
       <Landlord_HighRise>2750,3750
-      </Landlord_HighRise>
+</Landlord_HighRise>
       <EndUser_LowRise>3850,7200</EndUser_LowRise>
     </Industrial>
-  </City>
-  <City Name="天津">
-    <TypeofBuilding>
+    <Carpark>
       <Basement_upto2Levels>4050, 6800</Basement_upto2Levels>
       <Multi-Storey>N/A</Multi-Storey>
+    </Carpark>
+  </City>
+  <City Id="7">
+    <TypeofBuilding>
       <TypeofBuilding>天津</TypeofBuilding>
     </TypeofBuilding>
     <Office>
@@ -267,12 +281,12 @@
     </Office>
     <ShoppingCentre>
       <HighQuality1>N/A
-      </HighQuality1>
+</HighQuality1>
       <MediumQuality1>N/A</MediumQuality1>
     </ShoppingCentre>
     <Residential>
       <HighRise_HighQuality>4550,6400</HighRise_HighQuality>
-      <HighRise_BetterQuality>N/A</HighRise_BetterQuality>
+      <HighRise_MediumQuality>N/A</HighRise_MediumQuality>
       <HighRise_OrdinaryQuality>2600,3600</HighRise_OrdinaryQuality>
       <House_HighQuality>4850,7100</House_HighQuality>
       <House_MediumQuality>3450,4350</House_MediumQuality>
@@ -281,19 +295,21 @@
     </Residential>
     <Hotel>
       <Five-Star>13600,18200
-      </Five-Star>
+</Five-Star>
       <Three-Star>10100,13300</Three-Star>
     </Hotel>
     <Industrial>
       <Landlord_HighRise>2800,3800
-      </Landlord_HighRise>
+</Landlord_HighRise>
       <EndUser_LowRise>3950,7200</EndUser_LowRise>
     </Industrial>
-  </City>
-  <City Name="武汉">
-    <TypeofBuilding>
+    <Carpark>
       <Basement_upto2Levels>4050, 6800</Basement_upto2Levels>
       <Multi-Storey>N/A</Multi-Storey>
+    </Carpark>
+  </City>
+  <City Id="8">
+    <TypeofBuilding>
       <TypeofBuilding>武汉</TypeofBuilding>
     </TypeofBuilding>
     <Office>
@@ -303,12 +319,12 @@
     </Office>
     <ShoppingCentre>
       <HighQuality1>N/A
-      </HighQuality1>
+</HighQuality1>
       <MediumQuality1>N/A</MediumQuality1>
     </ShoppingCentre>
     <Residential>
       <HighRise_HighQuality>4200, 6050</HighRise_HighQuality>
-      <HighRise_BetterQuality>N/A</HighRise_BetterQuality>
+      <HighRise_MediumQuality>N/A</HighRise_MediumQuality>
       <HighRise_OrdinaryQuality>2450,3350</HighRise_OrdinaryQuality>
       <House_HighQuality>4600,6700</House_HighQuality>
       <House_MediumQuality>3200,4200</House_MediumQuality>
@@ -317,19 +333,21 @@
     </Residential>
     <Hotel>
       <Five-Star>13100,17100
-      </Five-Star>
+</Five-Star>
       <Three-Star>9700,12400</Three-Star>
     </Hotel>
     <Industrial>
       <Landlord_HighRise>2650,3650
-      </Landlord_HighRise>
+</Landlord_HighRise>
       <EndUser_LowRise>3750,6700</EndUser_LowRise>
     </Industrial>
-  </City>
-  <City Name="无锡">
-    <TypeofBuilding>
+    <Carpark>
       <Basement_upto2Levels>4050, 6800</Basement_upto2Levels>
       <Multi-Storey>N/A</Multi-Storey>
+    </Carpark>
+  </City>
+  <City Id="9">
+    <TypeofBuilding>
       <TypeofBuilding>无锡</TypeofBuilding>
     </TypeofBuilding>
     <Office>
@@ -339,12 +357,12 @@
     </Office>
     <ShoppingCentre>
       <HighQuality1>N/A
-      </HighQuality1>
+</HighQuality1>
       <MediumQuality1>N/A</MediumQuality1>
     </ShoppingCentre>
     <Residential>
       <HighRise_HighQuality>4650,6600</HighRise_HighQuality>
-      <HighRise_BetterQuality>N/A</HighRise_BetterQuality>
+      <HighRise_MediumQuality>N/A</HighRise_MediumQuality>
       <HighRise_OrdinaryQuality>2650,3600</HighRise_OrdinaryQuality>
       <House_HighQuality>5150,7300</House_HighQuality>
       <House_MediumQuality>3450,4450</House_MediumQuality>
@@ -353,19 +371,21 @@
     </Residential>
     <Hotel>
       <Five-Star>14100,18700
-      </Five-Star>
+</Five-Star>
       <Three-Star>10400,13500</Three-Star>
     </Hotel>
     <Industrial>
       <Landlord_HighRise>2850,3950
-      </Landlord_HighRise>
+</Landlord_HighRise>
       <EndUser_LowRise>4100,7300</EndUser_LowRise>
     </Industrial>
-  </City>
-  <City Name="西安">
-    <TypeofBuilding>
+    <Carpark>
       <Basement_upto2Levels>4150, 7100</Basement_upto2Levels>
       <Multi-Storey>N/A</Multi-Storey>
+    </Carpark>
+  </City>
+  <City Id="10">
+    <TypeofBuilding>
       <TypeofBuilding>西安</TypeofBuilding>
     </TypeofBuilding>
     <Office>
@@ -375,12 +395,12 @@
     </Office>
     <ShoppingCentre>
       <HighQuality1>N/A
-      </HighQuality1>
+</HighQuality1>
       <MediumQuality1>N/A</MediumQuality1>
     </ShoppingCentre>
     <Residential>
       <HighRise_HighQuality>4200,6100</HighRise_HighQuality>
-      <HighRise_BetterQuality>N/A</HighRise_BetterQuality>
+      <HighRise_MediumQuality>N/A</HighRise_MediumQuality>
       <HighRise_OrdinaryQuality>2450,3350</HighRise_OrdinaryQuality>
       <House_HighQuality>4600,6700</House_HighQuality>
       <House_MediumQuality>3200,4200</House_MediumQuality>
@@ -389,19 +409,21 @@
     </Residential>
     <Hotel>
       <Five-Star>12900,17100
-      </Five-Star>
+</Five-Star>
       <Three-Star>9500,12300</Three-Star>
     </Hotel>
     <Industrial>
       <Landlord_HighRise>2650,3650
-      </Landlord_HighRise>
+</Landlord_HighRise>
       <EndUser_LowRise>3750,6700</EndUser_LowRise>
     </Industrial>
-  </City>
-  <City Name="珠海">
-    <TypeofBuilding>
+    <Carpark>
       <Basement_upto2Levels>4100, 6800</Basement_upto2Levels>
       <Multi-Storey>N/A</Multi-Storey>
+    </Carpark>
+  </City>
+  <City Id="11">
+    <TypeofBuilding>
       <TypeofBuilding>珠海</TypeofBuilding>
     </TypeofBuilding>
     <Office>
@@ -411,12 +433,12 @@
     </Office>
     <ShoppingCentre>
       <HighQuality1>N/A
-      </HighQuality1>
+</HighQuality1>
       <MediumQuality1>N/A</MediumQuality1>
     </ShoppingCentre>
     <Residential>
       <HighRise_HighQuality>4200,6100</HighRise_HighQuality>
-      <HighRise_BetterQuality>N/A</HighRise_BetterQuality>
+      <HighRise_MediumQuality>N/A</HighRise_MediumQuality>
       <HighRise_OrdinaryQuality>2450,3350</HighRise_OrdinaryQuality>
       <House_HighQuality>4600,6700</House_HighQuality>
       <House_MediumQuality>3200,4200</House_MediumQuality>
@@ -425,13 +447,17 @@
     </Residential>
     <Hotel>
       <Five-Star>12900,17100
-      </Five-Star>
+</Five-Star>
       <Three-Star>9500,12400</Three-Star>
     </Hotel>
     <Industrial>
       <Landlord_HighRise>2650,3650
-      </Landlord_HighRise>
+</Landlord_HighRise>
       <EndUser_LowRise>3750,6700</EndUser_LowRise>
     </Industrial>
+    <Carpark>
+      <Basement_upto2Levels>4050,6800</Basement_upto2Levels>
+      <Multi-Storey>N/A</Multi-Storey>
+    </Carpark>
   </City>
 </Cities>

@@ -1,7 +1,7 @@
 E:\114_temp\008_代码集\002_extras\smallCharpTool\utility\bin\Debug\utility.exe.config
 E:\114_temp\008_代码集\002_extras\smallCharpTool\utility\bin\Debug\utility.exe
 E:\114_temp\008_代码集\002_extras\smallCharpTool\utility\bin\Debug\utility.pdb
-E:\114_temp\008_代码集\002_extras\smallCharpTool\utility\obj\Debug\utility.csprojAssemblyReference.cache
 E:\114_temp\008_代码集\002_extras\smallCharpTool\utility\obj\Debug\utility.csproj.CoreCompileInputs.cache
 E:\114_temp\008_代码集\002_extras\smallCharpTool\utility\obj\Debug\utility.exe
 E:\114_temp\008_代码集\002_extras\smallCharpTool\utility\obj\Debug\utility.pdb
+E:\114_temp\008_代码集\002_extras\smallCharpTool\utility\obj\Debug\utility.csprojAssemblyReference.cache

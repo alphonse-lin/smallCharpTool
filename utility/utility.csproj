@@ -44,8 +44,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BuildingCategory.cs" />
+    <Compile Include="ConstructionCostClass.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="XMLManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

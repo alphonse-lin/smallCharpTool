@@ -15,14 +15,19 @@ namespace utility
     {
         static void Main(string[] args)
         {
-            string excelPath = @"E:\114_temp\008_代码集\002_extras\smallCharpTool\utility\data\造价表2.xlsx";
-            string xmlPath = @"E:\114_temp\008_代码集\002_extras\smallCharpTool\utility\data\test_1124.xml";
+            //string excelPath = @"E:\114_temp\008_代码集\002_extras\smallCharpTool\utility\data\造价表2.xlsx";
+            //string xmlPath = @"E:\114_temp\008_代码集\002_extras\smallCharpTool\utility\data\test_1124.xml";
 
-            ExcelToXml.Excel2Xml(excelPath, xmlPath, "Sheet2");
+            //ExcelToXml.Excel2Xml(excelPath, xmlPath, "Sheet2");
+
+            string xmlPath_2 = @"E:\114_temp\008_代码集\002_extras\smallCharpTool\utility\data\test_1124.xml";
+            XMLManager.xmlParse(xmlPath_2);
 
             Console.WriteLine("finished");
             Console.ReadLine();
         }
+
+
 
         #region 数据结构测试
         private static void CreateStructuredXml(string testPath)

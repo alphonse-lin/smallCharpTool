@@ -40,6 +40,7 @@ namespace utility
             var rowTotalCount = execelDataset.Tables[0].Rows.Count;
             var columnData = execelDataset.Tables[0].Columns;
             var columnList = new List<string>();
+            
 
             for (int rowId = 0; rowId < rowTotalCount; rowId++)
             {
@@ -51,12 +52,12 @@ namespace utility
                     columnList.Add(columnData[columnId].ColumnName.Replace(" ", ""));
                     if (rowList[columnId].ToString().Length == 0)
                     {
-                        var singleTypeXElement = new XElement(columnList[idRecord], valueXElement); //type->office
+                        XElement singleTypeXElement = new XElement(columnList[idRecord], valueXElement); //type->office
                         typeXElement.Add(singleTypeXElement);
-
+                        
                         valueXElement = new List<XElement>();
                         idRecord = columnId;
-                        continue;
+                        //continue;
                     }
                     else
                     {
@@ -67,9 +68,17 @@ namespace utility
                         var value= tempValue.ToString().Replace(",", "");
                         var singleXElement = new XElement(name, (value.Replace(" - ",",")));
                         valueXElement.Add(singleXElement);//value
+
+                        if (columnId==columnData.Count-1)
+                        {
+                            XElement singleTypeXElement = new XElement(columnList[idRecord], valueXElement); //type->office
+                            typeXElement.Add(singleTypeXElement);
+                            valueXElement = new List<XElement>();
+                            idRecord = columnId;
+                        }
                     }
                 }
-                var singleCity = new XElement("City", new XAttribute("Name", rowList[0]), typeXElement);
+                var singleCity = new XElement("City", new XAttribute("Id", rowId), typeXElement);
                 xElement.Add(singleCity);
             }
             var doc = new XDocument(new XElement("Cities", xElement));

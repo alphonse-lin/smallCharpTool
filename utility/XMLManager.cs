@@ -1,16 +1,48 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.OleDb;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml;
+using System.Xml.Linq;
 
 namespace utility
 {
     public class XMLManager
     {
         static XMLManager() { }
-        public static void xmlParse(string xmlPath)
+
+        #region Xml to data
+        #region CityConstructionCost_dataStructure
+        //[0]       Type of Building
+        //[1]       Office
+        //[1][0]        High Quality
+        //[1][1]        Medium Quality
+        //[1][2]        Ordinary Quality
+        //[2]       Shopping Centre
+        //[2][0]        High Quality
+        //[2][1]        Medium Quality
+        //[3]       Residential
+        //[3][0]        High Rise; High Quality
+        //[3][1]        High Rise; Medium Quality
+        //[3][2]        High Rise; Ordinary Quality
+        //[3][3]        House; High Quality
+        //[3][4]        House; Medium Quality
+        //[3][5]        Clubhouse
+        //[3][6]        External works & landscaping(cost/m2 external area)
+        //[4]       Hotel(including FF&E)
+        //[4][0]        5-Star
+        //[4][1]        3-Star
+        //[5]       Industrial
+        //[5][0]        Landlord; High Rise
+        //[5][1]        End User; Low Rise
+        //[6]       Carpark
+        //[6][0]        Basement; up to 2 Levels
+        //[6][1]        Multi-Storey
+        #endregion
+        public static List<ConstructionCostClass> xmlParseCities(string xmlPath)
         {
             XmlDocument xmlDoc = new XmlDocument();
             xmlDoc.Load(xmlPath);
@@ -39,17 +71,7 @@ namespace utility
                 citiesCostModelList.Add(cityCostModel);
             }
 
-            foreach (var item in citiesCostModelList)
-            {
-                Console.WriteLine($"1. cityName:{item.CityName}\n");
-                Console.WriteLine($"2. cityId:{item.CityID}\n");
-                Console.WriteLine($"3. cityOfficeHigh:{item.Office[0][0]},{item.Office[0][1]}\n");
-                Console.WriteLine($"4. cityShoppingHigh:{item.Shopping[0][0]},{item.Shopping[0][1]}\n");
-                Console.WriteLine($"5. cityHotelHigh:{item.Hotel[0][0]},{item.Hotel[0][1]}\n");
-                Console.WriteLine($"6. cityResidentialHigh:{item.Residential[0][0]},{item.Residential[0][1]}\n");
-                Console.WriteLine($"7. cityIndustrialHigh:{item.Industrial[0][0]},{item.Industrial[0][1]}\n");
-                Console.WriteLine($"8. cityCarparkHigh:{item.Carpark[0][0]},{item.Carpark[0][1]}\n");
-            }
+            return citiesCostModelList;
         }
 
         private static string[][] XmlNodeParse(XmlNodeList xnl_1, int index)
@@ -107,5 +129,80 @@ namespace utility
             }
             return resultString;
         }
+        #endregion
+
+        #region Excel to Xml
+        public static void Excel2Xml(string excelFilePath, string exportXmlPath, string sheetTitle)
+        {
+            DataSet excelTableDataSet = new DataSet();
+            string stringConnectToExcelFile = string.Format("provider=Microsoft.Jet.OLEDB.4.0;data source={0};Extended Properties=Excel 8.0;", excelFilePath);
+            OleDbConnection oleConnectionToExcelFile = new OleDbConnection(stringConnectToExcelFile);
+            OleDbDataAdapter oleDataAdapterForGetExcelTable = new OleDbDataAdapter(
+                string.Format($"select * from [{sheetTitle}$]"), oleConnectionToExcelFile);
+            try
+            {
+                oleDataAdapterForGetExcelTable.Fill(excelTableDataSet, "city");
+            }
+            catch (System.Exception ex)
+            {
+                Console.WriteLine("error:" + ex.Message);
+            }
+
+            CreateNewXElement(excelTableDataSet, exportXmlPath);
+        }
+
+        private static void CreateNewXElement(DataSet execelDataset, string testPath)
+        {
+            var xElement = new List<XElement>();//city
+            var valueXElement = new List<XElement>();//value
+
+            var rowTotalCount = execelDataset.Tables[0].Rows.Count;
+            var columnData = execelDataset.Tables[0].Columns;
+            var columnList = new List<string>();
+
+
+            for (int rowId = 0; rowId < rowTotalCount; rowId++)
+            {
+                var idRecord = 0;
+                var rowList = execelDataset.Tables[0].Rows[rowId].ItemArray.ToList();
+                var typeXElement = new List<XElement>();
+                for (int columnId = 0; columnId < columnData.Count; columnId++)
+                {
+                    columnList.Add(columnData[columnId].ColumnName.Replace(" ", ""));
+                    if (rowList[columnId].ToString().Length == 0)
+                    {
+                        XElement singleTypeXElement = new XElement(columnList[idRecord], valueXElement); //type->office
+                        typeXElement.Add(singleTypeXElement);
+
+                        valueXElement = new List<XElement>();
+                        idRecord = columnId;
+                        //continue;
+                    }
+                    else
+                    {
+                        var tempName = columnList[columnId];
+                        var tempValue = rowList[columnId];
+                        var name = tempName;
+                        if (tempName.Contains("$")) { name = tempName.Replace("Sheet2$.", ""); }
+                        var value = tempValue.ToString().Replace(",", "");
+                        var singleXElement = new XElement(name, (value.Replace(" - ", ",")));
+                        valueXElement.Add(singleXElement);//value
+
+                        if (columnId == columnData.Count - 1)
+                        {
+                            XElement singleTypeXElement = new XElement(columnList[idRecord], valueXElement); //type->office
+                            typeXElement.Add(singleTypeXElement);
+                            valueXElement = new List<XElement>();
+                            idRecord = columnId;
+                        }
+                    }
+                }
+                var singleCity = new XElement("City", new XAttribute("Id", rowId), typeXElement);
+                xElement.Add(singleCity);
+            }
+            var doc = new XDocument(new XElement("Cities", xElement));
+            doc.Save(testPath);
+        }
+        #endregion
     }
 }

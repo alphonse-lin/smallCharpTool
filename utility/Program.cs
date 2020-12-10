@@ -15,20 +15,27 @@ namespace utility
     {
         static void Main(string[] args)
         {
-            //string excelPath = @"E:\114_temp\008_代码集\002_extras\smallCharpTool\utility\data\造价表2.xlsx";
-            //string xmlPath = @"E:\114_temp\008_代码集\002_extras\smallCharpTool\utility\data\test_1124.xml";
+            string excelPath = @"E:\114_temp\008_代码集\002_extras\smallCharpTool\utility\data\造价表2.xlsx";
+            string xmlPath = @"E:\114_temp\008_代码集\002_extras\smallCharpTool\utility\data\test_1124.xml";
 
-            //ExcelToXml.Excel2Xml(excelPath, xmlPath, "Sheet2");
+            XMLManager.Excel2Xml(excelPath, xmlPath, "Sheet2");
+            var citiesCostModelList= XMLManager.xmlParseCities(xmlPath);
 
-            string xmlPath_2 = @"E:\114_temp\008_代码集\002_extras\smallCharpTool\utility\data\test_1124.xml";
-            XMLManager.xmlParse(xmlPath_2);
+            foreach (var item in citiesCostModelList)
+            {
+                Console.WriteLine($"1. cityName:{item.CityName}\n");
+                Console.WriteLine($"2. cityId:{item.CityID}\n");
+                Console.WriteLine($"3. cityOfficeHigh:{item.Office[0][0]},{item.Office[0][1]}\n");
+                Console.WriteLine($"4. cityShoppingHigh:{item.Shopping[0][0]},{item.Shopping[0][1]}\n");
+                Console.WriteLine($"5. cityHotelHigh:{item.Hotel[0][0]},{item.Hotel[0][1]}\n");
+                Console.WriteLine($"6. cityResidentialHigh:{item.Residential[0][0]},{item.Residential[0][1]}\n");
+                Console.WriteLine($"7. cityIndustrialHigh:{item.Industrial[0][0]},{item.Industrial[0][1]}\n");
+                Console.WriteLine($"8. cityCarparkHigh:{item.Carpark[0][0]},{item.Carpark[0][1]}\n");
+            }
 
             Console.WriteLine("finished");
             Console.ReadLine();
         }
-
-
-
         #region 数据结构测试
         private static void CreateStructuredXml(string testPath)
         {

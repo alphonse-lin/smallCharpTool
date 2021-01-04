@@ -16,7 +16,7 @@ namespace utility
     {
         static void Main(string[] args)
         {
-            #region
+            #region 读取excel数据，转为citiesCostModel 类
             //string excelPath = @"E:\114_temp\008_代码集\002_extras\smallCharpTool\utility\data\造价表2.xlsx";
             //string xmlPath = @"E:\114_temp\008_代码集\002_extras\smallCharpTool\utility\data\test_1124.xml";
 
@@ -54,7 +54,7 @@ namespace utility
             //Console.ReadKey();
             #endregion
 
-            #region 第二次链接数据库 创建表格
+            #region 第二次链接数据库 创建表格, 插入数据
             //var cs = "Host=127.0.0.1;Username=postgres;Password=admin;Database=test";
             //var con = new NpgsqlConnection(cs);
             //con.Open();
@@ -96,11 +96,11 @@ namespace utility
             //Console.WriteLine("Table cars created");
             #endregion
 
-            #region 第三次链接数据库 插入数据
+            #region 第三次链接数据库 prepared statement
             //var cs = "Host=127.0.0.1;Username=postgres;Password=admin;Database=test";
             //var con = new NpgsqlConnection(cs);
             //con.Open();
-            
+
             //var sql = "INSERT INTO cars(name, price) VALUES(@name, @price)";
             //var cmd = new NpgsqlCommand(sql, con);
 
@@ -113,7 +113,38 @@ namespace utility
 
             #endregion
 
+            #region 第四次链接数据库 读取数据
+            //var cs = "Host=127.0.0.1;Username=postgres;Password=admin;Database=test";
+            //var con = new NpgsqlConnection(cs);
+            //con.Open();
 
+            //var sql = "SELECT * FROM cars";
+            //var cmd = new NpgsqlCommand(sql, con);
+
+            //NpgsqlDataReader rdr = cmd.ExecuteReader();
+
+            //while (rdr.Read())
+            //{
+            //    Console.WriteLine("{0} {1} {2}",
+            //        rdr.GetInt32(0), rdr.GetString(1), rdr.GetInt32(2));
+            //}
+            #endregion
+
+            #region 第五次链接数据库 column headers
+            var cs = "Host=127.0.0.1;Username=postgres;Password=admin;Database=test";
+            var con = new NpgsqlConnection(cs);
+            con.Open();
+
+            var sql = "SELECT * FROM cars";
+            var cmd = new NpgsqlCommand(sql, con);
+            NpgsqlDataReader rdr = cmd.ExecuteReader();
+            Console.WriteLine($"{rdr.GetName(0),-4} {rdr.GetName(1),-10} {rdr.GetName(2),10}");
+
+            while (rdr.Read())
+            {
+                Console.WriteLine($"{rdr.GetInt32(0),-4}{rdr.GetString(1),-10}{rdr.GetInt32(2),10}");
+            }
+            #endregion
             Console.ReadLine();
 
         }

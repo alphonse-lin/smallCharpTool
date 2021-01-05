@@ -9,6 +9,8 @@ using System.IO;
 using System.Data.OleDb;
 using System.Xml.Linq;
 using Npgsql;
+using utility.DataBase;
+using utility.DecodeAddress;
 
 namespace utility
 {
@@ -131,20 +133,50 @@ namespace utility
             #endregion
 
             #region 第五次链接数据库 column headers
-            var cs = "Host=127.0.0.1;Username=postgres;Password=admin;Database=test";
-            var con = new NpgsqlConnection(cs);
-            con.Open();
+            //var cs = "Host=127.0.0.1;Username=postgres;Password=admin;Database=test";
+            //var con = new NpgsqlConnection(cs);
+            //con.Open();
 
-            var sql = "SELECT * FROM cars";
-            var cmd = new NpgsqlCommand(sql, con);
-            NpgsqlDataReader rdr = cmd.ExecuteReader();
-            Console.WriteLine($"{rdr.GetName(0),-4} {rdr.GetName(1),-10} {rdr.GetName(2),10}");
+            //var sql = "SELECT * FROM cars";
+            //var cmd = new NpgsqlCommand(sql, con);
+            //NpgsqlDataReader rdr = cmd.ExecuteReader();
+            //Console.WriteLine($"{rdr.GetName(0),-4} {rdr.GetName(1),-10} {rdr.GetName(2),10}");
 
-            while (rdr.Read())
-            {
-                Console.WriteLine($"{rdr.GetInt32(0),-4}{rdr.GetString(1),-10}{rdr.GetInt32(2),10}");
-            }
+            //while (rdr.Read())
+            //{
+            //    Console.WriteLine($"{rdr.GetInt32(0),-4}{rdr.GetString(1),-10}{rdr.GetInt32(2),10}");
+            //}
             #endregion
+
+            #region 第六次正式运行，测试数据库
+            //IDBHelper dbHelper = new PostgreHelper();
+            //string connectionString= "Host=127.0.0.1;Username=postgres;Password=admin;Database=test";
+
+            //var createDB= "create table if not exists cities(id int, code char(20) primary key, name char(20), lat numeric(9,6), lon numeric(9,6)) ";
+            //dbHelper.ExecuteNonQuery(connectionString, CommandType.Text, createDB);
+
+            //string sql = "insert into [cities]([int][code],[name],[lat],[lon])values(@int, @code, @name, @lat, @lon)";
+
+            //for (int i = 0; i < length; i++)
+            //{
+            //    var _params = new NpgsqlParameter[] {
+            //    new NpgsqlParameter("@int", "0"),
+            //    new NpgsqlParameter("@code", "110100000000"),
+            //    new NpgsqlParameter("@name", "beijing"),
+            //    new NpgsqlParameter("@lat", 113.346778),
+            //    new NpgsqlParameter("@lon", 37.465789),
+            //    };
+            //    int r = dbHelper.ExecuteNonQuery(connectionString, CommandType.Text, sql, _params);
+            //}
+
+            //Console.WriteLine("完成");
+            #endregion
+
+            #region 地理位置编码
+            var data = GaodeLocation.DecodeResult("成都");
+            Console.WriteLine(data.adcode +"\n"+data.latitude+ "\n"+data.lontitude);
+            #endregion
+
             Console.ReadLine();
 
         }

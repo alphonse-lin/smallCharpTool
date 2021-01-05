@@ -26,3 +26,5 @@ E:\114_temp\008_代码集\002_extras\smallCharpTool\utility\bin\Debug\System.Tex
 E:\114_temp\008_代码集\002_extras\smallCharpTool\utility\bin\Debug\System.Threading.Tasks.Extensions.xml
 E:\114_temp\008_代码集\002_extras\smallCharpTool\utility\bin\Debug\System.ValueTuple.xml
 E:\114_temp\008_代码集\002_extras\smallCharpTool\utility\obj\Debug\utility.csproj.CopyComplete
+E:\114_temp\008_代码集\002_extras\smallCharpTool\utility\bin\Debug\Newtonsoft.Json.dll
+E:\114_temp\008_代码集\002_extras\smallCharpTool\utility\bin\Debug\Newtonsoft.Json.xml

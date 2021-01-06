@@ -67,8 +67,8 @@ namespace utility.DecodeAddress
             string street = o2["street"].ToString(); ;// 街道
             string number = o2["number"].ToString(); ;// 门牌
             string adcode = o2["adcode"].ToString(); ;// 区域编码
-            string latitude=o2["location"].ToString().Split(',')[1];// 纬度
-            string lontitude= o2["location"].ToString().Split(',')[0];// 经度
+            double latitude=double.Parse(o2["location"].ToString().Split(',')[1]);// 纬度
+            double lontitude= double.Parse(o2["location"].ToString().Split(',')[0]);// 经度
             string level = o2["level"].ToString(); ;// 匹配级别
 
             var result = new GeocodeResult(status,count,info,

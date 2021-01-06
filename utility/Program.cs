@@ -149,32 +149,39 @@ namespace utility
             #endregion
 
             #region 第六次正式运行，测试数据库
-            //IDBHelper dbHelper = new PostgreHelper();
-            //string connectionString= "Host=127.0.0.1;Username=postgres;Password=admin;Database=test";
+            IDBHelper dbHelper = new PostgreHelper();
+            string connectionString = "Host=127.0.0.1;Username=postgres;Password=admin;Database=test";
 
-            //var createDB= "create table if not exists cities(id int, code char(20) primary key, name char(20), lat numeric(9,6), lon numeric(9,6)) ";
-            //dbHelper.ExecuteNonQuery(connectionString, CommandType.Text, createDB);
+            var createDB = "create table if not exists cities(id serial, code char(20) primary key, name char(20), lat numeric(9,6), lon numeric(9,6)) ";
+            dbHelper.ExecuteNonQuery(connectionString, CommandType.Text, createDB);
 
-            //string sql = "insert into [cities]([int][code],[name],[lat],[lon])values(@int, @code, @name, @lat, @lon)";
+            string sql = "insert into [cities]([code],[name],[lat],[lon])values(@code, @name, @lat, @lon)";
 
-            //for (int i = 0; i < length; i++)
-            //{
-            //    var _params = new NpgsqlParameter[] {
-            //    new NpgsqlParameter("@int", "0"),
-            //    new NpgsqlParameter("@code", "110100000000"),
-            //    new NpgsqlParameter("@name", "beijing"),
-            //    new NpgsqlParameter("@lat", 113.346778),
-            //    new NpgsqlParameter("@lon", 37.465789),
-            //    };
-            //    int r = dbHelper.ExecuteNonQuery(connectionString, CommandType.Text, sql, _params);
-            //}
+            //var cityNames = new string[] { "北京", "成都", "广州", "上海", "深圳", "天津", "武汉","无锡","西安","珠海"};
+            var cityNames = new string[] {"杭州","厦门","东莞","重庆","福州","泉州","太原","大同","漳州","佛山"};
+            var cityInfoList = new List<GeocodeResult>(cityNames.Length);
+            for (int i = 0; i < cityNames.Length; i++)
+            {
+                cityInfoList.Add(GaodeLocation.DecodeResult(cityNames[i]));
+            }
 
-            //Console.WriteLine("完成");
+            for (int i = 0; i < cityInfoList.Count; i++)
+            {
+                var _params = new NpgsqlParameter[] {
+                new NpgsqlParameter("@code", cityInfoList[i].adcode),
+                new NpgsqlParameter("@name", cityNames[i]),
+                new NpgsqlParameter("@lat", cityInfoList[i].latitude),
+                new NpgsqlParameter("@lon", cityInfoList[i].lontitude),
+                };
+                int r = dbHelper.ExecuteNonQuery(connectionString, CommandType.Text, sql, _params);
+            }
+
+            Console.WriteLine("完成");
             #endregion
 
             #region 地理位置编码
-            var data = GaodeLocation.DecodeResult("成都");
-            Console.WriteLine(data.adcode +"\n"+data.latitude+ "\n"+data.lontitude);
+            //var data = GaodeLocation.DecodeResult("成都");
+            //Console.WriteLine(data.adcode +"\n"+data.latitude+ "\n"+data.lontitude);
             #endregion
 
             Console.ReadLine();
@@ -203,6 +210,8 @@ namespace utility
             ))));
             doc.Save(testPath);
         }
+
+
         #endregion
     }
 }

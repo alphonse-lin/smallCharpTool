@@ -18,8 +18,8 @@ namespace utility.DecodeAddress
         public string street { get; }// 街道
         public string number { get; }// 门牌
         public string adcode { get; }// 区域编码
-        public string latitude { get; }// 纬度
-        public string lontitude { get; }// 经度
+        public double latitude { get; }// 纬度
+        public double lontitude { get; }// 经度
         public string level { get; }// 匹配级别
 
         public string status { get; }// 结果状态0,表示失败,1:表示成功
@@ -28,7 +28,7 @@ namespace utility.DecodeAddress
         #endregion
 
         public GeocodeResult(string status, string count, string info, string formatted_address, string province, string city, string citycode, string district,
-                                string township, string street, string number, string adcode, string latitude, string lontitude, string level)
+                                string township, string street, string number, string adcode, double latitude, double lontitude, string level)
         {
             this.status = status;
             this.count = count;

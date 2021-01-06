@@ -161,9 +161,7 @@ namespace utility
             var cityNames = new string[] {"杭州","厦门","东莞","重庆","福州","泉州","太原","大同","漳州","佛山"};
             var cityInfoList = new List<GeocodeResult>(cityNames.Length);
             for (int i = 0; i < cityNames.Length; i++)
-            {
                 cityInfoList.Add(GaodeLocation.DecodeResult(cityNames[i]));
-            }
 
             for (int i = 0; i < cityInfoList.Count; i++)
             {

@@ -45,13 +45,22 @@ namespace utility
             set { _hotel = value; }
         }
 
-        private string[][] _residential;
+        private string[][] _residential_highrise;
 
-        public string[][] Residential
+        public string[][] Residential_HighRise
         {
-            get { return _residential; }
-            set { _residential = value; }
+            get { return _residential_highrise; }
+            set { _residential_highrise = value; }
         }
+
+        private string[][] _residential_house;
+
+        public string[][] Residential_House
+        {
+            get { return _residential_house; }
+            set { _residential_house = value; }
+        }
+
 
         private string[][] _industrial;
 

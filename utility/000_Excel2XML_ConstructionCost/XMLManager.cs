@@ -24,23 +24,24 @@ namespace utility
         //[2]       Shopping Centre
         //[2][0]        High Quality
         //[2][1]        Medium Quality
-        //[3]       Residential
+        //[3]       Residential_HighRise
         //[3][0]        High Rise; High Quality
         //[3][1]        High Rise; Medium Quality
         //[3][2]        High Rise; Ordinary Quality
-        //[3][3]        House; High Quality
-        //[3][4]        House; Medium Quality
-        //[3][5]        Clubhouse
-        //[3][6]        External works & landscaping(cost/m2 external area)
-        //[4]       Hotel(including FF&E)
-        //[4][0]        5-Star
-        //[4][1]        3-Star
-        //[5]       Industrial
-        //[5][0]        Landlord; High Rise
-        //[5][1]        End User; Low Rise
-        //[6]       Carpark
-        //[6][0]        Basement; up to 2 Levels
-        //[6][1]        Multi-Storey
+        //[4]       Residential_House
+        //[4][0]        House; High Quality
+        //[4][1]        House; Medium Quality
+        //[4][2]        Clubhouse
+        //[4][3]        External works & landscaping(cost/m2 external area)
+        //[5]       Hotel(including FF&E)
+        //[5][0]        5-Star
+        //[5][1]        3-Star
+        //[6]       Industrial
+        //[6][0]        Landlord; High Rise
+        //[6][1]        End User; Low Rise
+        //[7]       Carpark
+        //[7][0]        Basement; up to 2 Levels
+        //[7][1]        Multi-Storey
         #endregion
         public static List<ConstructionCostClass> xmlParseCities(string xmlPath)
         {
@@ -63,10 +64,11 @@ namespace utility
 
                 cityCostModel.Office = XmlNodeParse(xnl_1, 1);
                 cityCostModel.Shopping = XmlNodeParse(xnl_1, 2);
-                cityCostModel.Residential = XmlNodeParse(xnl_1, 3);
-                cityCostModel.Hotel = XmlNodeParse(xnl_1, 4);
-                cityCostModel.Industrial = XmlNodeParse(xnl_1, 5);
-                cityCostModel.Carpark = XmlNodeParse(xnl_1, 6);
+                cityCostModel.Residential_HighRise = XmlNodeParse(xnl_1, 3);
+                cityCostModel.Residential_House = XmlNodeParse(xnl_1, 4);
+                cityCostModel.Hotel = XmlNodeParse(xnl_1, 5);
+                cityCostModel.Industrial = XmlNodeParse(xnl_1, 6);
+                cityCostModel.Carpark = XmlNodeParse(xnl_1, 7);
                 
                 citiesCostModelList.Add(cityCostModel);
             }

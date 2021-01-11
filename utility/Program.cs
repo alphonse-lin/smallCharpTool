@@ -150,15 +150,16 @@ namespace utility
 
             #region 第六次正式运行，录入城市数据
             //IDBHelper dbHelper = new PostgreHelper();
-            //string connectionString = "Host=127.0.0.1;Username=postgres;Password=admin;Database=test";
+            ////string connectionString = "Host=127.0.0.1;Username=postgres;Password=admin;Database=test";
+            //string connectionString = "Host=39.107.177.223;Username=postgres;Password=admin;Database=urbanxlabdb";
 
             //var createDB = "create table if not exists cities(id serial, code char(20) primary key, name char(20), lat numeric(9,6), lon numeric(9,6)) ";
             //dbHelper.ExecuteNonQuery(connectionString, CommandType.Text, createDB);
 
             //string sql = "insert into [cities]([code],[name],[lat],[lon])values(@code, @name, @lat, @lon)";
 
-            ////var cityNames = new string[] { "北京", "成都", "广州", "上海", "深圳", "天津", "武汉","无锡","西安","珠海"};
-            //var cityNames = new string[] {"杭州","厦门","东莞","重庆","福州","泉州","太原","大同","漳州","佛山"};
+            //var cityNames = new string[] { "北京", "成都", "广州", "上海", "深圳", "天津", "武汉","无锡","西安","珠海"};
+            ////var cityNames = new string[] { "杭州", "厦门", "东莞", "重庆", "福州", "泉州", "太原", "大同", "漳州", "佛山" };
             //var cityInfoList = new List<GeocodeResult>(cityNames.Length);
             //for (int i = 0; i < cityNames.Length; i++)
             //    cityInfoList.Add(GaodeLocation.DecodeResult(cityNames[i]));
@@ -174,12 +175,13 @@ namespace utility
             //    int r = dbHelper.ExecuteNonQuery(connectionString, CommandType.Text, sql, _params);
             //}
 
-            //
+
             #endregion
 
             #region 第七次正式运行，录入类型数据
             //IDBHelper dbHelper = new PostgreHelper();
-            //string connectionString = "Host=127.0.0.1;Username=postgres;Password=admin;Database=test";
+            ////string connectionString = "Host=127.0.0.1;Username=postgres;Password=admin;Database=test";
+            //string connectionString = "Host=39.107.177.223;Username=postgres;Password=admin;Database=urbanxlabdb";
 
             //var createDB = "create table if not exists building_functions(id serial primary key, name char(40)) ";
             //dbHelper.ExecuteNonQuery(connectionString, CommandType.Text, createDB);
@@ -202,12 +204,13 @@ namespace utility
             //    int r = dbHelper.ExecuteNonQuery(connectionString, CommandType.Text, sql, _params);
             //}
 
-            //Console.WriteLine("完成");
+            ////Console.WriteLine("完成");
             #endregion
 
             #region 第八次录入数据库 成本库
             IDBHelper dbHelper = new PostgreHelper();
-            string connectionString = "Host=127.0.0.1;Username=postgres;Password=admin;Database=test";
+            //string connectionString = "Host=127.0.0.1;Username=postgres;Password=admin;Database=test";
+            string connectionString = "Host=39.107.177.223;Username=postgres;Password=admin;Database=urbanxlabdb";
 
             var createDB = "create table if not exists construction_cost(" +
                 "id serial,\n " +
@@ -248,7 +251,7 @@ namespace utility
                 }
             };
 
-                Console.WriteLine("完成");
+            Console.WriteLine("完成");
                 #endregion
 
                 #region 地理位置编码

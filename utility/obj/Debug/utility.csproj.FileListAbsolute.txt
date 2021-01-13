@@ -28,3 +28,7 @@ E:\114_temp\008_代码集\002_extras\smallCharpTool\utility\bin\Debug\System.Val
 E:\114_temp\008_代码集\002_extras\smallCharpTool\utility\obj\Debug\utility.csproj.CopyComplete
 E:\114_temp\008_代码集\002_extras\smallCharpTool\utility\bin\Debug\Newtonsoft.Json.dll
 E:\114_temp\008_代码集\002_extras\smallCharpTool\utility\bin\Debug\Newtonsoft.Json.xml
+E:\114_temp\008_代码集\002_extras\smallCharpTool\utility\bin\Debug\google-ortools-native.dll
+E:\114_temp\008_代码集\002_extras\smallCharpTool\utility\bin\Debug\Google.Protobuf.dll
+E:\114_temp\008_代码集\002_extras\smallCharpTool\utility\bin\Debug\Google.Protobuf.pdb
+E:\114_temp\008_代码集\002_extras\smallCharpTool\utility\bin\Debug\Google.Protobuf.xml

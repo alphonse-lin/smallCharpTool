@@ -6,13 +6,19 @@ namespace Application
 {
     public class FuncionClass
     {
-        public string funcName { get; set; }
-        public QualityClass qualityData{get; set;}
+        public Dictionary<string, List<QualityClass>> funcDic;
+        private string funcName { get; set; }
+        private QualityClass qualityData{get; set;}
 
         public FuncionClass(string FuncName, QualityClass QualityData)
         {
             funcName = FuncName;
             qualityData = QualityData;
+        }
+
+        private Dictionary AddIntoDic(string FuncName, QualityClass QualityData)
+        {
+            funcDic.Add(FuncName, QualityData);
         }
     }
     
@@ -28,5 +34,6 @@ namespace Application
             priceMax = PriceMax;
             priceMin = PriceMin;
         }
+
     }
 }

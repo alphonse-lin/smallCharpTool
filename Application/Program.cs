@@ -207,55 +207,55 @@ namespace Application
             #endregion
 
             #region 第八次录入数据库 成本库
-            //IDBHelper dbHelper = new PostgreHelper();
-            ////string connectionString = "Host=127.0.0.1;Username=postgres;Password=admin;Database=test";
-            //string connectionString = "Host=39.107.177.223;Username=postgres;Password=admin;Database=urbanxlabdb";
+            IDBHelper dbHelper = new PostgreHelper();
+            //string connectionString = "Host=127.0.0.1;Username=postgres;Password=admin;Database=test";
+            string connectionString = "Host=39.107.177.223;Username=postgres;Password=admin;Database=urbanxlabdb";
 
-            //var createDB = "create table if not exists construction_cost(" +
-            //    "id serial,\n " +
-            //    "name char(40),\n" +
-            //    "year int,\n" +
-            //    "city_id char(20),\n" +
-            //    "func_id int,\n" +
-            //    "price_max numeric(9,2),\n" +
-            //    "price_min numeric(9,2),\n" +
+            var createDB = "create table if not exists construction_cost(" +
+                "id serial,\n " +
+                "name char(40),\n" +
+                "year int,\n" +
+                "city_id char(20),\n" +
+                "func_id int,\n" +
+                "price_max numeric(9,2),\n" +
+                "price_min numeric(9,2),\n" +
 
-            //    "Primary Key(id),\n" +
+                "Primary Key(id),\n" +
 
-            //    "Constraint fk_city_id\n" +
-            //    "Foreign Key(city_id)\n" +
-            //    "References cities(code),\n" +
+                "Constraint fk_city_id\n" +
+                "Foreign Key(city_id)\n" +
+                "References cities(code),\n" +
 
-            //    "Constraint fk_func_id\n" +
-            //    "Foreign Key(func_id)\n" +
-            //    "References building_functions(id)" +
-            //    ") ";
-            //dbHelper.ExecuteNonQuery(connectionString, CommandType.Text, createDB);
+                "Constraint fk_func_id\n" +
+                "Foreign Key(func_id)\n" +
+                "References building_functions(id)" +
+                ") ";
+            dbHelper.ExecuteNonQuery(connectionString, CommandType.Text, createDB);
 
-            //string sql = "insert into [construction_cost]([name],[year],[city_id],[func_id],[price_min],[price_max])values(@name,@year,@city_id,@func_id,@price_min,@price_max)";
+            string sql = "insert into [construction_cost]([name],[year],[city_id],[func_id],[price_min],[price_max])values(@name,@year,@city_id,@func_id,@price_min,@price_max)";
 
-            //string excelPath = @"E:\114_temp\008_代码集\002_extras\smallCharpTool\utility\data\造价表2.xlsx";
-            //string xmlPath = @"E:\114_temp\008_代码集\002_extras\smallCharpTool\utility\data\test_1124.xml";
+            string excelPath = @"E:\114_temp\008_代码集\002_extras\smallCharpTool\utility\data\造价表2.xlsx";
+            string xmlPath = @"E:\114_temp\008_代码集\002_extras\smallCharpTool\utility\data\test_1124.xml";
 
-            //XMLManager.Excel2Xml(excelPath, xmlPath, "Sheet2");
-            //var citiesCostModelList = XMLManager.xmlParseCities(xmlPath);
+            XMLManager.Excel2Xml(excelPath, xmlPath, "Sheet2");
+            var citiesCostModelList = XMLManager.xmlParseCities(xmlPath);
 
 
-            //for (int i = 0; i < citiesCostModelList.Count; i++)
-            //{
-            //    var resultList = ExtractCityConstructionCost(citiesCostModelList[i]);
-            //    for (int j = 0; j < resultList.Count; j++)
-            //    {
-            //        int r = dbHelper.ExecuteNonQuery(connectionString, CommandType.Text, sql, resultList[j]);
-            //    }
-            //};
+            for (int i = 0; i < citiesCostModelList.Count; i++)
+            {
+                var resultList = ExtractCityConstructionCost(citiesCostModelList[i]);
+                for (int j = 0; j < resultList.Count; j++)
+                {
+                    int r = dbHelper.ExecuteNonQuery(connectionString, CommandType.Text, sql, resultList[j]);
+                }
+            };
 
             //Console.WriteLine("完成");
             #endregion
 
             #region 第九次 读取数据库 成本库
-            string connectionString = "Host=39.107.177.223;Username=postgres;Password=admin;Database=urbanxlabdb";
-            TestGetData(connectionString);
+            //string connectionString = "Host=39.107.177.223;Username=postgres;Password=admin;Database=urbanxlabdb";
+            //GetData(connectionString);
 
             #endregion
 
@@ -272,7 +272,42 @@ namespace Application
         /// <summary>
         /// 连接PostGreSQL数据库
         /// </summary>
-        private static string TestConnection()
+        /// 
+        private static void CombinedData(string connectionString)
+        {
+            #region 读取数据库
+            var intColumns = new int[] { 1, 2, 3 };
+            var attrName = "name";
+            var tableName_read = "construction_cost";
+            var strResult = GetData(connectionString, intColumns, tableName_read, attrName);
+            #endregion
+
+            #region 创建数据
+            Dictionary<string, int> qualityNameDic = new Dictionary<string, int>()
+                {
+                    { "high_quality",1},{ "medium",2},{ "low",3},{ "clubhouse",4},
+                    { "external_work",5},{ "5_star",6},{ "3_star",7},{ "landlord",8},
+                    { "end_user",9},{ "basement",10},{ "multi_story",11}
+                };
+
+            Dictionary<string, FuncionClass> cityInfo_pg = new Dictionary<string, FuncionClass>();
+            #endregion
+
+            #region 录入数据库
+            string[] attrNameArray=new string[]{ "",""};
+            string[] insertValue = new string[] { };
+            var tableName_insert = "quality_name_id";
+            string sql = String.Format("insert into [{0}]([{1}])values(@{1})",tableName_insert,attrName);
+
+            var insertResult = InsertData(connectionString, sql, "tableName", attrNameArray, insertValue);
+            #endregion
+        }
+
+        #region 通用模块
+        /// <summary>
+        /// 检测是否连接
+        /// </summary>
+        private static string Connection()
         {
             string str = "Host=39.107.177.223;Username=postgres;Password=admin;Database=urbanxlabdb";
             string strMessage = string.Empty;
@@ -291,7 +326,37 @@ namespace Application
             return strMessage;
         }
 
-        private static void TestGetData(string connectStr)
+        #region 读取数据库
+        private static List<string> GetData(string connectStr, int[] intArray, string dbName,string tableName)
+        {
+            List<string> strResult = new List<string>(intArray.Length);
+            try
+            {
+                IDbConnection dbcon;
+                dbcon = new NpgsqlConnection(connectStr);
+                dbcon.Open();
+                IDbCommand dbcmd = dbcon.CreateCommand();
+
+                var sqlSearch = String.Format("SELECT {0} FROM {1}", tableName,dbName);
+                dbcmd.CommandText = sqlSearch;
+                IDataReader dr = dbcmd.ExecuteReader();
+
+                while (dr.Read())
+                {
+                    for (int i = 0; i < intArray.Length; i++)
+                    {
+                        strResult.Add(dr[i].ToString());
+                    }
+                }
+
+                dr.Close();
+                dr = null;
+            }
+            catch (Exception e) { throw e; }
+
+            return strResult;
+        }
+        private static void GetData(string connectStr)
         {
             string dbName = "construction_cost";
             string cityName = "city_id";
@@ -299,7 +364,7 @@ namespace Application
 
             Dictionary<string, FuncionClass> cityInfo_pg = new Dictionary<string, FuncionClass>();
             try
-            {
+            {                
                 IDbConnection dbcon;
                 dbcon = new NpgsqlConnection(connectStr);
                 dbcon.Open();
@@ -310,22 +375,29 @@ namespace Application
 
                 IDataReader dr = dbcmd.ExecuteReader();
                 string strResult = string.Empty;
+                FuncionClass funcInfo_pg = new FuncionClass(dr[1].ToString(),));
+
+                Dictionary<string, SortedList<int, QualityClass>> funcDic=new Dictionary<string, SortedList<int, QualityClass>>();
+                
                 while (dr.Read())
                 {
                     var debug = dr;
-                    switch (dr[4])
+                    var qualityInfo = new QualityClass(dr[1].ToString(), int.Parse(dr[5].ToString()), int.Parse(dr[6].ToString()));
+                    var funcName = dr[4].ToString();
+
+                    if (funcDic.ContainsKey(funcName))
                     {
-                        case 1:
-                            break;
+                        funcDic[funcName].Add(qualityInfo.name, qualityInfo);
                     }
-                    string test001 = dr[0].ToString();
-                    string test002 = dr[1].ToString();
-                    string test003 = dr[2].ToString();
-                    string test004 = dr[3].ToString();
-                    string test005 = dr[4].ToString();
-                    string test006 = dr[5].ToString();
-                    string test007 = dr[6].ToString();
+                    else
+                    {
+                        SortedList<int, QualityClass> singleFuncList = new SortedList<int, QualityClass>();
+                        funcDic.Add(funcName, singleFuncList.Add(qualityInfo.name, qualityInfo));
+                    }
                 }
+
+                cityInfo_pg.Add("",FuncionClass)
+
                 dr.Close();
                 dr = null;
             }
@@ -335,7 +407,69 @@ namespace Application
                 throw;
             }
         }
+        #endregion
 
+        #region 录入数据库
+        private static int[] InsertData(string connectionString, string sql, string tableName, string[] attrNameArray, string[] insertValue)
+        {
+            IDBHelper dbHelper = new PostgreHelper();
+            int[] result = new int[insertValue.Length];
+            for (int i = 0; i < insertValue.Length; i++)
+            {
+                var _params=CreateNpgsqlParas(attrNameArray, insertValue);
+                int r = dbHelper.ExecuteNonQuery(connectionString, CommandType.Text, sql, _params);
+            }
+            return result;
+        }
+        private static NpgsqlParameter[] CreateNpgsqlParas(string[] attrNameArray, string[] insertValue)
+        {
+            NpgsqlParameter[] result = new NpgsqlParameter[attrNameArray.Length];
+            for (int i = 0; i < attrNameArray.Length; i++)
+            {
+                result[i]= new NpgsqlParameter(String.Format("@{0}", attrNameArray[0]),insertValue[0]);
+            }
+            return result;
+        }
+        private static void InsertData(string connectionString)
+        {
+            IDBHelper dbHelper = new PostgreHelper();
+
+            string sql = "insert into [building_functions]([name])values(@name)";
+            var buildingFunctionName = new string[] { "office", "shopping_center", "residential_highRise", "residential_house", "hotel", "industrial", "carpark" };
+
+            for (int i = 0; i < buildingFunctionName.Length; i++)
+            {
+                var _params = new NpgsqlParameter[] {
+                new NpgsqlParameter("@name", buildingFunctionName[i]),
+                };
+                int r = dbHelper.ExecuteNonQuery(connectionString, CommandType.Text, sql, _params);
+            }
+        }
+        #endregion
+
+        /// <summary>
+        /// 判断是否为数值
+        /// </summary>
+        private static bool IsNumeric(string s, out double result)
+        {
+            bool bReturn = true;
+            try
+            {
+                result = double.Parse(s);
+            }
+            catch
+            {
+                result = 0;
+                bReturn = false;
+            }
+            return bReturn;
+        }
+
+        private static 
+        #endregion
+
+        #region 特定模块
+        #region 抽取类型数据
         private static List<NpgsqlParameter[]> ExtractCityConstructionCost(ConstructionCostClass cityInfo)
         {
             var cityName = cityInfo.CityName;
@@ -370,7 +504,6 @@ namespace Application
 
             return npgsqlParaList;
         }
-
         private static List<NpgsqlParameter[]> ExtractFromCityInfo(Dictionary<int, string[]> functionDis, string[][] functionInfo, string cityName, int year, string adcode, int num)
         {
             var paraList = new List<NpgsqlParameter[]>();
@@ -404,22 +537,7 @@ namespace Application
             }
             return paraList;
         }
-
-        private static bool IsNumeric(string s, out double result)
-        {
-            bool bReturn = true;
-            try
-            {
-                result = double.Parse(s);
-            }
-            catch
-            {
-                result = 0;
-                bReturn = false;
-            }
-            return bReturn;
-        }
-
+        #endregion
 
         #region 数据结构测试
         private static void CreateStructuredXml(string testPath)
@@ -448,6 +566,7 @@ namespace Application
 
 
 
+        #endregion
         #endregion
     }
 }

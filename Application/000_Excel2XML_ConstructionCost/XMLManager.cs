@@ -137,7 +137,7 @@ namespace UrbanX.Application
         public static void Excel2Xml(string excelFilePath, string exportXmlPath, string sheetTitle)
         {
             DataSet excelTableDataSet = new DataSet();
-            string stringConnectToExcelFile = string.Format("provider=Microsoft.Jet.OLEDB.4.0;data source={0};Extended Properties=Excel 8.0;", excelFilePath);
+            string stringConnectToExcelFile = string.Format("provider=Microsoft.ACE.OLEDB.12.0;data source={0};Extended Properties=Excel 8.0;", excelFilePath);
             OleDbConnection oleConnectionToExcelFile = new OleDbConnection(stringConnectToExcelFile);
             OleDbDataAdapter oleDataAdapterForGetExcelTable = new OleDbDataAdapter(
                 string.Format($"select * from [{sheetTitle}$]"), oleConnectionToExcelFile);

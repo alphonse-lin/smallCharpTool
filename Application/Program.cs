@@ -207,56 +207,73 @@ namespace Application
             #endregion
 
             #region 第八次录入数据库 成本库
-            IDBHelper dbHelper = new PostgreHelper();
-            //string connectionString = "Host=127.0.0.1;Username=postgres;Password=admin;Database=test";
-            string connectionString = "Host=39.107.177.223;Username=postgres;Password=admin;Database=urbanxlabdb";
+            //IDBHelper dbHelper = new PostgreHelper();
+            ////string connectionString = "Host=127.0.0.1;Username=postgres;Password=admin;Database=test";
+            //string connectionString = "Host=39.107.177.223;Username=postgres;Password=admin;Database=urbanxlabdb";
 
-            var createDB = "create table if not exists construction_cost(" +
-                "id serial,\n " +
-                "name char(40),\n" +
-                "year int,\n" +
-                "city_id char(20),\n" +
-                "func_id int,\n" +
-                "price_max numeric(9,2),\n" +
-                "price_min numeric(9,2),\n" +
-
-                "Primary Key(id),\n" +
-
-                "Constraint fk_city_id\n" +
-                "Foreign Key(city_id)\n" +
-                "References cities(code),\n" +
-
-                "Constraint fk_func_id\n" +
-                "Foreign Key(func_id)\n" +
-                "References building_functions(id)" +
-                ") ";
-            dbHelper.ExecuteNonQuery(connectionString, CommandType.Text, createDB);
-
-            string sql = "insert into [construction_cost]([name],[year],[city_id],[func_id],[price_min],[price_max])values(@name,@year,@city_id,@func_id,@price_min,@price_max)";
-
-            string excelPath = @"E:\114_temp\008_代码集\002_extras\smallCharpTool\utility\data\造价表2.xlsx";
-            string xmlPath = @"E:\114_temp\008_代码集\002_extras\smallCharpTool\utility\data\test_1124.xml";
-
-            XMLManager.Excel2Xml(excelPath, xmlPath, "Sheet2");
-            var citiesCostModelList = XMLManager.xmlParseCities(xmlPath);
+            //var createDB = "create table if not exists construction_cost(" +
+            //    "id serial,\n " +
+            //    "func_id int,\n" +
+            //    "quality_id int,\n" +
+            //    "city_id char(20),\n" +
+            //    "price_max numeric(9,2),\n" +
+            //    "price_min numeric(9,2),\n" +
+            //    "year int,\n" +
 
 
-            for (int i = 0; i < citiesCostModelList.Count; i++)
-            {
-                var resultList = ExtractCityConstructionCost(citiesCostModelList[i]);
-                for (int j = 0; j < resultList.Count; j++)
-                {
-                    int r = dbHelper.ExecuteNonQuery(connectionString, CommandType.Text, sql, resultList[j]);
-                }
-            };
+
+            //    "Primary Key(id),\n" +
+
+            //    "Constraint fk_city_id\n" +
+            //    "Foreign Key(city_id)\n" +
+            //    "References cities(code),\n" +
+
+            //    "Constraint fk_func_id\n" +
+            //    "Foreign Key(func_id)\n" +
+            //    "References building_functions(id)," +
+
+            //    "Constraint fk_quality_id\n" +
+            //    "Foreign Key(quality_id)\n" +
+            //    "References quality_functions(quality_id)" +
+            //    ") ";
+            //dbHelper.ExecuteNonQuery(connectionString, CommandType.Text, createDB);
+
+            //string sql = "insert into [construction_cost]([year],[city_id],[func_id],[price_min],[price_max],[quality_id])values(@year,@city_id,@func_id,@price_min,@price_max,@quality_id)";
+
+            //string excelPath = @"E:\114_temp\008_代码集\002_extras\smallCharpTool\Application\data\造价表2.xlsx";
+            //string xmlPath = @"E:\114_temp\008_代码集\002_extras\smallCharpTool\Application\data\test_1124.xml";
+
+            //XMLManager.Excel2Xml(excelPath, xmlPath, "Sheet2");
+            //var citiesCostModelList = XMLManager.xmlParseCities(xmlPath);
+
+
+            //for (int i = 0; i < citiesCostModelList.Count; i++)
+            //{
+            //    var resultList = ExtractCityConstructionCost(citiesCostModelList[i]);
+            //    for (int j = 0; j < resultList.Count; j++)
+            //    {
+            //        int r = dbHelper.ExecuteNonQuery(connectionString, CommandType.Text, sql, resultList[j]);
+            //    }
+            //};
 
             //Console.WriteLine("完成");
             #endregion
 
             #region 第九次 读取数据库 成本库
-            //string connectionString = "Host=39.107.177.223;Username=postgres;Password=admin;Database=urbanxlabdb";
-            //GetData(connectionString);
+            string connectionString = "Host=39.107.177.223;Username=postgres;Password=admin;Database=urbanxlabdb";
+            string city = "北京";
+            int attrCount = 9;
+            string sql =string.Format( "select " +
+                "bf.name,qf.quality_name,cc.quality_id,c.name, cc.price_max, cc.price_min,cc.year,c.lat, c.lon " +
+                "FROM construction_cost cc, cities c, building_functions bf, quality_functions qf " +
+                "where cc.city_id = c.code and cc.func_id = bf.id and cc.quality_id = qf.quality_id and c.name='{0}'; ",city);
+            
+            var resultList=GetData(connectionString, sql,attrCount);
+            FuncionClass cityInfo = new FuncionClass(resultList);
+            var result = cityInfo.FuncInfoDic;
 
+            Console.WriteLine("城市为{0}, 经度为{1},纬度{2}",cityInfo.CityName,cityInfo.Lat.ToString(),cityInfo.Lon.ToString());
+            Console.WriteLine("完成");
             #endregion
 
             #region 地理位置编码
@@ -264,9 +281,10 @@ namespace Application
             //Console.WriteLine(data.adcode +"\n"+data.latitude+ "\n"+data.lontitude);
             #endregion
 
+
+            #region
+            #endregion
             Console.ReadLine();
-
-
         }
 
         /// <summary>
@@ -276,13 +294,16 @@ namespace Application
         private static void CombinedData(string connectionString)
         {
             #region 读取数据库
-            var intColumns = new int[] { 1, 2, 3 };
-            var attrName = "name";
+            var attrName_read = "name";         
             var tableName_read = "construction_cost";
-            var strResult = GetData(connectionString, intColumns, tableName_read, attrName);
+
+            var strResult = GetData(connectionString, attrName_read, tableName_read);
             #endregion
 
             #region 创建数据
+            var tableName_insert = "construction_cost";
+            var attrName_insert = "quality_name_id";
+
             Dictionary<string, int> qualityNameDic = new Dictionary<string, int>()
                 {
                     { "high_quality",1},{ "medium",2},{ "low",3},{ "clubhouse",4},
@@ -290,16 +311,22 @@ namespace Application
                     { "end_user",9},{ "basement",10},{ "multi_story",11}
                 };
 
+            string[] attrNameArray = new string[strResult.Count];
+            int[] insertValue = new int[strResult.Count];
+            for (int i = 0; i < insertValue.Length; i++)
+            {
+                attrNameArray[i] = attrName_insert;
+                insertValue[i] = qualityNameDic[strResult[i]];
+            }
+            
             Dictionary<string, FuncionClass> cityInfo_pg = new Dictionary<string, FuncionClass>();
             #endregion
 
             #region 录入数据库
-            string[] attrNameArray=new string[]{ "",""};
-            string[] insertValue = new string[] { };
-            var tableName_insert = "quality_name_id";
-            string sql = String.Format("insert into [{0}]([{1}])values(@{1})",tableName_insert,attrName);
-
-            var insertResult = InsertData(connectionString, sql, "tableName", attrNameArray, insertValue);
+            string sql = String.Format("insert into [{0}]([{1}])values(@{1})", tableName_insert, attrName_insert);
+            var insertResult = InsertData(connectionString, sql, tableName_read, attrNameArray, insertValue);
+            
+            
             #endregion
         }
 
@@ -327,9 +354,11 @@ namespace Application
         }
 
         #region 读取数据库
-        private static List<string> GetData(string connectStr, int[] intArray, string dbName,string tableName)
+        private static List<string> GetData(string connectStr, string attrName,string tableName)
         {
-            List<string> strResult = new List<string>(intArray.Length);
+            var intArray = new int[] { attrName.Split(",").Length };
+            List<string> strResult = new List<string>();
+            for (int i = 0; i < attrName.Split(",").Length; i++) { intArray[i] = i; }
             try
             {
                 IDbConnection dbcon;
@@ -337,7 +366,7 @@ namespace Application
                 dbcon.Open();
                 IDbCommand dbcmd = dbcon.CreateCommand();
 
-                var sqlSearch = String.Format("SELECT {0} FROM {1}", tableName,dbName);
+                var sqlSearch = String.Format("SELECT {0} FROM {1}", attrName,tableName);
                 dbcmd.CommandText = sqlSearch;
                 IDataReader dr = dbcmd.ExecuteReader();
 
@@ -345,7 +374,7 @@ namespace Application
                 {
                     for (int i = 0; i < intArray.Length; i++)
                     {
-                        strResult.Add(dr[i].ToString());
+                        strResult.Add(dr[i].ToString().Trim());
                     }
                 }
 
@@ -356,56 +385,36 @@ namespace Application
 
             return strResult;
         }
-        private static void GetData(string connectStr)
-        {
-            string dbName = "construction_cost";
-            string cityName = "city_id";
-            string condition_city = GaodeLocation.DecodeResult("北京").adcode;
 
-            Dictionary<string, FuncionClass> cityInfo_pg = new Dictionary<string, FuncionClass>();
+        private static List<string[]> GetData(string connectStr, string sqlSearch, int attrCount)
+        {
+            List<string[]> resultList = new List<string[]>();
             try
-            {                
+            {
                 IDbConnection dbcon;
                 dbcon = new NpgsqlConnection(connectStr);
                 dbcon.Open();
                 IDbCommand dbcmd = dbcon.CreateCommand();
 
-                var sqlSearch_City = String.Format("SELECT*FROM {0} where{1}={2}", dbName, cityName, condition_city);
-                dbcmd.CommandText = sqlSearch_City;
-
+                dbcmd.CommandText = sqlSearch;
                 IDataReader dr = dbcmd.ExecuteReader();
-                string strResult = string.Empty;
-                FuncionClass funcInfo_pg = new FuncionClass(dr[1].ToString(),));
 
-                Dictionary<string, SortedList<int, QualityClass>> funcDic=new Dictionary<string, SortedList<int, QualityClass>>();
-                
                 while (dr.Read())
                 {
-                    var debug = dr;
-                    var qualityInfo = new QualityClass(dr[1].ToString(), int.Parse(dr[5].ToString()), int.Parse(dr[6].ToString()));
-                    var funcName = dr[4].ToString();
-
-                    if (funcDic.ContainsKey(funcName))
+                    string[] singleResult = new string[attrCount];
+                    for (int i = 0; i < attrCount; i++)
                     {
-                        funcDic[funcName].Add(qualityInfo.name, qualityInfo);
+                        singleResult[i] = dr[i].ToString().Trim();
                     }
-                    else
-                    {
-                        SortedList<int, QualityClass> singleFuncList = new SortedList<int, QualityClass>();
-                        funcDic.Add(funcName, singleFuncList.Add(qualityInfo.name, qualityInfo));
-                    }
+                    resultList.Add(singleResult);
                 }
-
-                cityInfo_pg.Add("",FuncionClass)
 
                 dr.Close();
                 dr = null;
             }
-            catch (Exception)
-            {
-
-                throw;
-            }
+            catch (Exception e) { throw e; }
+            Console.WriteLine("从数据库中取值完成");
+            return resultList;
         }
         #endregion
 
@@ -421,15 +430,41 @@ namespace Application
             }
             return result;
         }
+
+        private static int[] InsertData(string connectionString, string sql, string tableName, string[] attrNameArray, int[] insertValue)
+        {
+            IDBHelper dbHelper = new PostgreHelper();
+            int[] result = new int[insertValue.Length];
+            for (int i = 0; i < insertValue.Length; i++)
+            {
+                var _params = CreateNpgsqlParas(attrNameArray, insertValue);
+                int r = dbHelper.ExecuteNonQuery(connectionString, CommandType.Text, sql, _params);
+            }
+            return result;
+        }
         private static NpgsqlParameter[] CreateNpgsqlParas(string[] attrNameArray, string[] insertValue)
         {
             NpgsqlParameter[] result = new NpgsqlParameter[attrNameArray.Length];
             for (int i = 0; i < attrNameArray.Length; i++)
             {
-                result[i]= new NpgsqlParameter(String.Format("@{0}", attrNameArray[0]),insertValue[0]);
+                result[i]= new NpgsqlParameter(String.Format("@{0}", attrNameArray[i]),insertValue[i]);
             }
             return result;
         }
+        private static NpgsqlParameter[] CreateNpgsqlParas(string[] attrNameArray, int[] insertValue)
+        {
+            NpgsqlParameter[] result = new NpgsqlParameter[attrNameArray.Length];
+            for (int i = 0; i < attrNameArray.Length; i++)
+            {
+                result[i] = new NpgsqlParameter(String.Format("@{0}", attrNameArray[i]), insertValue[i]);
+            }
+            return result;
+        }
+
+
+        /// <summary>
+        /// unused
+        /// </summary>
         private static void InsertData(string connectionString)
         {
             IDBHelper dbHelper = new PostgreHelper();
@@ -464,8 +499,6 @@ namespace Application
             }
             return bReturn;
         }
-
-        private static 
         #endregion
 
         #region 特定模块
@@ -507,30 +540,36 @@ namespace Application
         private static List<NpgsqlParameter[]> ExtractFromCityInfo(Dictionary<int, string[]> functionDis, string[][] functionInfo, string cityName, int year, string adcode, int num)
         {
             var paraList = new List<NpgsqlParameter[]>();
-
+            Dictionary<string, int> qualityNameDic = new Dictionary<string, int>()
+                {
+                    { "high_quality",1},{ "medium",2},{ "low",3},{ "clubhouse",4},
+                    { "external_work",5},{ "5_star",6},{ "3_star",7},{ "landlord",8},
+                    { "end_user",9},{ "basement",10},{ "multi_story",11}
+                };
 
             for (int i = 0; i < functionInfo.Length; i++)
             {
                 if (IsNumeric(functionInfo[i][0], out _))
                 {
                     var _params = new NpgsqlParameter[] {
-                new NpgsqlParameter("@name",functionDis[functionDis.Keys.ElementAt(num)][i+1] ),
                 new NpgsqlParameter("@year", 2020),
                 new NpgsqlParameter("@city_id", adcode),
                 new NpgsqlParameter("@func_id", functionDis.Keys.ElementAt(num)),
                 new NpgsqlParameter("@price_min", double.Parse(functionInfo[i][0])),
-                new NpgsqlParameter("@price_max",  double.Parse(functionInfo[i][1]))};
+                new NpgsqlParameter("@price_max",  double.Parse(functionInfo[i][1])),
+                new NpgsqlParameter("@quality_id",qualityNameDic[functionDis[functionDis.Keys.ElementAt(num)][i+1]])
+                    };
                     paraList.Add(_params);
                 }
                 else
                 {
                     var _params = new NpgsqlParameter[] {
-                new NpgsqlParameter("@name",functionDis[functionDis.Keys.ElementAt(num)][i+1] ),
                 new NpgsqlParameter("@year", 2020),
                 new NpgsqlParameter("@city_id", adcode),
                 new NpgsqlParameter("@func_id", functionDis.Keys.ElementAt(num)),
                 new NpgsqlParameter("@price_min", -1),
-                new NpgsqlParameter("@price_max", -1)};
+                new NpgsqlParameter("@price_max", -1),
+                new NpgsqlParameter("@quality_id",qualityNameDic[functionDis[functionDis.Keys.ElementAt(num)][i+1]] )};
                     paraList.Add(_params);
                 }
 
@@ -538,6 +577,57 @@ namespace Application
             return paraList;
         }
         #endregion
+        //private static void GetData(string connectStr)
+        //{
+        //    string dbName = "construction_cost";
+        //    string cityName = "city_id";
+        //    string condition_city = GaodeLocation.DecodeResult("北京").adcode;
+
+        //    Dictionary<string, FuncionClass> cityInfo_pg = new Dictionary<string, FuncionClass>();
+        //    try
+        //    {
+        //        IDbConnection dbcon;
+        //        dbcon = new NpgsqlConnection(connectStr);
+        //        dbcon.Open();
+        //        IDbCommand dbcmd = dbcon.CreateCommand();
+
+        //        var sqlSearch_City = String.Format("SELECT*FROM {0} where{1}={2}", dbName, cityName, condition_city);
+        //        dbcmd.CommandText = sqlSearch_City;
+
+        //        IDataReader dr = dbcmd.ExecuteReader();
+        //        string strResult = string.Empty;
+        //        FuncionClass funcInfo_pg = new FuncionClass(dr[1].ToString(),));
+
+        //        Dictionary<string, SortedList<int, QualityClass>> funcDic = new Dictionary<string, SortedList<int, QualityClass>>();
+
+        //        while (dr.Read())
+        //        {
+        //            var debug = dr;
+        //            var qualityInfo = new QualityClass(dr[1].ToString(), int.Parse(dr[5].ToString()), int.Parse(dr[6].ToString()));
+        //            var funcName = dr[4].ToString();
+
+        //            if (funcDic.ContainsKey(funcName))
+        //            {
+        //                funcDic[funcName].Add(qualityInfo.name, qualityInfo);
+        //            }
+        //            else
+        //            {
+        //                SortedList<int, QualityClass> singleFuncList = new SortedList<int, QualityClass>();
+        //                funcDic.Add(funcName, singleFuncList.Add(qualityInfo.name, qualityInfo));
+        //            }
+        //        }
+
+        //        cityInfo_pg.Add("", FuncionClass)
+
+        //        dr.Close();
+        //        dr = null;
+        //    }
+        //    catch (Exception)
+        //    {
+
+        //        throw;
+        //    }
+        //}
 
         #region 数据结构测试
         private static void CreateStructuredXml(string testPath)

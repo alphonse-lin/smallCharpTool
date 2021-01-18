@@ -220,6 +220,8 @@ namespace utility
                 "func_id int,\n" +
                 "price_max numeric(9,2),\n" +
                 "price_min numeric(9,2),\n" +
+                "quality_id int,\n" +
+
 
                 "Primary Key(id),\n" +
 
@@ -229,7 +231,11 @@ namespace utility
 
                 "Constraint fk_func_id\n" +
                 "Foreign Key(func_id)\n" +
-                "References building_functions(id)" +
+                "References building_functions(id)," +
+
+                "Constraint fk_quality_id\n" +
+                "Foreign Key(quality_id)\n" +
+                "References quality_functions(quality_id)" +
                 ") ";
             dbHelper.ExecuteNonQuery(connectionString, CommandType.Text, createDB);
 
@@ -252,14 +258,14 @@ namespace utility
             };
 
             Console.WriteLine("完成");
-                #endregion
+            #endregion
 
-                #region 地理位置编码
-                //var data = GaodeLocation.DecodeResult("成都");
-                //Console.WriteLine(data.adcode +"\n"+data.latitude+ "\n"+data.lontitude);
-                #endregion
+            #region 地理位置编码
+            //var data = GaodeLocation.DecodeResult("成都");
+            //Console.WriteLine(data.adcode +"\n"+data.latitude+ "\n"+data.lontitude);
+            #endregion
 
-                Console.ReadLine();
+            Console.ReadLine();
 
             
         }

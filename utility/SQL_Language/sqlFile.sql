@@ -6,7 +6,7 @@ select * from quality_functions
 insert into construction_cost(name,year,city_id,func_id,price_min,price_max)values(@name,@year,@city_id,@func_id,@price_min,@price_max)
 
 
-select bf.name as function_name,qf.quality_name as quality_name,c.name as city_name, cc.price_max, cc.price_min,cc.year，c.lat, c.lon
+select bf.name as function_name,qf.quality_name as quality_name,c.name as city_name, cc.price_max, cc.price_min,cc.year,c.lat, c.lon
 FROM construction_cost cc, cities c, building_functions bf, quality_functions qf
 where cc.city_id=c.code and cc.func_id=bf.id and cc.quality_id=qf.quality_id;
 
@@ -44,3 +44,6 @@ ALTER TABLE construction_cost Drop name;
 
 alter table construction_cost MODIFY name  after id;
 
+select bf.name as function_name,qf.quality_name as quality_name, cc.quality_id, c.name as city_name, cc.price_max, cc.price_min,cc.year,c.lat, c.lon
+FROM construction_cost cc, cities c, building_functions bf, quality_functions qf
+where cc.city_id=c.code and cc.func_id=bf.id and cc.quality_id=qf.quality_id and c.name='北京';

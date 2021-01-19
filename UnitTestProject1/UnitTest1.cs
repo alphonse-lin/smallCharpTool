@@ -1,16 +1,20 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Application;
 
 namespace UnitTestProject1
 {
     [TestClass]
-    public class UnitTest1
+    public class ProgramTest
     {
         [TestMethod]
-        public void ReadFromDataBase()
+        public void ReadFromXML()
         {
-            #region 第九次 读取数据库 成本库
-            string connectionString = "Host=39.107.177.223;Username=postgres;Password=admin;Database=urbanxlabdb";
+            #region 根据节点，读取xml数据
+            string xmlPath = @"E:\114_temp\015_DEMData\tets003\test005.kml";
+            string nodeName = "coordinates";
+            var result = ToolManagers.KMLFileLoadButton_ClickL(xmlPath, nodeName);
             #endregion
         }
     }
 }
+    

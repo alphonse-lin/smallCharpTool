@@ -199,7 +199,8 @@ namespace Application
         #endregion
         #endregion
 
-        #region 特定模块
+        #region 特定数据库模块
+
         #region 抽取类型数据
         public static List<NpgsqlParameter[]> ExtractCityConstructionCost(ConstructionCostClass cityInfo)
         {
@@ -275,6 +276,7 @@ namespace Application
             return paraList;
         }
         #endregion
+        
         #endregion
         #endregion
 

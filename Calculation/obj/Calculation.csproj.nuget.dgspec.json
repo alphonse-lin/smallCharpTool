@@ -40,6 +40,12 @@
       },
       "frameworks": {
         "netcoreapp3.1": {
+          "dependencies": {
+            "Google.OrTools": {
+              "target": "Package",
+              "version": "[8.1.8487, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",

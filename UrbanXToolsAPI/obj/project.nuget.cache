@@ -1,8 +1,41 @@
 {
   "version": 2,
-  "dgSpecHash": "neNhuH6smQdWj7ZNhfhw5gjQX2AfNkZSz2FXt/YRs4zsaoMjb2jF7XkbqTVRaU64/xC3NVF7QmGo0pXfSbx9zg==",
+  "dgSpecHash": "G1Bb8MA4bm7chA2OUrEjpAGLG5yZB9MGbIe6iHg3CrHbsg8yK7QeC1vG6vcI1JDyjfNfoF/Om+w/Bezjoa2Jvg==",
   "success": true,
   "projectFilePath": "E:\\114_temp\\008_代码集\\002_extras\\smallCharpTool\\UrbanXToolsAPI\\UrbanXToolsAPI.csproj",
-  "expectedPackageFiles": [],
-  "logs": []
+  "expectedPackageFiles": [
+    "C:\\Users\\CAUPD-BJ141\\.nuget\\packages\\google.ortools\\8.1.8487\\google.ortools.8.1.8487.nupkg.sha512",
+    "C:\\Users\\CAUPD-BJ141\\.nuget\\packages\\google.ortools.runtime.linux-x64\\8.1.8487\\google.ortools.runtime.linux-x64.8.1.8487.nupkg.sha512",
+    "C:\\Users\\CAUPD-BJ141\\.nuget\\packages\\google.ortools.runtime.osx-x64\\8.1.8487\\google.ortools.runtime.osx-x64.8.1.8487.nupkg.sha512",
+    "C:\\Users\\CAUPD-BJ141\\.nuget\\packages\\google.ortools.runtime.win-x64\\8.1.8487\\google.ortools.runtime.win-x64.8.1.8487.nupkg.sha512",
+    "C:\\Users\\CAUPD-BJ141\\.nuget\\packages\\google.protobuf\\3.14.0\\google.protobuf.3.14.0.nupkg.sha512",
+    "C:\\Users\\CAUPD-BJ141\\.nuget\\packages\\microsoft.netcore.platforms\\5.0.0\\microsoft.netcore.platforms.5.0.0.nupkg.sha512",
+    "C:\\Users\\CAUPD-BJ141\\.nuget\\packages\\microsoft.win32.registry\\5.0.0\\microsoft.win32.registry.5.0.0.nupkg.sha512",
+    "C:\\Users\\CAUPD-BJ141\\.nuget\\packages\\microsoft.win32.systemevents\\5.0.0\\microsoft.win32.systemevents.5.0.0.nupkg.sha512",
+    "C:\\Users\\CAUPD-BJ141\\.nuget\\packages\\newtonsoft.json\\12.0.3\\newtonsoft.json.12.0.3.nupkg.sha512",
+    "C:\\Users\\CAUPD-BJ141\\.nuget\\packages\\npgsql\\5.0.1.1\\npgsql.5.0.1.1.nupkg.sha512",
+    "C:\\Users\\CAUPD-BJ141\\.nuget\\packages\\system.configuration.configurationmanager\\5.0.0\\system.configuration.configurationmanager.5.0.0.nupkg.sha512",
+    "C:\\Users\\CAUPD-BJ141\\.nuget\\packages\\system.data.oledb\\5.0.0\\system.data.oledb.5.0.0.nupkg.sha512",
+    "C:\\Users\\CAUPD-BJ141\\.nuget\\packages\\system.diagnostics.performancecounter\\5.0.0\\system.diagnostics.performancecounter.5.0.0.nupkg.sha512",
+    "C:\\Users\\CAUPD-BJ141\\.nuget\\packages\\system.drawing.common\\5.0.0\\system.drawing.common.5.0.0.nupkg.sha512",
+    "C:\\Users\\CAUPD-BJ141\\.nuget\\packages\\system.memory\\4.5.3\\system.memory.4.5.3.nupkg.sha512",
+    "C:\\Users\\CAUPD-BJ141\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\4.6.0\\system.runtime.compilerservices.unsafe.4.6.0.nupkg.sha512",
+    "C:\\Users\\CAUPD-BJ141\\.nuget\\packages\\system.security.accesscontrol\\5.0.0\\system.security.accesscontrol.5.0.0.nupkg.sha512",
+    "C:\\Users\\CAUPD-BJ141\\.nuget\\packages\\system.security.cryptography.protecteddata\\5.0.0\\system.security.cryptography.protecteddata.5.0.0.nupkg.sha512",
+    "C:\\Users\\CAUPD-BJ141\\.nuget\\packages\\system.security.permissions\\5.0.0\\system.security.permissions.5.0.0.nupkg.sha512",
+    "C:\\Users\\CAUPD-BJ141\\.nuget\\packages\\system.security.principal.windows\\5.0.0\\system.security.principal.windows.5.0.0.nupkg.sha512",
+    "C:\\Users\\CAUPD-BJ141\\.nuget\\packages\\system.windows.extensions\\5.0.0\\system.windows.extensions.5.0.0.nupkg.sha512"
+  ],
+  "logs": [
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "已使用“.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8”而不是项目目标框架“.NETCoreApp,Version=v3.1”还原包“Google.OrTools.runtime.win-x64 8.1.8487”。此包可能与项目不完全兼容。",
+      "libraryId": "Google.OrTools.runtime.win-x64",
+      "targetGraphs": [
+        ".NETCoreApp,Version=v3.1"
+      ]
+    }
+  ]
 }

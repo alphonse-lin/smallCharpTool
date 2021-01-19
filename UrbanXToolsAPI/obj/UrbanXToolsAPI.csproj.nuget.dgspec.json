@@ -4,6 +4,136 @@
     "E:\\114_temp\\008_代码集\\002_extras\\smallCharpTool\\UrbanXToolsAPI\\UrbanXToolsAPI.csproj": {}
   },
   "projects": {
+    "E:\\114_temp\\008_代码集\\002_extras\\smallCharpTool\\Application\\Application.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "E:\\114_temp\\008_代码集\\002_extras\\smallCharpTool\\Application\\Application.csproj",
+        "projectName": "Application",
+        "projectPath": "E:\\114_temp\\008_代码集\\002_extras\\smallCharpTool\\Application\\Application.csproj",
+        "packagesPath": "C:\\Users\\CAUPD-BJ141\\.nuget\\packages\\",
+        "outputPath": "E:\\114_temp\\008_代码集\\002_extras\\smallCharpTool\\Application\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\CAUPD-BJ141\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp3.1"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp3.1": {
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp3.1": {
+          "dependencies": {
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[12.0.3, )"
+            },
+            "Npgsql": {
+              "target": "Package",
+              "version": "[5.0.1.1, )"
+            },
+            "System.Data.OleDb": {
+              "target": "Package",
+              "version": "[5.0.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.404\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "E:\\114_temp\\008_代码集\\002_extras\\smallCharpTool\\Calculation\\Calculation.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "E:\\114_temp\\008_代码集\\002_extras\\smallCharpTool\\Calculation\\Calculation.csproj",
+        "projectName": "Calculation",
+        "projectPath": "E:\\114_temp\\008_代码集\\002_extras\\smallCharpTool\\Calculation\\Calculation.csproj",
+        "packagesPath": "C:\\Users\\CAUPD-BJ141\\.nuget\\packages\\",
+        "outputPath": "E:\\114_temp\\008_代码集\\002_extras\\smallCharpTool\\Calculation\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\CAUPD-BJ141\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp3.1"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp3.1": {
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp3.1": {
+          "dependencies": {
+            "Google.OrTools": {
+              "target": "Package",
+              "version": "[8.1.8487, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.404\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
     "E:\\114_temp\\008_代码集\\002_extras\\smallCharpTool\\UrbanXToolsAPI\\UrbanXToolsAPI.csproj": {
       "version": "1.0.0",
       "restore": {
@@ -29,7 +159,14 @@
         },
         "frameworks": {
           "netcoreapp3.1": {
-            "projectReferences": {}
+            "projectReferences": {
+              "E:\\114_temp\\008_代码集\\002_extras\\smallCharpTool\\Application\\Application.csproj": {
+                "projectPath": "E:\\114_temp\\008_代码集\\002_extras\\smallCharpTool\\Application\\Application.csproj"
+              },
+              "E:\\114_temp\\008_代码集\\002_extras\\smallCharpTool\\Calculation\\Calculation.csproj": {
+                "projectPath": "E:\\114_temp\\008_代码集\\002_extras\\smallCharpTool\\Calculation\\Calculation.csproj"
+              }
+            }
           }
         },
         "warningProperties": {

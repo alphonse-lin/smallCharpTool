@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Application
+namespace UrbanX.Application
 {
     public class FuncionClass
     {

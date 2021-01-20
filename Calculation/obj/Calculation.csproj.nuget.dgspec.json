@@ -41,9 +41,9 @@
       "frameworks": {
         "netcoreapp3.1": {
           "dependencies": {
-            "Google.OrTools": {
+            "MathNet.Numerics": {
               "target": "Package",
-              "version": "[8.1.8487, )"
+              "version": "[4.15.0, )"
             }
           },
           "imports": [

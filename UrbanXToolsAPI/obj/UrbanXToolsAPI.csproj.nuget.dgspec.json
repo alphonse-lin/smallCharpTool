@@ -29,7 +29,11 @@
         },
         "frameworks": {
           "netcoreapp3.1": {
-            "projectReferences": {}
+            "projectReferences": {
+              "E:\\114_temp\\008_代码集\\002_extras\\smallCharpTool\\Calculation\\Calculation.csproj": {
+                "projectPath": "E:\\114_temp\\008_代码集\\002_extras\\smallCharpTool\\Calculation\\Calculation.csproj"
+              }
+            }
           }
         },
         "warningProperties": {
@@ -110,9 +114,9 @@
       "frameworks": {
         "netcoreapp3.1": {
           "dependencies": {
-            "Google.OrTools": {
+            "MathNet.Numerics": {
               "target": "Package",
-              "version": "[8.1.8487, )"
+              "version": "[4.15.0, )"
             }
           },
           "imports": [

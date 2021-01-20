@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using UrbanX.Application;
 
-namespace Application
+namespace UrbanX.Application
 {
     public static class DB_Manager
     {

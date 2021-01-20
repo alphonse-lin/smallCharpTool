@@ -9,9 +9,9 @@ using System.IO;
 using System.Data.OleDb;
 using System.Xml.Linq;
 using Npgsql;
-using UrbanX.Application;
+using UrbanX.Calculation;
 
-namespace Application
+namespace UrbanX.Application
 {
     class Program
     {
@@ -260,30 +260,47 @@ namespace Application
             #endregion
 
             #region 第九次 读取数据库 成本库
-            string connectionString = "Host=39.107.177.223;Username=postgres;Password=admin;Database=urbanxlabdb";
-            string city = "北京";
-            int attrCount = 9;
-            string sql = string.Format("select " +
-                "bf.name,qf.quality_name,cc.quality_id,c.name, cc.price_max, cc.price_min,cc.year,c.lat, c.lon " +
-                "FROM construction_cost cc, cities c, building_functions bf, quality_functions qf " +
-                "where cc.city_id = c.code and cc.func_id = bf.id and cc.quality_id = qf.quality_id and c.name='{0}'; ", city);
+            //string connectionString = "Host=39.107.177.223;Username=postgres;Password=admin;Database=urbanxlabdb";
+            //string city = "北京";
+            //int attrCount = 9;
+            //string sql = string.Format("select " +
+            //    "bf.name,qf.quality_name,cc.quality_id,c.name, cc.price_max, cc.price_min,cc.year,c.lat, c.lon " +
+            //    "FROM construction_cost cc, cities c, building_functions bf, quality_functions qf " +
+            //    "where cc.city_id = c.code and cc.func_id = bf.id and cc.quality_id = qf.quality_id and c.name='{0}'; ", city);
 
-            var resultList = DB_Manager.GetData(connectionString, sql, attrCount);
-            FuncionClass cityInfo = new FuncionClass(resultList);
-            var result = cityInfo.FuncInfoDic;
+            //var resultList = DB_Manager.GetData(connectionString, sql, attrCount);
+            //FuncionClass cityInfo = new FuncionClass(resultList);
+            //var result = cityInfo.FuncInfoDic;
 
-            Console.WriteLine("城市为{0}, 经度为{1},纬度{2}", cityInfo.CityName, cityInfo.Lat.ToString(), cityInfo.Lon.ToString());
-            Console.WriteLine("完成");
+            //Console.WriteLine("城市为{0}, 经度为{1},纬度{2}", cityInfo.CityName, cityInfo.Lat.ToString(), cityInfo.Lon.ToString());
+            //Console.WriteLine("完成");
             #endregion
 
             #region 根据节点，读取xml数据
-            string readPath = @"E:\114_temp\008_代码集\002_extras\smallCharpTool\Application\data\kmlTest\test001.kml";
-            string savePath = @"E:\114_temp\008_代码集\002_extras\smallCharpTool\Application\data\kmlTest\testOutput_1.kml";
-            Point pointMin = new Point(112.0675, 37.4058);
-            Point pointMax = new Point(112.9198, 38.1840);
+            //string readPath = @"E:\114_temp\008_代码集\002_extras\smallCharpTool\Application\data\kmlTest\test001.kml";
+            //string savePath = @"E:\114_temp\008_代码集\002_extras\smallCharpTool\Application\data\kmlTest\testOutput_1.kml";
+            //Point pointMin = new Point(112.0675, 37.4058);
+            //Point pointMax = new Point(112.9198, 38.1840);
 
-            ToolManagers.CreateKMLFile(readPath,savePath,pointMin,pointMax,100,100);
-            Console.WriteLine("完成");
+            //ToolManagers.CreateKMLFile(readPath,savePath,pointMin,pointMax,100,100);
+            //Console.WriteLine("完成");
+            #endregion
+
+            #region
+            List<double> resultList = new List<double>();
+            int count = 100;
+            for (int i = 0; i < count; i++)
+            {
+                var result = StatisticsModel.Random_Normal(10, 0.1, 0, 20);
+                resultList.Add(result);
+            }
+
+            foreach (var item in resultList)
+            {
+                Console.WriteLine(item);
+            }
+
+            Console.ReadLine();
             #endregion
 
             #region 地理位置编码

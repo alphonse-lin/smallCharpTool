@@ -1,27 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "Ef21+w+oHuFclee8weR7WnK4bGzgYe8k0bp5ZelWZmt4GRH/N8y73Z9gRZ90/zNAb3MGraiooIbKO3axinXc3w==",
+  "dgSpecHash": "lqe6/JbZ+Y1UW/MUX/7IU5TyRxW4sv6XLGhvl8LlteHBW/XNxy4yHTe1lZmL62D5B/XL0UHsiALBj2FeoN1idQ==",
   "success": true,
   "projectFilePath": "E:\\114_temp\\008_代码集\\002_extras\\smallCharpTool\\Calculation\\Calculation.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\CAUPD-BJ141\\.nuget\\packages\\google.ortools\\8.1.8487\\google.ortools.8.1.8487.nupkg.sha512",
-    "C:\\Users\\CAUPD-BJ141\\.nuget\\packages\\google.ortools.runtime.linux-x64\\8.1.8487\\google.ortools.runtime.linux-x64.8.1.8487.nupkg.sha512",
-    "C:\\Users\\CAUPD-BJ141\\.nuget\\packages\\google.ortools.runtime.osx-x64\\8.1.8487\\google.ortools.runtime.osx-x64.8.1.8487.nupkg.sha512",
-    "C:\\Users\\CAUPD-BJ141\\.nuget\\packages\\google.ortools.runtime.win-x64\\8.1.8487\\google.ortools.runtime.win-x64.8.1.8487.nupkg.sha512",
-    "C:\\Users\\CAUPD-BJ141\\.nuget\\packages\\google.protobuf\\3.14.0\\google.protobuf.3.14.0.nupkg.sha512",
-    "C:\\Users\\CAUPD-BJ141\\.nuget\\packages\\system.memory\\4.5.3\\system.memory.4.5.3.nupkg.sha512",
-    "C:\\Users\\CAUPD-BJ141\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\4.5.2\\system.runtime.compilerservices.unsafe.4.5.2.nupkg.sha512"
+    "C:\\Users\\CAUPD-BJ141\\.nuget\\packages\\mathnet.numerics\\4.15.0\\mathnet.numerics.4.15.0.nupkg.sha512"
   ],
-  "logs": [
-    {
-      "code": "NU1701",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "已使用“.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8”而不是项目目标框架“.NETCoreApp,Version=v3.1”还原包“Google.OrTools.runtime.win-x64 8.1.8487”。此包可能与项目不完全兼容。",
-      "libraryId": "Google.OrTools.runtime.win-x64",
-      "targetGraphs": [
-        ".NETCoreApp,Version=v3.1"
-      ]
-    }
-  ]
+  "logs": []
 }

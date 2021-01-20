@@ -2,3 +2,14 @@ E:\114_temp\008_代码集\002_extras\smallCharpTool\Calculation\bin\Debug\netcor
 E:\114_temp\008_代码集\002_extras\smallCharpTool\Calculation\obj\Debug\netcoreapp3.1\Calculation.csprojAssemblyReference.cache
 E:\114_temp\008_代码集\002_extras\smallCharpTool\Calculation\obj\Debug\netcoreapp3.1\Calculation.AssemblyInfoInputs.cache
 E:\114_temp\008_代码集\002_extras\smallCharpTool\Calculation\obj\Debug\netcoreapp3.1\Calculation.AssemblyInfo.cs
+E:\114_temp\008_代码集\002_extras\smallCharpTool\Calculation\obj\Debug\netcoreapp3.1\Calculation.dll
+E:\114_temp\008_代码集\002_extras\smallCharpTool\Calculation\obj\Debug\netcoreapp3.1\Calculation.pdb
+E:\114_temp\008_代码集\002_extras\smallCharpTool\Calculation\bin\Debug\netcoreapp3.1\Calculation.deps.json
+E:\114_temp\008_代码集\002_extras\smallCharpTool\Calculation\bin\Debug\netcoreapp3.1\Calculation.runtimeconfig.json
+E:\114_temp\008_代码集\002_extras\smallCharpTool\Calculation\bin\Debug\netcoreapp3.1\Calculation.runtimeconfig.dev.json
+E:\114_temp\008_代码集\002_extras\smallCharpTool\Calculation\bin\Debug\netcoreapp3.1\Calculation.dll
+E:\114_temp\008_代码集\002_extras\smallCharpTool\Calculation\bin\Debug\netcoreapp3.1\Calculation.pdb
+E:\114_temp\008_代码集\002_extras\smallCharpTool\Calculation\obj\Debug\netcoreapp3.1\Calculation.genruntimeconfig.cache
+E:\114_temp\008_代码集\002_extras\smallCharpTool\Calculation\bin\Debug\netcoreapp3.1\MathNet.Numerics.dll
+E:\114_temp\008_代码集\002_extras\smallCharpTool\Calculation\obj\Debug\netcoreapp3.1\Calculation.csproj.CoreCompileInputs.cache
+E:\114_temp\008_代码集\002_extras\smallCharpTool\Calculation\obj\Debug\netcoreapp3.1\Calculation.csproj.CopyComplete

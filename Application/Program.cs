@@ -277,30 +277,30 @@ namespace UrbanX.Application
             #endregion
 
             #region 根据节点，读取xml数据
-            //string readPath = @"E:\114_temp\008_代码集\002_extras\smallCharpTool\Application\data\kmlTest\test001.kml";
-            //string savePath = @"E:\114_temp\008_代码集\002_extras\smallCharpTool\Application\data\kmlTest\testOutput_1.kml";
-            //Point pointMin = new Point(112.0675, 37.4058);
-            //Point pointMax = new Point(112.9198, 38.1840);
+            string readPath = @"E:\114_temp\008_代码集\002_extras\smallCharpTool\Application\data\kmlTest\test001.kml";
+            string savePath = @"E:\114_temp\008_代码集\002_extras\smallCharpTool\Application\data\kmlTest\testOutput_4.kml";
+            Point pointMin = new Point(110.9880, 36.7666);
+            Point pointMax = new Point(113.7515, 38.7294);
 
-            //ToolManagers.CreateKMLFile(readPath,savePath,pointMin,pointMax,100,100);
-            //Console.WriteLine("完成");
+            ToolManagers.CreateKMLFile(readPath, savePath, pointMin, pointMax, 150, 150);
+            Console.WriteLine("完成");
             #endregion
 
             #region
-            List<double> resultList = new List<double>();
-            int count = 100;
-            for (int i = 0; i < count; i++)
-            {
-                var result = StatisticsModel.Random_Normal(10, 0.1, 0, 20);
-                resultList.Add(result);
-            }
+            //List<double> resultList = new List<double>();
+            //int count = 100;
+            //for (int i = 0; i < count; i++)
+            //{
+            //    var result = Random_Normal(10, 0.1, 0, 20);
+            //    resultList.Add(result);
+            //}
 
-            foreach (var item in resultList)
-            {
-                Console.WriteLine(item);
-            }
+            //foreach (var item in resultList)
+            //{
+            //    Console.WriteLine(item);
+            //}
 
-            Console.ReadLine();
+            //Console.ReadLine();
             #endregion
 
             #region 地理位置编码

@@ -83,18 +83,18 @@ namespace UrbanX.Application
             var xmax = ptRightUp.X;
             var ymax = ptRightUp.Y;
 
-            var columnStep = Math.Abs(xmax - xmin) / rowCount;
-            var rowStep = Math.Abs(ymax - ymin) / columnCount;
+            var columnStep = Math.Abs(xmax - xmin) / columnCount;
+            var rowStep = Math.Abs(ymax - ymin) / rowCount;
 
             var totalCount = columnCount * rowCount;
             List<Point> ptResult = new List<Point>(totalCount);
             
             for (int row = 0; row < rowCount; row++)
             {
-                var pointX = xmin + rowStep * row;
+                var pointY = ymin + rowStep * row;
                 for (int column = 0; column < columnCount; column++)
                 {
-                    var pointY = ymin + columnStep * column;
+                    var pointX = xmin + columnStep * column;
                     ptResult.Add(new Point(pointX, pointY));
                 }
             }

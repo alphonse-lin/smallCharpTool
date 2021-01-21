@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace UrbanX.Properties {
+namespace UrbanXX.Properties {
     using System;
     
     

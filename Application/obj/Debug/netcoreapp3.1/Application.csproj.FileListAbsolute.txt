@@ -32,7 +32,6 @@ E:\114_temp\008_代码集\002_extras\smallCharpTool\Application\bin\Debug\netcor
 E:\114_temp\008_代码集\002_extras\smallCharpTool\Application\bin\Debug\netcoreapp3.1\runtimes\unix\lib\netcoreapp2.1\System.Security.Principal.Windows.dll
 E:\114_temp\008_代码集\002_extras\smallCharpTool\Application\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp2.1\System.Security.Principal.Windows.dll
 E:\114_temp\008_代码集\002_extras\smallCharpTool\Application\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp3.0\System.Windows.Extensions.dll
-E:\114_temp\008_代码集\002_extras\smallCharpTool\Application\obj\Debug\netcoreapp3.1\Application.csproj.CoreCompileInputs.cache
 E:\114_temp\008_代码集\002_extras\smallCharpTool\Application\obj\Debug\netcoreapp3.1\Application.dll
 E:\114_temp\008_代码集\002_extras\smallCharpTool\Application\obj\Debug\netcoreapp3.1\Application.pdb
 E:\114_temp\008_代码集\002_extras\smallCharpTool\Application\obj\Debug\netcoreapp3.1\Application.genruntimeconfig.cache
@@ -40,3 +39,8 @@ E:\114_temp\008_代码集\002_extras\smallCharpTool\Application\bin\Debug\netcor
 E:\114_temp\008_代码集\002_extras\smallCharpTool\Application\bin\Debug\netcoreapp3.1\MathNet.Numerics.dll
 E:\114_temp\008_代码集\002_extras\smallCharpTool\Application\bin\Debug\netcoreapp3.1\Calculation.dll
 E:\114_temp\008_代码集\002_extras\smallCharpTool\Application\bin\Debug\netcoreapp3.1\Calculation.pdb
+E:\114_temp\008_代码集\002_extras\smallCharpTool\Application\bin\Debug\netcoreapp3.1\NetTopologySuite.dll
+E:\114_temp\008_代码集\002_extras\smallCharpTool\Application\bin\Debug\netcoreapp3.1\NetTopologySuite.Features.dll
+E:\114_temp\008_代码集\002_extras\smallCharpTool\Application\obj\Debug\netcoreapp3.1\Application._100_Resource.Resources.resources
+E:\114_temp\008_代码集\002_extras\smallCharpTool\Application\obj\Debug\netcoreapp3.1\Application.csproj.GenerateResource.cache
+E:\114_temp\008_代码集\002_extras\smallCharpTool\Application\obj\Debug\netcoreapp3.1\Application.csproj.CoreCompileInputs.cache

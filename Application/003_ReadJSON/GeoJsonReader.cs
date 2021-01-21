@@ -2,7 +2,8 @@
 using System.IO;
 using System.Text;
 using System.Text.Json;
-
+using NetTopologySuite.Features;
+using NetTopologySuite.Geometries;
 using UrbanXX.IO.GeoJSON.Converters;
 
 namespace UrbanXX.IO.GeoJSON
@@ -76,6 +77,38 @@ namespace UrbanXX.IO.GeoJSON
             var res = JsonSerializer.Deserialize<T>(ref r, options);
 
             return res;
+        }
+
+        public static FeatureCollection GetFeatureCollectionFromJson(string json)
+        {
+
+            GeoJsonConverterFactory gf = new GeoJsonConverterFactory();
+
+            var reader = new GeoJsonReader(gf);
+            reader.SerializerOptions.IgnoreNullValues = true;
+
+            var collection = reader.Read<FeatureCollection>(json);
+
+            return collection;
+        }
+
+        public static GeometryCollection GetGeometriesFromFeatureCollection(FeatureCollection collection)
+        {
+            // Handle empty FeacutureCollection.
+            if (collection.Count == 0)
+            {
+                return null;
+            }
+
+            Geometry[] geoms = new Geometry[collection.Count];
+
+            for (int i = 0; i < collection.Count; i++)
+            {
+                geoms[i] = collection[i].Geometry;
+            }
+
+            // Important: need to inherit geometry factory from collection.
+            return new GeometryCollection(geoms, collection[0].Geometry.Factory);
         }
     }
 }

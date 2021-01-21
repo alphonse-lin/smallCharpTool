@@ -308,14 +308,21 @@ namespace UrbanX.Application
             #region 读取geojson
             var jsonFilePath = @"E:\114_temp\008_代码集\002_extras\smallCharpTool\Application\data\geojson\building.geojson";
             StreamReader sr = File.OpenText(jsonFilePath);
-            GeoJsonReader testRead = new GeoJsonReader();
-            var result = testRead.Read<string>(sr.ReadToEnd());
 
-            Console.WriteLine(result);
+            var feactureCollection = GeoJsonReader.GetFeatureCollectionFromJson(sr.ReadToEnd());
+
+            for (int i = 0; i < feactureCollection.Count; i++)
+            {
+                var value = feactureCollection[i].Attributes["brepHeight"];
+                Console.WriteLine(value);
+            }
+
+            
 
             #endregion
             Console.ReadLine();
         }
+
     }
 }
 

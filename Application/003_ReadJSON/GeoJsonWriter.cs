@@ -2,7 +2,8 @@
 using System.IO;
 using System.Text;
 using System.Text.Json;
-
+using NetTopologySuite.Features;
+using NetTopologySuite.Geometries;
 using UrbanXX.IO.GeoJSON.Converters;
 
 namespace UrbanXX.IO.GeoJSON
@@ -81,5 +82,13 @@ namespace UrbanXX.IO.GeoJSON
             using var writer = new Utf8JsonWriter(stream);
             JsonSerializer.Serialize(writer, value, options);
         }
+
+        /// <summary>
+        /// Static method for getting <see cref="Geometry"/> array from reading json string.
+        /// </summary>
+        /// <param name="json"></param>
+        /// <param name="geomFact"></param>
+        /// <returns></returns>
+        
     }
 }

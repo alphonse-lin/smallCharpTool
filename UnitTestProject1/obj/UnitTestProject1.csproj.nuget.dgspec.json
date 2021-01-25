@@ -45,6 +45,10 @@
       "frameworks": {
         "netcoreapp3.1": {
           "dependencies": {
+            "CliWrap": {
+              "target": "Package",
+              "version": "[3.3.0, )"
+            },
             "NetTopologySuite": {
               "target": "Package",
               "version": "[2.1.0, )"

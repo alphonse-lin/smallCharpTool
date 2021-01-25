@@ -110,5 +110,26 @@ namespace UrbanXX.IO.GeoJSON
             // Important: need to inherit geometry factory from collection.
             return new GeometryCollection(geoms, collection[0].Geometry.Factory);
         }
+
+        public static FeatureCollection ParseJSON(string jsonFilePath)
+        {
+            StreamReader sr = File.OpenText(jsonFilePath);
+
+            var feactureCollection = GeoJsonReader.GetFeatureCollectionFromJson(sr.ReadToEnd());
+            return feactureCollection;
+        }
+        public static string[] ParseJSON(string jsonFilePath, string name)
+        {
+            StreamReader sr = File.OpenText(jsonFilePath);
+
+            var feactureCollection = GeoJsonReader.GetFeatureCollectionFromJson(sr.ReadToEnd());
+            var jsonResult = new string[feactureCollection.Count];
+            for (int i = 0; i < feactureCollection.Count; i++)
+            {
+                jsonResult[i] = feactureCollection[i].Attributes[name].ToString();
+            }
+
+            return jsonResult;
+        }
     }
 }

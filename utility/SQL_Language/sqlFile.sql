@@ -5,6 +5,7 @@ select * from quality_functions
 
 insert into construction_cost(name,year,city_id,func_id,price_min,price_max)values(@name,@year,@city_id,@func_id,@price_min,@price_max)
 
+DROP TABLE chongqing_4326;
 
 select bf.name as function_name,qf.quality_name as quality_name,c.name as city_name, cc.price_max, cc.price_min,cc.year,c.lat, c.lon
 FROM construction_cost cc, cities c, building_functions bf, quality_functions qf
@@ -47,3 +48,14 @@ alter table construction_cost MODIFY name  after id;
 select bf.name as function_name,qf.quality_name as quality_name, cc.quality_id, c.name as city_name, cc.price_max, cc.price_min,cc.year,c.lat, c.lon
 FROM construction_cost cc, cities c, building_functions bf, quality_functions qf
 where cc.city_id=c.code and cc.func_id=bf.id and cc.quality_id=qf.quality_id and c.name='北京';
+
+ALTER DATABASE urbanxlab_db SET search_path=public,postgis;
+
+CREATE EXTENSIOn postgis;
+CREATE EXTENSION postgis_topology;
+CREATE EXTENSION pgrouting;
+CREATE EXTENSION postgis_topology;
+CREATE EXTENSION fuzzystrmatch;
+CREATE EXTENSION postgis_tiger_geocoder;
+
+select * from chongqing_4326;

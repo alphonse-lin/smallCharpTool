@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml;
 
-namespace UrbanX.Planning.IndexCalc
+namespace UrbanX.Application
 {
     public class InfoFromXML_BB
     {

@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "jZ6YhceB1sGbZlwbgACM8y3+7cCul5ZCLbEM1JU53iBs747czG2CITXU7sbQWUBmXYL3lu2eC12W5Qg/2FnTxA==",
+  "dgSpecHash": "zQ3QWdOCo8aBKFetwT09fTd89v9Wk7mGLG5FLuHaGHv0hfKlWsmrVOzDTKMAG6CxhV0Q/h7riXyo0SHkARplyA==",
   "success": true,
   "projectFilePath": "E:\\114_temp\\008_代码集\\002_extras\\smallCharpTool\\UnitTestProject1\\UnitTestProject1.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\CAUPD-BJ141\\.nuget\\packages\\cliwrap\\3.3.0\\cliwrap.3.3.0.nupkg.sha512",
     "C:\\Users\\CAUPD-BJ141\\.nuget\\packages\\coverlet.collector\\1.2.0\\coverlet.collector.1.2.0.nupkg.sha512",
     "C:\\Users\\CAUPD-BJ141\\.nuget\\packages\\mathnet.numerics\\4.15.0\\mathnet.numerics.4.15.0.nupkg.sha512",
     "C:\\Users\\CAUPD-BJ141\\.nuget\\packages\\microsoft.codecoverage\\16.5.0\\microsoft.codecoverage.16.5.0.nupkg.sha512",

@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "3KHrYcJSNbHE3O2ZYMA4f9Md4ldn2pvmNEfnwUBrwxE2behowzkXppdSLOZk1Dd6cohi56G+VpsrIHcMv01/mQ==",
+  "dgSpecHash": "gE7p9t46azYHGXC4Lwal4T2oAjYnDMgeAU4dwsVAhBybV4eLSfcscnu1AoBYaGout06pgHhuhk4ic4aq7I1N6w==",
   "success": true,
   "projectFilePath": "E:\\114_temp\\008_代码集\\002_extras\\smallCharpTool\\Application\\Application.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\CAUPD-BJ141\\.nuget\\packages\\cliwrap\\3.3.0\\cliwrap.3.3.0.nupkg.sha512",
     "C:\\Users\\CAUPD-BJ141\\.nuget\\packages\\mathnet.numerics\\4.15.0\\mathnet.numerics.4.15.0.nupkg.sha512",
     "C:\\Users\\CAUPD-BJ141\\.nuget\\packages\\microsoft.netcore.platforms\\5.0.0\\microsoft.netcore.platforms.5.0.0.nupkg.sha512",
     "C:\\Users\\CAUPD-BJ141\\.nuget\\packages\\microsoft.win32.registry\\5.0.0\\microsoft.win32.registry.5.0.0.nupkg.sha512",

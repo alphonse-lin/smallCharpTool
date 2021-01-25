@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.Xml;
 using System.Xml.Linq;
 
-namespace UrbanX.Planning.IndexCalc
+namespace UrbanX.Application
 {
     public class InfoFromXML_Population
     {

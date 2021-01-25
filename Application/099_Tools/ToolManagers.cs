@@ -1,10 +1,13 @@
-﻿using System;
+﻿using NetTopologySuite.Features;
+using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Xml;
 using System.Xml.Linq;
+using UrbanXX.IO.GeoJSON;
 
 namespace UrbanX.Application
 {
@@ -51,6 +54,21 @@ namespace UrbanX.Application
                 }
             }
         }
+        public static bool IsNumeric(string s, out double result)
+        {
+            bool bReturn = true;
+            try
+            {
+                result = double.Parse(s);
+            }
+            catch
+            {
+                result = 0;
+                bReturn = false;
+            }
+            return bReturn;
+        }
+        
 
         private static string ConvertPtIntoStr(List<Point> ptList)
         {
@@ -75,7 +93,6 @@ namespace UrbanX.Application
             }
             return result.ToString() ;
         }
-
         private static List<Point> CreatePoint(Point ptLeftBtm, Point ptRightUp, int rowCount=10,int columnCount=10)
         {
             var xmin = ptLeftBtm.X;
@@ -128,5 +145,7 @@ namespace UrbanX.Application
             string[] ss = modified.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);//清除空格
             return ss;
         }
+
+        
     }
 }

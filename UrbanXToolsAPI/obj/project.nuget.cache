@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "qsV19BJEkajL7sIm7/LcDgjZLxSOBsdDg5gJjgAi03Lua0016dbE9sHnkxtjOavTN3s+ZdYAQAen+D3uDE0Mkg==",
+  "dgSpecHash": "sW5NtD0dV3jbIHD260KX6or8Gwp6NwlTNd2C5J91ynPfftNCKsQXReDtynddtPeMC/V9cZSGrKKf5E7hTEt9GQ==",
   "success": true,
   "projectFilePath": "E:\\114_temp\\008_代码集\\002_extras\\smallCharpTool\\UrbanXToolsAPI\\UrbanXToolsAPI.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\CAUPD-BJ141\\.nuget\\packages\\cliwrap\\3.3.0\\cliwrap.3.3.0.nupkg.sha512",
     "C:\\Users\\CAUPD-BJ141\\.nuget\\packages\\mathnet.numerics\\4.15.0\\mathnet.numerics.4.15.0.nupkg.sha512",
     "C:\\Users\\CAUPD-BJ141\\.nuget\\packages\\microsoft.netcore.platforms\\5.0.0\\microsoft.netcore.platforms.5.0.0.nupkg.sha512",
     "C:\\Users\\CAUPD-BJ141\\.nuget\\packages\\microsoft.win32.registry\\5.0.0\\microsoft.win32.registry.5.0.0.nupkg.sha512",

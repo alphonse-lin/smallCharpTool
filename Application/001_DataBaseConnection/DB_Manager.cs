@@ -1,14 +1,18 @@
-﻿using Npgsql;
+﻿using CliWrap;
+using CliWrap.Buffered;
+using Npgsql;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 using UrbanX.Application;
 
 namespace UrbanX.Application
 {
-    public static class DB_Manager
+    public class DB_Manager
     {
         #region 示例
         //public static void CombinedData(string connectionString)
@@ -131,7 +135,6 @@ namespace UrbanX.Application
                 dr = null;
             }
             catch (Exception e) { throw e; }
-            Console.WriteLine("从数据库中取值完成");
             return resultList;
         }
         #endregion
@@ -197,6 +200,28 @@ namespace UrbanX.Application
             }
         }
         #endregion
+        public async static Task<bool> OutputSHPtoPSGL(string shpfile, string host, string user, string pwd, string db, string schema = "public", bool dropIfExists = true, string table = "[SHPNAME]")
+        {
+            FileInfo shp = new FileInfo(shpfile);
+            if (!shp.Exists) return false;
+            if (table == "[SHPNAME]") table = Path.GetFileNameWithoutExtension(shpfile).ToLower();
+
+            string args = string.Format("{0} {1}.{2}", shpfile, schema, table);
+
+            var result = await Cli.Wrap(@"D:\PostGreSQL_12\bin\shp2pgsql.exe").WithArguments(args).ExecuteBufferedAsync(Encoding.UTF8);
+
+            string sql = result.StandardOutput;
+            string constring = string.Format("Host={0};Username={1};Password={2};Database={3}", host, user, pwd, db);
+            if (dropIfExists) sql = sql.Replace("CREATE TABLE", string.Format("DROP TABLE IF EXISTS \"{0}\".\"{1}\";\r\nCREATE TABLE", schema, table));
+
+            using (NpgsqlConnection connection = new NpgsqlConnection(constring))
+            {
+                connection.Open();
+                new NpgsqlCommand(sql, connection).ExecuteNonQuery();
+            }
+            return true;
+        }
+
         #endregion
 
         #region 特定数据库模块
@@ -248,7 +273,7 @@ namespace UrbanX.Application
 
             for (int i = 0; i < functionInfo.Length; i++)
             {
-                if (IsNumeric(functionInfo[i][0], out _))
+                if (ToolManagers.IsNumeric(functionInfo[i][0], out _))
                 {
                     var _params = new NpgsqlParameter[] {
                 new NpgsqlParameter("@year", 2020),
@@ -278,23 +303,6 @@ namespace UrbanX.Application
         #endregion
         
         #endregion
-        #endregion
-
-        #region 通用计算模块
-        public static bool IsNumeric(string s, out double result)
-        {
-            bool bReturn = true;
-            try
-            {
-                result = double.Parse(s);
-            }
-            catch
-            {
-                result = 0;
-                bReturn = false;
-            }
-            return bReturn;
-        }
         #endregion
     }
 }

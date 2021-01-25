@@ -151,15 +151,15 @@ namespace UrbanX.Application
             #region 第六次正式运行，录入城市数据
             //IDBHelper dbHelper = new PostgreHelper();
             ////string connectionString = "Host=127.0.0.1;Username=postgres;Password=admin;Database=test";
-            //string connectionString = "Host=39.107.177.223;Username=postgres;Password=admin;Database=urbanxlabdb";
+            //string connectionString = "Host=39.107.177.223;Username=postgres;Password=admin;Database=urbanxlab_db";
 
             //var createDB = "create table if not exists cities(id serial, code char(20) primary key, name char(20), lat numeric(9,6), lon numeric(9,6)) ";
             //dbHelper.ExecuteNonQuery(connectionString, CommandType.Text, createDB);
 
             //string sql = "insert into [cities]([code],[name],[lat],[lon])values(@code, @name, @lat, @lon)";
 
-            //var cityNames = new string[] { "北京", "成都", "广州", "上海", "深圳", "天津", "武汉","无锡","西安","珠海"};
-            ////var cityNames = new string[] { "杭州", "厦门", "东莞", "重庆", "福州", "泉州", "太原", "大同", "漳州", "佛山" };
+            ////var cityNames = new string[] { "北京", "成都", "广州", "上海", "深圳", "天津", "武汉", "无锡", "西安", "珠海" };
+            //var cityNames = new string[] { "杭州", "厦门", "东莞", "重庆", "福州", "泉州", "太原", "大同", "漳州", "佛山" };
             //var cityInfoList = new List<GeocodeResult>(cityNames.Length);
             //for (int i = 0; i < cityNames.Length; i++)
             //    cityInfoList.Add(GaodeLocation.DecodeResult(cityNames[i]));
@@ -181,7 +181,7 @@ namespace UrbanX.Application
             #region 第七次正式运行，录入类型数据
             //IDBHelper dbHelper = new PostgreHelper();
             ////string connectionString = "Host=127.0.0.1;Username=postgres;Password=admin;Database=test";
-            //string connectionString = "Host=39.107.177.223;Username=postgres;Password=admin;Database=urbanxlabdb";
+            //string connectionString = "Host=39.107.177.223;Username=postgres;Password=admin;Database=urbanxlab_db";
 
             //var createDB = "create table if not exists building_functions(id serial primary key, name char(40)) ";
             //dbHelper.ExecuteNonQuery(connectionString, CommandType.Text, createDB);
@@ -210,7 +210,7 @@ namespace UrbanX.Application
             #region 第八次录入数据库 成本库
             //IDBHelper dbHelper = new PostgreHelper();
             ////string connectionString = "Host=127.0.0.1;Username=postgres;Password=admin;Database=test";
-            //string connectionString = "Host=39.107.177.223;Username=postgres;Password=admin;Database=urbanxlabdb";
+            //string connectionString = "Host=39.107.177.223;Username=postgres;Password=admin;Database=urbanxlab_db";
 
             //var createDB = "create table if not exists construction_cost(" +
             //    "id serial,\n " +
@@ -250,7 +250,7 @@ namespace UrbanX.Application
 
             //for (int i = 0; i < citiesCostModelList.Count; i++)
             //{
-            //    var resultList = ExtractCityConstructionCost(citiesCostModelList[i]);
+            //    var resultList = DB_Manager.ExtractCityConstructionCost(citiesCostModelList[i]);
             //    for (int j = 0; j < resultList.Count; j++)
             //    {
             //        int r = dbHelper.ExecuteNonQuery(connectionString, CommandType.Text, sql, resultList[j]);
@@ -261,7 +261,7 @@ namespace UrbanX.Application
             #endregion
 
             #region 第九次 读取数据库 成本库
-            //string connectionString = "Host=39.107.177.223;Username=postgres;Password=admin;Database=urbanxlabdb";
+            //string connectionString = "Host=39.107.177.223;Username=postgres;Password=admin;Database=urbanxlab_db";
             //string city = "北京";
             //int attrCount = 9;
             //string sql = string.Format("select " +
@@ -277,33 +277,18 @@ namespace UrbanX.Application
             //Console.WriteLine("完成");
             #endregion
 
-            #region 其他测试
+            #region 标准计算数据 EC/WC/GC/
 
-            #region 根据节点，读取xml数据
-            //string readPath = @"E:\114_temp\008_代码集\002_extras\smallCharpTool\Application\data\kmlTest\test001.kml";
-            //string savePath = @"E:\114_temp\008_代码集\002_extras\smallCharpTool\Application\data\kmlTest\testOutput_4.kml";
-            //Point pointMin = new Point(110.9880, 36.7666);
-            //Point pointMax = new Point(113.7515, 38.7294);
+            #region 读取数据库数据
+            var xmlPath = @"E:\114_temp\008_代码集\002_extras\smallCharpTool\UrbanX\Data\indexCalculation.xml";
+            var indexData=new IndexCalculation(xmlPath);
 
-            //ToolManagers.CreateKMLFile(readPath, savePath, pointMin, pointMax, 150, 150);
-            //Console.WriteLine("完成");
+            //var tempECBuilding = indexData.EnergyConsumption_Building(function, area);
+            //var tempWCBuilding = indexData.WaterConsumption_Building(function, area);
+            //var tempGCBuilding = indexData.GarbageConsumption_Building(function, area);
             #endregion
 
-            #region 输出分布函数
-            //List<double> resultList = new List<double>();
-            //int count = 100;
-            //var result = StatisticsModel.NormalDistribution(10, 0.1, count, 1);
 
-            //foreach (var item in resultList)
-            //    Console.WriteLine(item);
-            #endregion
-
-            #region 地理位置编码
-            //var data = GaodeLocation.DecodeResult("成都");
-            //Console.WriteLine(data.adcode +"\n"+data.latitude+ "\n"+data.lontitude);
-            #endregion
-
-            #endregion
 
             #region 读取geojson
             var jsonFilePath = @"E:\114_temp\008_代码集\002_extras\smallCharpTool\Application\data\geojson\building.geojson";
@@ -313,13 +298,60 @@ namespace UrbanX.Application
 
             for (int i = 0; i < feactureCollection.Count; i++)
             {
-                var value = feactureCollection[i].Attributes["brepHeight"];
-                Console.WriteLine(value);
+                var jsonDic = feactureCollection[i].Attributes["function"];
+                Console.WriteLine(jsonDic.ToString());
             }
-
             
 
             #endregion
+
+            #endregion
+
+            #region 其他测试
+
+            #region 001_根据节点，读取xml数据
+            //string readPath = @"E:\114_temp\008_代码集\002_extras\smallCharpTool\Application\data\kmlTest\test001.kml";
+            //string savePath = @"E:\114_temp\008_代码集\002_extras\smallCharpTool\Application\data\kmlTest\testOutput_4.kml";
+            //Point pointMin = new Point(110.9880, 36.7666);
+            //Point pointMax = new Point(113.7515, 38.7294);
+
+            //ToolManagers.CreateKMLFile(readPath, savePath, pointMin, pointMax, 150, 150);
+            //Console.WriteLine("完成");
+            #endregion
+
+            #region 002_输出分布函数
+            //List<double> resultList = new List<double>();
+            //int count = 100;
+            //var result = StatisticsModel.NormalDistribution(10, 0.1, count, 1);
+
+            //foreach (var item in resultList)
+            //    Console.WriteLine(item);
+            #endregion
+
+            #region 003_地理位置编码
+            //var data = GaodeLocation.DecodeResult("成都");
+            //Console.WriteLine(data.adcode +"\n"+data.latitude+ "\n"+data.lontitude);
+            #endregion
+
+            #region 004_批量上传shp数据进数据库
+            string host = "39.107.177.223";
+            string user = "postgres";
+            string pwd = "admin";
+            string db = "urbanxlab_db";
+            string schema = "geometry_data";
+            string table = "beijing";
+
+
+            string shpfile = @"E:\114_temp\014_data\geojson\北京市.shp";
+            var result=DB_Manager.OutputSHPtoPSGL(shpfile, host, user, pwd, db, schema, true, table);
+            Console.WriteLine(result);
+            #endregion
+
+            #endregion
+
+
+
+            Console.WriteLine("完成");
             Console.ReadLine();
         }
 

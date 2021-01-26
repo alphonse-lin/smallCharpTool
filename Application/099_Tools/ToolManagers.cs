@@ -68,8 +68,43 @@ namespace UrbanX.Application
             }
             return bReturn;
         }
-        
+        public static bool IsFloat(string str)
+        {
+            string regextext = @"^\d+\.\d+$";
+            Regex regex = new Regex(regextext, RegexOptions.None);
+            return regex.IsMatch(str);
+        }
+        public static bool IsInteger(string str)
+        {
+            try
+            {
+                int i = Convert.ToInt32(str);
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
 
+        public static bool GenerateRandomBool(double ratio)
+        {
+            var number = GetRandomNumber(0, 1, 2);
+            if (number<ratio)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        public static double GetRandomNumber(double minimum, double maximum, int Len)   //Len小数点保留位数
+        {
+            Random random = new Random();
+            return Math.Round(random.NextDouble() * (maximum - minimum) + minimum, Len);
+        }
         private static string ConvertPtIntoStr(List<Point> ptList)
         {
             StringBuilder result = new StringBuilder();

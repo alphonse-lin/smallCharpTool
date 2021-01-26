@@ -183,10 +183,10 @@ namespace UrbanX.Application
             ////string connectionString = "Host=127.0.0.1;Username=postgres;Password=admin;Database=test";
             //string connectionString = "Host=39.107.177.223;Username=postgres;Password=admin;Database=urbanxlab_db";
 
-            //var createDB = "create table if not exists building_functions(id serial primary key, name char(40)) ";
-            //dbHelper.ExecuteNonQuery(connectionString, CommandType.Text, createDB);
+            ////var createDB = "create table if not exists building_functions(id serial primary key, name char(40)) ";
+            ////dbHelper.ExecuteNonQuery(connectionString, CommandType.Text, createDB);
 
-            //string sql = "insert into [building_functions]([name])values(@name)";
+            //string sql = "insert into [building_functions]([name],[relative_name])values(@name,@relative_name)";
 
             ////string excelPath = @"E:\114_temp\008_代码集\002_extras\smallCharpTool\utility\data\造价表2.xlsx";
             ////string xmlPath = @"E:\114_temp\008_代码集\002_extras\smallCharpTool\utility\data\test_1124.xml";
@@ -277,31 +277,182 @@ namespace UrbanX.Application
             //Console.WriteLine("完成");
             #endregion
 
-            #region 标准计算数据 EC/WC/GC/
+            #region 玩真的 标准计算数据
 
-            #region 读取数据库数据
-            var xmlPath = @"E:\114_temp\008_代码集\002_extras\smallCharpTool\UrbanX\Data\indexCalculation.xml";
-            var indexData=new IndexCalculation(xmlPath);
+            #region 录入数据库数据 EC/WC/GC
+            //    IDBHelper dbHelper = new PostgreHelper();
+            //    //string connectionString = "Host=127.0.0.1;Username=postgres;Password=admin;Database=test";
+            //    string connectionString = "Host=39.107.177.223;Username=postgres;Password=admin;Database=urbanxlab_db";
 
-            //var tempECBuilding = indexData.EnergyConsumption_Building(function, area);
-            //var tempWCBuilding = indexData.WaterConsumption_Building(function, area);
-            //var tempGCBuilding = indexData.GarbageConsumption_Building(function, area);
+            //    var xmlPath = @"E:\114_temp\008_代码集\002_extras\smallCharpTool\UrbanX\Data\indexCalculation.xml";
+            //    var indexData=new IndexCalculation(xmlPath);
+
+            //    string sql = "insert into [building_consumption_value]([cv_name],[building_type],[cv_min],[cv_max])values(@cv_name,@building_type,@cv_min,@cv_max)";
+            //    string tablename = "building_consumption_value";
+            //    string[] attrName = new string[] {"cv_name","building_type", "cv_max", "cv_min" };
+
+            //    Dictionary<string, int> FunctionName = new Dictionary<string, int> {
+            //    { "R", 3},
+            //    { "H", 5},
+            //    { "O", 1},
+            //    { "C", 2},
+            //    { "M", 6},
+            //    { "W", 8},
+            //    { "S", 9},
+            //    { "GIC", 10},
+            //};
+
+            //    string[][] insertValue = new string[3][];
+            //    for (int i = 0; i < indexData.Con_Buildings.Keys.Count; i++)
+            //    {
+            //        var keyName = indexData.Con_Buildings.Keys.ElementAt(i);
+            //        insertValue[0] = new string[4];
+            //        insertValue[0][3] = indexData.Con_Buildings[keyName]._EConsumption[0].ToString();
+            //        insertValue[0][2] = indexData.Con_Buildings[keyName]._EConsumption[1].ToString();
+            //        insertValue[0][1] = FunctionName[keyName].ToString();
+            //        insertValue[0][0] = "EConsumption";
+
+            //        insertValue[1] = new string[4];
+            //        insertValue[1][3] = indexData.Con_Buildings[keyName]._WConsumption[0].ToString();
+            //        insertValue[1][2] = indexData.Con_Buildings[keyName]._WConsumption[1].ToString();
+            //        insertValue[1][1] = FunctionName[keyName].ToString();
+            //        insertValue[1][0] = "WConsumption";
+
+            //        insertValue[2] = new string[4];
+            //        insertValue[2][3] = indexData.Con_Buildings[keyName]._GConsumption[0].ToString();
+            //        insertValue[2][2] = indexData.Con_Buildings[keyName]._GConsumption[1].ToString();
+            //        insertValue[2][1] = FunctionName[keyName].ToString();
+            //        insertValue[2][0] = "GConsumption";
+            //        DB_Manager.InsertData(connectionString, sql, tablename, attrName, insertValue);
+            //    }
             #endregion
 
+            #region 录入数据库数据 Population
+            //IDBHelper dbHelper = new PostgreHelper();
+            ////string connectionString = "Host=127.0.0.1;Username=postgres;Password=admin;Database=test";
+            //string connectionString = "Host=39.107.177.223;Username=postgres;Password=admin;Database=urbanxlab_db";
+
+            //var xmlPath = @"E:\114_temp\008_代码集\002_extras\smallCharpTool\UrbanX\Data\indexCalculation.xml";
+            //var indexData = new IndexCalculation(xmlPath);
+
+            //var createDB = "create table if not exists building_population(" +
+            //    "bp_id serial,\n " +
+            //    "bp_name char(20),\n" +
+            //    "bp_layer_min int,\n" +
+            //    "bp_layer_max int,\n" +
+            //    "bp_people int,\n" +
+            //    "bp_FAR_min numeric(4,2),\n" +
+            //    "bp_FAR_max numeric(4,2),\n" +
+            //    "bp_density_max numeric(3,2),\n" +
+            //    "bp_green_min numeric(3,2),\n" +
+            //    "bp_height_max numeric(3,1),\n" +
+            //    "bp_func_id int,\n" +
+
+            //    "Primary Key(bp_id),\n" +
+
+            //    "Constraint fk_func_id\n" +
+            //    "Foreign Key(bp_func_id)\n" +
+            //    "References building_functions(id)\n" +
+            //    ") ";
+            //dbHelper.ExecuteNonQuery(connectionString, CommandType.Text, createDB);
+
+            //string sql = "insert into [building_population](" +
+            //    "[bp_name],[bp_layer_min],[bp_layer_max],[bp_people],[bp_far_min],[bp_far_max]," +
+            //    "[bp_density_max],[bp_green_min],[bp_height_max],[bp_func_id])" +
+            //    "values(@bp_name,@bp_layer_min,@bp_layer_max,@bp_people,@bp_far_min,@bp_far_max" +
+            //    ",@bp_density_max,@bp_green_min,@bp_height_max,@bp_func_id)";
+
+            //string tablename = "building_population";
+            //string[] attrName = new string[] { 
+            //    "bp_name", "bp_layer_min", "bp_layer_max", "bp_people", "bp_FAR_min" , "bp_FAR_max",
+            //    "bp_density_max","bp_green_min","bp_height_max","bp_func_id"
+            //};
+
+            //Dictionary<string, int> FunctionName = new Dictionary<string, int> {
+            //    { "R", 3},
+            //    { "H", 5},
+            //    { "O", 1},
+            //    { "C", 2},
+            //    { "M", 6},
+            //    { "W", 8},
+            //    { "S", 9},
+            //    { "GIC", 10},
+            //};
+
+            //int NodeCount = indexData.PopulationType.Keys.Count;
+            //string[][] insertValue = new string[NodeCount][];
+            //for (int i = 0; i < NodeCount; i++)
+            //{
+            //    var keyName = i;
+            //    insertValue[i] = new string[10];
+            //    insertValue[i][0] = string.Format("type_{0}", i);
+            //    insertValue[i][1] = indexData.PopulationType[keyName]._layer[0].ToString();
+            //    insertValue[i][2] = indexData.PopulationType[keyName]._layer[1].ToString();
+            //    insertValue[i][3] = indexData.PopulationType[keyName]._people.ToString();
+            //    insertValue[i][4] = indexData.PopulationType[keyName]._FAR[0].ToString();
+            //    insertValue[i][5] = indexData.PopulationType[keyName]._FAR[1].ToString();
+            //    insertValue[i][6] = indexData.PopulationType[keyName]._maxDensity.ToString();
+            //    insertValue[i][7] = indexData.PopulationType[keyName]._minGreen.ToString();
+            //    insertValue[i][8] = indexData.PopulationType[keyName]._maxHeight.ToString();
+            //    insertValue[i][9] = FunctionName["R"].ToString();
+            //}
+            //DB_Manager.InsertData(connectionString, sql, tablename, attrName, insertValue);
+            #endregion
+
+            #region 读取数据库数据 EC/WC/GC
+            //string connectionString = "Host=39.107.177.223;Username=postgres;Password=admin;Database=urbanxlab_db";
+            //int attrCount = 6;
+            //string sql = "select cv.cv_id, cv.cv_name, bf.name, bf.relative_name, cv.cv_max, cv.cv_min " +
+            //    "from building_consumption_value cv, building_functions bf " +
+            //    "where cv.building_type = bf.id;";
+
+            //var resultList = DB_Manager.GetData(connectionString, sql, attrCount);
+            #endregion
+
+            #region 读取数据库数据 Population
+            string connectionString = "Host=39.107.177.223;Username=postgres;Password=admin;Database=urbanxlab_db";
+            int attrCount = 12;
+            string sql = "select " +
+                "bp.bp_id, bp.bp_name, bp.bp_layer_min,bp.bp_layer_max, bp.bp_people, bp.bp_far_min, bp.bp_far_max," +
+                "bp.bp_density_max,bp.bp_green_min,bp.bp_height_max,bf.name, bf.relative_name " +
+                "from " +
+                "building_population bp, building_functions bf " +
+                "where" +
+                " bp.bp_func_id = bf.id;";
+
+            var resultList = DB_Manager.GetData(connectionString, sql, attrCount);
+            #endregion
+
+            #region 读取数据库数据 成本库
+            //string connectionString = "Host=39.107.177.223;Username=postgres;Password=admin;Database=urbanxlab_db";
+            //string city = "北京";
+            //int attrCount = 9;
+            //string sql = string.Format("select " +
+            //    "bf.name,qf.quality_name,cc.quality_id,c.name, cc.price_max, cc.price_min,cc.year,c.lat, c.lon " +
+            //    "FROM construction_cost cc, cities c, building_functions bf, quality_functions qf " +
+            //    "where cc.city_id = c.code and cc.func_id = bf.id and cc.quality_id = qf.quality_id and c.name='{0}'; ", city);
+
+            //var resultList = DB_Manager.GetData(connectionString, sql, attrCount);
+            //FuncionClass cityInfo = new FuncionClass(resultList);
+            //var result = cityInfo.FuncInfoDic;
+
+            //Console.WriteLine("城市为{0}, 经度为{1},纬度{2}", cityInfo.CityName, cityInfo.Lat.ToString(), cityInfo.Lon.ToString());
+            #endregion
+            Console.WriteLine("完成");
 
 
             #region 读取geojson
-            var jsonFilePath = @"E:\114_temp\008_代码集\002_extras\smallCharpTool\Application\data\geojson\building.geojson";
-            StreamReader sr = File.OpenText(jsonFilePath);
+            //var jsonFilePath = @"E:\114_temp\008_代码集\002_extras\smallCharpTool\Application\data\geojson\building.geojson";
+            //StreamReader sr = File.OpenText(jsonFilePath);
 
-            var feactureCollection = GeoJsonReader.GetFeatureCollectionFromJson(sr.ReadToEnd());
+            //var feactureCollection = GeoJsonReader.GetFeatureCollectionFromJson(sr.ReadToEnd());
 
-            for (int i = 0; i < feactureCollection.Count; i++)
-            {
-                var jsonDic = feactureCollection[i].Attributes["function"];
-                Console.WriteLine(jsonDic.ToString());
-            }
-            
+            //for (int i = 0; i < feactureCollection.Count; i++)
+            //{
+            //    var jsonDic = feactureCollection[i].Attributes["function"];
+            //    Console.WriteLine(jsonDic.ToString());
+            //}
+
 
             #endregion
 
@@ -334,17 +485,17 @@ namespace UrbanX.Application
             #endregion
 
             #region 004_批量上传shp数据进数据库
-            string host = "39.107.177.223";
-            string user = "postgres";
-            string pwd = "admin";
-            string db = "urbanxlab_db";
-            string schema = "geometry_data";
-            string table = "beijing";
+            //string host = "39.107.177.223";
+            //string user = "postgres";
+            //string pwd = "admin";
+            //string db = "urbanxlab_db";
+            //string schema = "geometry_data";
+            //string table = "beijing";
 
 
-            string shpfile = @"E:\114_temp\014_data\geojson\北京市.shp";
-            var result=DB_Manager.OutputSHPtoPSGL(shpfile, host, user, pwd, db, schema, true, table);
-            Console.WriteLine(result);
+            //string shpfile = @"E:\114_temp\014_data\geojson\北京市.shp";
+            //var result=DB_Manager.OutputSHPtoPSGL(shpfile, host, user, pwd, db, schema, true, table);
+            //Console.WriteLine(result);
             #endregion
 
             #endregion

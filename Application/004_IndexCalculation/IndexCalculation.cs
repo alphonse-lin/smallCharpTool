@@ -19,9 +19,6 @@ namespace UrbanX.Application
         private string connectionString { get; set; }
         private string city;
         private string jsonFilePath;
-        private Dictionary<string, InfoFromXML_BB> Con_Buildings { get; set; }
-        private Dictionary<string, InfoFromXML_BB> Con_Blocks { get; set; }
-        private Dictionary<int, InfoFromXML_Population> PopulationType { get; set; }
 
         private Dictionary<string, string> FunctionName = new Dictionary<string, string> {
             { "R", "residential"},
@@ -31,16 +28,17 @@ namespace UrbanX.Application
             { "M", "industrial"},
             { "W", "warehouse"},
         };
-        public IndexCalculation(string xmlPath)
+        private Dictionary<string, InfoFromXML_BB> Con_Buildings { get; set; }
+        private Dictionary<string, InfoFromXML_BB> Con_Blocks { get; set; }
+        private Dictionary<int, InfoFromXML_Population> PopulationType { get; set; }
+        public IndexCalculation()
         {
-            Con_Buildings = ReadXML_BB(xmlPath, "Buildings") ;
-            Con_Blocks = ReadXML_BB(xmlPath, "Blocks");
-            PopulationType = ReadXML_PP(xmlPath);
         }
 
         #region 功能区
 
-        #region 人口计算
+        #region 001_人口计算
+        // TODO 更改数据来源为数据库
         private int SpecifyPopulationType(int layer)
         {
             int type = -1;
@@ -81,27 +79,7 @@ namespace UrbanX.Application
         }
         #endregion
 
-        #region 读取XML
-
-        /// <summary>
-        /// 读取XML文件
-        /// </summary>
-        /// <param name="path">输入 xml 路径</param>
-        /// <param name="level">输入 Buildings 或者 Blocks</param>
-        /// <returns></returns>
-        private Dictionary<string, InfoFromXML_BB> ReadXML_BB(string path, string level)
-        {
-            Dictionary<string, InfoFromXML_BB> DicXML = InfoFromXML_BB.CreateDicFromXML(path, level);
-            return DicXML;
-        }
-        private Dictionary<int, InfoFromXML_Population> ReadXML_PP(string path)
-        {
-            Dictionary<int, InfoFromXML_Population> DicXML = InfoFromXML_Population.CreateDicFromXML(path);
-            return DicXML;
-        }
-        #endregion
-
-        #region 地块向指标计算
+        #region 002_地块向指标计算
 
         private double FAR_Block(double FAR)
         {
@@ -134,7 +112,8 @@ namespace UrbanX.Application
         }
         #endregion
 
-        #region 建筑向指标计算
+        #region 003_建筑向指标计算
+        // TODO 更改数据来源为数据库
         private int Layers_Brep(int layer)
         {
             int layerBD = layer;
@@ -214,7 +193,8 @@ namespace UrbanX.Application
 
         #endregion
 
-        #region 成本计算
+        #region 004_成本计算
+        // TODO 完善计算公式 + 数据库来源
         public CalcConstructionCost ConstructionCost_Brep(string funcName, int floor, double area, Dictionary<string, SortedList<int, Quality>> costPrice, QualityType qType)
         {
             var houseLevel = 10;
@@ -298,6 +278,7 @@ namespace UrbanX.Application
                     temp_ccList.Add(ccList[i].Name, new List<int[]> { price });
                 }
             }
+
             for (int i = 0; i < temp_ccList.Keys.Count; i++)
             {
                 var keyName = temp_ccList.Keys.ElementAt(i);
@@ -333,7 +314,10 @@ namespace UrbanX.Application
         }
         #endregion
 
-        #region 基础运算
+        #region 005_碳中和
+        #endregion
+
+        #region 099_基础运算
         private double Sum(IEnumerable<double> num)
         {
             double sum = 0d;

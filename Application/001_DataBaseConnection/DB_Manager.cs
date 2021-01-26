@@ -139,13 +139,13 @@ namespace UrbanX.Application
         }
         #endregion
         #region 录入数据库
-        public static int[] InsertData(string connectionString, string sql, string tableName, string[] attrNameArray, string[] insertValue)
+        public static int[] InsertData(string connectionString, string sql, string tableName, string[] attrNameArray, string[][] insertValue)
         {
             IDBHelper dbHelper = new PostgreHelper();
             int[] result = new int[insertValue.Length];
             for (int i = 0; i < insertValue.Length; i++)
             {
-                var _params = CreateNpgsqlParas(attrNameArray, insertValue);
+                var _params = CreateNpgsqlParas(attrNameArray, insertValue[i]);
                 int r = dbHelper.ExecuteNonQuery(connectionString, CommandType.Text, sql, _params);
             }
             return result;
@@ -161,15 +161,27 @@ namespace UrbanX.Application
             }
             return result;
         }
+
         public static NpgsqlParameter[] CreateNpgsqlParas(string[] attrNameArray, string[] insertValue)
         {
             NpgsqlParameter[] result = new NpgsqlParameter[attrNameArray.Length];
             for (int i = 0; i < attrNameArray.Length; i++)
             {
-                result[i] = new NpgsqlParameter(String.Format("@{0}", attrNameArray[i]), insertValue[i]);
+                var tempInsertValue_1 = insertValue[i];
+                if (double.TryParse(tempInsertValue_1, out double double_tempInsertValue))
+                {
+                    if (int.TryParse(tempInsertValue_1,out int int_tempInsertValue))
+                        result[i] = new NpgsqlParameter(String.Format("@{0}", attrNameArray[i]), int_tempInsertValue);
+                    else
+                        result[i] = new NpgsqlParameter(String.Format("@{0}", attrNameArray[i]), double_tempInsertValue);
+                }
+                else
+                    result[i] = new NpgsqlParameter(String.Format("@{0}", attrNameArray[i]), tempInsertValue_1);
+                
             }
             return result;
         }
+
         public static NpgsqlParameter[] CreateNpgsqlParas(string[] attrNameArray, int[] insertValue)
         {
             NpgsqlParameter[] result = new NpgsqlParameter[attrNameArray.Length];
@@ -179,7 +191,6 @@ namespace UrbanX.Application
             }
             return result;
         }
-
 
         /// <summary>
         /// unused

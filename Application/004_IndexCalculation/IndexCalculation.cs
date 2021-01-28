@@ -15,7 +15,7 @@ namespace UrbanX.Application
     }
     public class IndexCalculation
     {
-        private const int roundNum= 1;
+        private const int roundNum = 1;
         private string connectionString { get; set; }
         private string city;
         private string jsonFilePath;
@@ -31,25 +31,36 @@ namespace UrbanX.Application
         private Dictionary<string, InfoFromXML_BB> Con_Buildings { get; set; }
         private Dictionary<string, InfoFromXML_BB> Con_Blocks { get; set; }
         private Dictionary<int, InfoFromXML_Population> PopulationType { get; set; }
-        public IndexCalculation()
+
+        private Dictionary<string, List<BaseEWGConsumption>> EWGConsumptionValueDic { get; set; }
+
+        private Dictionary<string, List<BasePopulation>> populationValueDic { get; set; }
+
+        private Dictionary<string, SortedList<int, Quality>> constructionValueDic { get; set; }
+        public IndexCalculation(string connectionString)
         {
+
         }
 
         #region 功能区
 
         #region 001_人口计算
         // TODO 更改数据来源为数据库
-        private int SpecifyPopulationType(int layer)
+        private List<double[]> GenerateLayerCollection()
         {
-            int type = -1;
-            var ppList=PopulationType.Values.ToList();
+            var ppList = PopulationType.Values.ToList();
             List<double[]> intervalLayer = new List<double[]>();
             for (int i = 0; i < ppList.Count; i++)
                 intervalLayer.Add(ppList[i]._layer);
-            for (int i = 0; i < ppList.Count; i++)
+        }
+
+        private int SpecifyPopulationType(int layer, List<double[]> intervalLayer)
+        {
+            int type = -1;
+            for (int i = 0; i < intervalLayer.Count; i++)
             {
                 if (layer >= intervalLayer[i][0] && layer <= intervalLayer[i][1]) { type = i; break; }
-                else if (i==4 && layer> intervalLayer[i][1])
+                else if (i == 4 && layer > intervalLayer[i][1])
                     type = 4;
                 else
                     continue;
@@ -96,7 +107,7 @@ namespace UrbanX.Application
         private int[] Consumption_Block(string function, IEnumerable<int[]> Consumption_Building)
         {
             int[] Consumption = new int[3];
-            var length=Consumption_Building.Count();
+            var length = Consumption_Building.Count();
             int[] minGC = new int[length];
             int[] maxGC = new int[length];
             for (int i = 0; i < length; i++)
@@ -114,6 +125,17 @@ namespace UrbanX.Application
 
         #region 003_建筑向指标计算
         // TODO 更改数据来源为数据库
+
+        private List<string[]> ReadFromDb_EWG(string connectionString)
+        {
+            int attrCount = 6;
+            string sql = "select cv.cv_id, cv.cv_name, bf.name, bf.relative_name, cv.cv_max, cv.cv_min " +
+                "from building_consumption_value cv, building_functions bf " +
+                "where cv.building_type = bf.id;";
+
+            var resultList = DB_Manager.GetData(connectionString, sql, attrCount);
+            return resultList;
+        }
         private int Layers_Brep(int layer)
         {
             int layerBD = layer;
@@ -164,7 +186,7 @@ namespace UrbanX.Application
 
             return GConsumption;
         }
-       
+
         public int[] Consumption_BrepSum(List<int[]> IList)
         {
             int[] GConsumption = new int[2];
@@ -195,7 +217,7 @@ namespace UrbanX.Application
 
         #region 004_成本计算
         // TODO 完善计算公式 + 数据库来源
-        public CalcConstructionCost ConstructionCost_Brep(string funcName, int floor, double area, Dictionary<string, SortedList<int, Quality>> costPrice, QualityType qType)
+        public ResultFromConstructionCost ConstructionCost_Brep(string funcName, int floor, double area, Dictionary<string, SortedList<int, Quality>> costPrice, QualityType qType)
         {
             var houseLevel = 10;
             Quality highQuality = new Quality();
@@ -219,24 +241,24 @@ namespace UrbanX.Application
                     }
                     break;
                 case "H":
-                        highQuality = costPrice[FunctionName[funcName]][0];
-                        lowQuality = costPrice[FunctionName[funcName]][1];
+                    highQuality = costPrice[FunctionName[funcName]][0];
+                    lowQuality = costPrice[FunctionName[funcName]][1];
                     break;
                 case "O":
-                        highQuality = costPrice[FunctionName[funcName]][0];
-                        lowQuality = costPrice[FunctionName[funcName]][2];
+                    highQuality = costPrice[FunctionName[funcName]][0];
+                    lowQuality = costPrice[FunctionName[funcName]][2];
                     break;
                 case "C":
-                        highQuality = costPrice[FunctionName[funcName]][0];
-                        lowQuality = costPrice[FunctionName[funcName]][1];
+                    highQuality = costPrice[FunctionName[funcName]][0];
+                    lowQuality = costPrice[FunctionName[funcName]][1];
                     break;
                 case "M":
-                        highQuality = costPrice[FunctionName[funcName]][0];
-                        lowQuality = costPrice[FunctionName[funcName]][1];
+                    highQuality = costPrice[FunctionName[funcName]][0];
+                    lowQuality = costPrice[FunctionName[funcName]][1];
                     break;
                 case "W":
-                        highQuality = costPrice[FunctionName[funcName]][0];
-                        lowQuality = costPrice[FunctionName[funcName]][1];
+                    highQuality = costPrice[FunctionName[funcName]][0];
+                    lowQuality = costPrice[FunctionName[funcName]][1];
                     break;
             }
 
@@ -245,7 +267,7 @@ namespace UrbanX.Application
                 case QualityType.highQuality:
                     min = Convert.ToInt32(highQuality.priceMin * area);
                     max = Convert.ToInt32(highQuality.priceMax * area);
-                    average = (min+max) / 2;
+                    average = (min + max) / 2;
                     break;
                 case QualityType.lowQuality:
                     min = Convert.ToInt32(lowQuality.priceMin * area);
@@ -253,10 +275,10 @@ namespace UrbanX.Application
                     average = (min + max) / 2;
                     break;
             }
-            return new CalcConstructionCost(funcName, min, max, average);
+            return new ResultFromConstructionCost(funcName, min, max, average);
         }
 
-        public Dictionary<string, int[]> ConstructionCost_SUM(List<CalcConstructionCost> ccList)
+        public Dictionary<string, int[]> ConstructionCost_SUM(List<ResultFromConstructionCost> ccList)
         {
             Dictionary<string, List<int[]>> temp_ccList = new Dictionary<string, List<int[]>>();
             List<int> minCostList = new List<int>(ccList.Count);
@@ -317,6 +339,97 @@ namespace UrbanX.Application
         #region 005_碳中和
         #endregion
 
+        #region 098读取数据库数据
+
+        #region 098_001_读取数据库数据 EC/WC/GC
+        private Dictionary<string, List<BaseEWGConsumption>> ExtractData_EWGConsumption(string connectionString)
+        {
+            int attrCount = 6;
+            string sql = "select cv.cv_id, cv.cv_name, bf.name, bf.relative_name, cv.cv_max, cv.cv_min " +
+                "from building_consumption_value cv, building_functions bf " +
+                "where cv.building_type = bf.id;";
+
+            var temp_List = DB_Manager.GetData(connectionString, sql, attrCount);
+
+            List<BaseEWGConsumption> valueList = new List<BaseEWGConsumption>();
+            Dictionary<string, List<BaseEWGConsumption>> valueDic = new Dictionary<string, List<BaseEWGConsumption>>();
+            for (int i = 0; i < temp_List.Count; i++)
+            {
+                var tempArray = temp_List[i];
+                BaseEWGConsumption singleC = new BaseEWGConsumption(tempArray[1],tempArray[2],tempArray[3],double.Parse(tempArray[4]),double.Parse(tempArray[5]));
+                if (valueDic.ContainsKey(singleC.relativeName))
+                {
+                    valueDic[singleC.relativeName].Add(singleC);
+                }
+                else
+                {
+                    valueDic.Add(singleC.relativeName,new List<BaseEWGConsumption> { singleC });
+                }
+                valueList.Add(singleC);
+            }
+
+            return valueDic;
+        }
+
+        #endregion
+
+        #region 098_002_读取数据库数据 Population
+        private Dictionary<string, List<BasePopulation>> ExtractData_Population(string connectionString)
+        {
+            int attrCount = 12;
+            string sql = "select " +
+                "bp.bp_id, bp.bp_name, bp.bp_layer_min,bp.bp_layer_max, bp.bp_people, bp.bp_far_min, bp.bp_far_max," +
+                "bp.bp_density_max,bp.bp_green_min,bp.bp_height_max,bf.name, bf.relative_name " +
+                "from " +
+                "building_population bp, building_functions bf " +
+                "where" +
+                " bp.bp_func_id = bf.id;";
+
+            var temp_List = DB_Manager.GetData(connectionString, sql, attrCount);
+
+            List<BasePopulation> valueList = new List<BasePopulation>();
+            Dictionary<string, List<BasePopulation>> valueDic = new Dictionary<string, List<BasePopulation>>();
+            for (int i = 0; i < temp_List.Count; i++)
+            {
+                var tempArray = temp_List[i];
+                var singleC = new BasePopulation(tempArray[1], double.Parse(tempArray[2]), double.Parse(tempArray[3]), int.Parse(tempArray[4]), double.Parse(tempArray[5]), double.Parse(tempArray[6]),
+                    double.Parse(tempArray[7]), double.Parse(tempArray[8]),double.Parse(tempArray[9]),tempArray[10],tempArray[11]
+                    );
+                if (valueDic.ContainsKey(singleC.relativeName))
+                {
+                    valueDic[singleC.relativeName].Add(singleC);
+                }
+                else
+                {
+                    valueDic.Add(singleC.relativeName, new List<BasePopulation> { singleC });
+                }
+                valueList.Add(singleC);
+            }
+
+            return valueDic;
+        }
+
+        #endregion
+
+        #region 098_003_读取数据库数据 成本库
+        private Dictionary<string, SortedList<int, Quality>> ExtractData_ConstructionCost(string connectionString, string city)
+        {
+            int attrCount = 9;
+            string sql = string.Format("select " +
+                "bf.name,qf.quality_name,cc.quality_id,c.name, cc.price_max, cc.price_min,cc.year,c.lat, c.lon " +
+                "FROM construction_cost cc, cities c, building_functions bf, quality_functions qf " +
+                "where cc.city_id = c.code and cc.func_id = bf.id and cc.quality_id = qf.quality_id and c.name='{0}'; ", city);
+
+            var resultList = DB_Manager.GetData(connectionString, sql, attrCount);
+            FuncionClass cityInfo = new FuncionClass(resultList);
+            var result = cityInfo.FuncInfoDic;
+
+            return result;
+        }
+
+        #endregion
+        #endregion
+
         #region 099_基础运算
         private double Sum(IEnumerable<double> num)
         {
@@ -335,14 +448,14 @@ namespace UrbanX.Application
         #endregion
     }
 
-    public class CalcConstructionCost
+    public class ResultFromConstructionCost
     {
         public string Name { get; set; }
         public int CostMin { get; set; }
         public int CostMax { get; set; }
         public int CostAverage { get; set; }
 
-        public CalcConstructionCost(string name, int costMin, int costMax, int costAverage)
+        public ResultFromConstructionCost(string name, int costMin, int costMax, int costAverage)
         {
             Name = name;
             CostMin = costMin;
@@ -350,4 +463,135 @@ namespace UrbanX.Application
             CostAverage = costAverage;
         }
     }
+
+    #region EWGConsumption 基础数据
+    public struct BaseEWGConsumption
+    {
+        public string name { get; set; }
+        public string  funcName { get; set; }
+        public string relativeName { get; set; }
+        public double c_max { get; set; }
+        public double c_min { get; set; }
+
+        public BaseEWGConsumption(string Name, string FuncName, string RelativeName, double Max, double Min)
+        {
+            name = Name;
+            funcName = FuncName;
+            relativeName = RelativeName;
+            c_max = Max;
+            c_min = Min;
+        }
+    }
+    #endregion
+
+    #region Population 基础数据
+    public struct BasePopulation
+    {
+        public string name { get; set; }
+        public double layerMin { get; set; }
+        public double layerMax { get; set; }
+        public int people { get; set; }
+        public double farMin { get; set; }
+        public double farMax { get; set; }
+        public double maxDensity { get; set; }
+        public double minGreen { get; set; }
+        public double maxHeight { get; set; }
+        public string funcName { get; set; }
+        public string relativeName { get; set; }
+
+        public BasePopulation(string Name, double LayerMin, double LayerMax, int People, double FARMin, double FARMax,
+            double MaxDensity, double MinGreen, double MaxHeight, string FuncName, string RelativeName
+            )
+        {
+            name = Name;
+            layerMin = LayerMin;
+            layerMax = LayerMax;
+            people = People;
+            farMin = FARMin;
+            farMax = FARMax;
+            maxDensity = MaxDensity;
+            minGreen = MinGreen;
+            maxHeight = MaxHeight;
+            funcName = FuncName;
+            relativeName = RelativeName;
+        }
+    }
+    #endregion
+
+    #region Construction cost 基础数据
+    public class FuncionClass
+    {
+        public Dictionary<string, SortedList<int, Quality>> FuncInfoDic;
+
+        public string CityName { get; set; }
+        public int Year { get; set; }
+        public double Lat { get; set; }
+        public double Lon { get; set; }
+        private Quality qualityData { get; set; }
+
+        public FuncionClass(List<string[]> resultList)
+        {
+            CityName = resultList[0][3];
+            Year = int.Parse(resultList[0][6]);
+            Lat = double.Parse(resultList[0][7]);
+            Lon = double.Parse(resultList[0][8]);
+            FuncInfoDic = DecodeList(resultList);
+        }
+
+        private Dictionary<string, SortedList<int, Quality>> DecodeList(List<string[]> resultList)
+        {
+            Dictionary<string, SortedList<int, Quality>> funcSortDicInside = new Dictionary<string, SortedList<int, Quality>>();
+            Dictionary<string, List<string[]>> funcDic = new Dictionary<string, List<string[]>>();
+            var buildingFunctionName = new string[] { "office", "shopping_center", "residential_highRise", "residential_house", "hotel", "industrial", "carpark" };
+
+            for (int i = 0; i < resultList.Count; i++)
+            {
+                if (funcDic.ContainsKey(resultList[i][0]))
+                {
+                    funcDic[resultList[i][0]].Add(resultList[i]);
+                }
+                else
+                {
+                    funcDic.Add(resultList[i][0], new List<string[]> { resultList[i] });
+                }
+            }
+
+
+            for (int i = 0; i < buildingFunctionName.Length; i++)
+            {
+                var listCount = funcDic[buildingFunctionName[i]].Count;
+                SortedList<int, Quality> sortQualityList = new SortedList<int, Quality>(listCount);
+                for (int j = 0; j < listCount; j++)
+                {
+                    var singeResultList = funcDic[buildingFunctionName[i]][j];
+                    Quality singleQuality = new Quality(
+                        singeResultList[1],
+                        int.Parse(singeResultList[2]),
+                        double.Parse(singeResultList[4]),
+                        double.Parse(singeResultList[5]));
+
+                    sortQualityList.Add(int.Parse(singeResultList[2]), singleQuality);
+                }
+                funcSortDicInside.Add(buildingFunctionName[i], sortQualityList);
+            }
+            return funcSortDicInside;
+        }
+    }
+    public struct Quality
+    {
+        public string name { get; }
+        public int nameId { get; }
+        public double priceMax { get; }
+        public double priceMin { get; }
+
+        public Quality(string Name, int NameId, double PriceMax, double PriceMin)
+        {
+            name = Name;
+            nameId = NameId;
+            priceMax = PriceMax;
+            priceMin = PriceMin;
+        }
+
+    }
+    #endregion
 }

@@ -129,3 +129,5 @@ where bp.bp_func_id=bf.id;
 select bf.name as function_name,qf.quality_name as quality_name, cc.quality_id, c.name as city_name, cc.price_max, cc.price_min,cc.year,c.lat, c.lon
 FROM construction_cost cc, cities c, building_functions bf, quality_functions qf
 where cc.city_id=c.code and cc.func_id=bf.id and cc.quality_id=qf.quality_id and c.name='北京';
+
+update building_population set bp_name='4' where bp_id=5;

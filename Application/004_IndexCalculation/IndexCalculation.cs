@@ -19,6 +19,7 @@ namespace UrbanX.Application
         private string connectionString { get; set; }
         private string city;
         private string jsonFilePath;
+        private List<double[]> pp_intervalLayer;
 
         private Dictionary<string, string> FunctionName = new Dictionary<string, string> {
             { "R", "residential"},
@@ -28,39 +29,58 @@ namespace UrbanX.Application
             { "M", "industrial"},
             { "W", "warehouse"},
         };
-        private Dictionary<string, InfoFromXML_BB> Con_Buildings { get; set; }
-        private Dictionary<string, InfoFromXML_BB> Con_Blocks { get; set; }
-        private Dictionary<int, InfoFromXML_Population> PopulationType { get; set; }
+        //private Dictionary<string, InfoFromXML_BB> Con_Buildings { get; set; }
+        //private Dictionary<string, InfoFromXML_BB> Con_Blocks { get; set; }
+        //private Dictionary<int, InfoFromXML_Population> PopulationType { get; set; }
 
+        private Dictionary<string, SortedList<int, BasePopulation>> populationValueDic { get; set; }
         private Dictionary<string, List<BaseEWGConsumption>> EWGConsumptionValueDic { get; set; }
 
-        private Dictionary<string, List<BasePopulation>> populationValueDic { get; set; }
-
         private Dictionary<string, SortedList<int, Quality>> constructionValueDic { get; set; }
-        public IndexCalculation(string connectionString)
+        public IndexCalculation(string connectionString, string city)
         {
+            //人口
+            populationValueDic = ExtractData_Population(connectionString);
+            pp_intervalLayer = GenerateLayerCollection(populationValueDic);
+
+
+            //EWG
+            EWGConsumptionValueDic = ExtractData_EWGConsumption(connectionString);
+
+            //成本
+            constructionValueDic = ExtractData_ConstructionCost(connectionString,city);
+
 
         }
 
         #region 功能区
 
         #region 001_人口计算
-        // TODO 更改数据来源为数据库
-        private List<double[]> GenerateLayerCollection()
+        /// <summary>
+        /// 提取所有层高数据
+        /// </summary>
+        private List<double[]> GenerateLayerCollection(Dictionary<string, SortedList<int, BasePopulation>> pv_Dic, string function = "R")
         {
-            var ppList = PopulationType.Values.ToList();
-            List<double[]> intervalLayer = new List<double[]>();
-            for (int i = 0; i < ppList.Count; i++)
-                intervalLayer.Add(ppList[i]._layer);
+            var ppLayerList = new List<double[]>(pv_Dic[function].Count);
+
+            for (int i = 0; i < pv_Dic[function].Count; i++)
+            {
+                var tempData = new double[] { pv_Dic[function][i].layerMin, pv_Dic[function][i].layerMax };
+                ppLayerList.Add(tempData);
+            }
+            return ppLayerList;
         }
 
-        private int SpecifyPopulationType(int layer, List<double[]> intervalLayer)
+        /// <summary>
+        /// 确定属于建筑属于哪一类型
+        /// </summary>
+        private int SpecifyPopulationType(int layer)
         {
             int type = -1;
-            for (int i = 0; i < intervalLayer.Count; i++)
+            for (int i = 0; i < pp_intervalLayer.Count; i++)
             {
-                if (layer >= intervalLayer[i][0] && layer <= intervalLayer[i][1]) { type = i; break; }
-                else if (i == 4 && layer > intervalLayer[i][1])
+                if (layer >= pp_intervalLayer[i][0] && layer <= pp_intervalLayer[i][1]) { type = i; break; }
+                else if (i == 4 && layer > pp_intervalLayer[i][1])
                     type = 4;
                 else
                     continue;
@@ -68,23 +88,29 @@ namespace UrbanX.Application
             return type;
         }
 
-        public double[] CalculatePopulation(int[] layer, double[] area)
+        /// <summary>
+        /// 基于面积和层高，计算人口数
+        /// </summary>
+        public double[] CalculatePopulation(int[] layer, double[] area, string function = "R")
         {
             var len = layer.Count();
             double[] result = new double[layer.Count()];
             for (int i = 0; i < len; i++)
             {
                 var type = SpecifyPopulationType(layer[i]);
-                var peopleUnitValue = PopulationType[type]._people;
+                var peopleUnitValue = populationValueDic[function][type].people;
                 result[i] = area[i] / peopleUnitValue;
             }
             return result;
         }
 
-        public double CalculatePopulation(int layer, double area)
+        /// <summary>
+        /// 基于面积和层高，计算人口数
+        /// </summary>
+        public double CalculatePopulation(int layer, double area, string function = "R")
         {
             var type = SpecifyPopulationType(layer);
-            var peopleUnitValue = PopulationType[type]._people;
+            var peopleUnitValue = populationValueDic[function][type].people;
             var result = area / peopleUnitValue;
             return result;
         }
@@ -374,7 +400,7 @@ namespace UrbanX.Application
         #endregion
 
         #region 098_002_读取数据库数据 Population
-        private Dictionary<string, List<BasePopulation>> ExtractData_Population(string connectionString)
+        private Dictionary<string, SortedList<int, BasePopulation>> ExtractData_Population(string connectionString)
         {
             int attrCount = 12;
             string sql = "select " +
@@ -388,7 +414,7 @@ namespace UrbanX.Application
             var temp_List = DB_Manager.GetData(connectionString, sql, attrCount);
 
             List<BasePopulation> valueList = new List<BasePopulation>();
-            Dictionary<string, List<BasePopulation>> valueDic = new Dictionary<string, List<BasePopulation>>();
+            Dictionary<string, SortedList<int,BasePopulation>> valueDic = new Dictionary<string, SortedList<int, BasePopulation>>();
             for (int i = 0; i < temp_List.Count; i++)
             {
                 var tempArray = temp_List[i];
@@ -397,11 +423,11 @@ namespace UrbanX.Application
                     );
                 if (valueDic.ContainsKey(singleC.relativeName))
                 {
-                    valueDic[singleC.relativeName].Add(singleC);
+                    valueDic[singleC.relativeName].Add(int.Parse(singleC.name),singleC);
                 }
                 else
                 {
-                    valueDic.Add(singleC.relativeName, new List<BasePopulation> { singleC });
+                    valueDic.Add(singleC.relativeName, new SortedList<int, BasePopulation> { { int.Parse(singleC.name), singleC } });
                 }
                 valueList.Add(singleC);
             }

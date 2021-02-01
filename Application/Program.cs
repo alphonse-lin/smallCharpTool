@@ -410,17 +410,17 @@ namespace UrbanX.Application
             #endregion
 
             #region 读取数据库数据 Population
-            string connectionString = "Host=39.107.177.223;Username=postgres;Password=admin;Database=urbanxlab_db";
-            int attrCount = 12;
-            string sql = "select " +
-                "bp.bp_id, bp.bp_name, bp.bp_layer_min,bp.bp_layer_max, bp.bp_people, bp.bp_far_min, bp.bp_far_max," +
-                "bp.bp_density_max,bp.bp_green_min,bp.bp_height_max,bf.name, bf.relative_name " +
-                "from " +
-                "building_population bp, building_functions bf " +
-                "where" +
-                " bp.bp_func_id = bf.id;";
+            //string connectionString = "Host=39.107.177.223;Username=postgres;Password=admin;Database=urbanxlab_db";
+            //int attrCount = 12;
+            //string sql = "select " +
+            //    "bp.bp_id, bp.bp_name, bp.bp_layer_min,bp.bp_layer_max, bp.bp_people, bp.bp_far_min, bp.bp_far_max," +
+            //    "bp.bp_density_max,bp.bp_green_min,bp.bp_height_max,bf.name, bf.relative_name " +
+            //    "from " +
+            //    "building_population bp, building_functions bf " +
+            //    "where" +
+            //    " bp.bp_func_id = bf.id;";
 
-            var resultList = DB_Manager.GetData(connectionString, sql, attrCount);
+            //var resultList = DB_Manager.GetData(connectionString, sql, attrCount);
             #endregion
 
             #region 读取数据库数据 成本库
@@ -438,8 +438,6 @@ namespace UrbanX.Application
 
             //Console.WriteLine("城市为{0}, 经度为{1},纬度{2}", cityInfo.CityName, cityInfo.Lat.ToString(), cityInfo.Lon.ToString());
             #endregion
-            Console.WriteLine("完成");
-
 
             #region 读取geojson
             //var jsonFilePath = @"E:\114_temp\008_代码集\002_extras\smallCharpTool\Application\data\geojson\building.geojson";
@@ -452,9 +450,23 @@ namespace UrbanX.Application
             //    var jsonDic = feactureCollection[i].Attributes["function"];
             //    Console.WriteLine(jsonDic.ToString());
             //}
-
-
             #endregion
+
+            #region 测试计算整体内容
+            string connectionString = "Host=39.107.177.223;Username=postgres;Password=admin;Database=urbanxlab_db";
+            string city = "北京";
+            string jsonFile = @"E:\114_temp\008_代码集\002_extras\smallCharpTool\Application\data\geojson\building.geojson";
+            double hqratio = 0.5;
+
+            Sustainable_calculation calc = new Sustainable_calculation(connectionString, city, jsonFile,hqratio);
+
+            //Console.WriteLine("城市为{0}, 经度为{1},纬度{2}", cityInfo.CityName, cityInfo.Lat.ToString(), cityInfo.Lon.ToString());
+            #endregion
+
+            Console.WriteLine("完成");
+
+
+
 
             #endregion
 

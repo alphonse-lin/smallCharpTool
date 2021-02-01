@@ -577,7 +577,7 @@
         "brepHeight": 36.0,
         "totalArea": 21600.0,
         "floors": 6,
-        "function": "M",
+        "function": "R",
         "EC": [
           1296.0,
           2592.0
@@ -628,7 +628,7 @@
         "brepHeight": 36.0,
         "totalArea": 24996.219,
         "floors": 6,
-        "function": "M",
+        "function": "R",
         "EC": [
           1499.77314,
           2999.54628
@@ -695,7 +695,7 @@
         "brepHeight": 75.6,
         "totalArea": 25919.832,
         "floors": 18,
-        "function": "H",
+        "function": "R",
         "EC": [
           1295.9916,
           2073.5865599999997

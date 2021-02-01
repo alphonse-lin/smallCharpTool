@@ -100,6 +100,19 @@ namespace UrbanX.Application
             }
         }
 
+        public static int GenerateRandomInt(double ratio)
+        {
+            var number = GetRandomNumber(0, 1, 2);
+            if (number < ratio)
+            {
+                return 0;
+            }
+            else
+            {
+                return 1;
+            }
+        }
+
         public static double GetRandomNumber(double minimum, double maximum, int Len)   //Len小数点保留位数
         {
             Random random = new Random();

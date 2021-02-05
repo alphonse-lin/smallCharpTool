@@ -10,6 +10,7 @@
         "dependencies": {
           "Calculation": "1.0.0",
           "CliWrap": "3.3.0",
+          "CsvHelper": "22.1.0",
           "NetTopologySuite": "2.1.0",
           "NetTopologySuite.Features": "2.1.0",
           "Newtonsoft.Json": "12.0.3",
@@ -28,6 +29,17 @@
           }
         }
       },
+      "CsvHelper/22.1.0": {
+        "dependencies": {
+          "Microsoft.CSharp": "4.5.0"
+        },
+        "runtime": {
+          "lib/netstandard2.1/CsvHelper.dll": {
+            "assemblyVersion": "22.0.0.0",
+            "fileVersion": "22.1.0.0"
+          }
+        }
+      },
       "MathNet.Numerics/4.15.0": {
         "runtime": {
           "lib/netstandard2.0/MathNet.Numerics.dll": {
@@ -36,6 +48,7 @@
           }
         }
       },
+      "Microsoft.CSharp/4.5.0": {},
       "Microsoft.NETCore.Platforms/5.0.0": {},
       "Microsoft.Win32.Registry/5.0.0": {
         "dependencies": {
@@ -312,12 +325,26 @@
       "path": "cliwrap/3.3.0",
       "hashPath": "cliwrap.3.3.0.nupkg.sha512"
     },
+    "CsvHelper/22.1.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-nATAi2R9g/jvJ8fZjLmMpp45eKj4PJvM7FHhRauv9ZpTr4HJCRu9OZH8sCNxEOTQS85964s3ATJar9gyeKcq8w==",
+      "path": "csvhelper/22.1.0",
+      "hashPath": "csvhelper.22.1.0.nupkg.sha512"
+    },
     "MathNet.Numerics/4.15.0": {
       "type": "package",
       "serviceable": true,
       "sha512": "sha512-cP4QgPPiU7boMyL8npvuQyVGVYUd/JQY1AWa+Wl2f//fuJN40qwt9ABRazunZIcDLHg3SSlgD/e+3Lnp69jNTg==",
       "path": "mathnet.numerics/4.15.0",
       "hashPath": "mathnet.numerics.4.15.0.nupkg.sha512"
+    },
+    "Microsoft.CSharp/4.5.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-kaj6Wb4qoMuH3HySFJhxwQfe8R/sJsNJnANrvv8WdFPMoNbKY5htfNscv+LHCu5ipz+49m2e+WQXpLXr9XYemQ==",
+      "path": "microsoft.csharp/4.5.0",
+      "hashPath": "microsoft.csharp.4.5.0.nupkg.sha512"
     },
     "Microsoft.NETCore.Platforms/5.0.0": {
       "type": "package",

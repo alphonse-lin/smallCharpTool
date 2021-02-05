@@ -1,11 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "oTwjTOhKN5ahYaVdaYnZuoq9IInixm0m6vxtb2RAEva5Sp0QyP4pNTnSBGK3SpxgLD3I6ZCyoltcdgj4PkGvvQ==",
+  "dgSpecHash": "A1h6yXYy6q/H5ROTrkx9LAK9U6Ty5okhv0x2RQGQx8gEsnHOygdz/92M5cFELPNOcrbjvco3foD0kse0Y/YeeQ==",
   "success": true,
   "projectFilePath": "E:\\114_temp\\008_代码集\\002_extras\\smallCharpTool\\Application\\Application.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\CAUPD-BJ141\\.nuget\\packages\\cliwrap\\3.3.0\\cliwrap.3.3.0.nupkg.sha512",
+    "C:\\Users\\CAUPD-BJ141\\.nuget\\packages\\csvhelper\\22.1.0\\csvhelper.22.1.0.nupkg.sha512",
     "C:\\Users\\CAUPD-BJ141\\.nuget\\packages\\mathnet.numerics\\4.15.0\\mathnet.numerics.4.15.0.nupkg.sha512",
+    "C:\\Users\\CAUPD-BJ141\\.nuget\\packages\\microsoft.csharp\\4.5.0\\microsoft.csharp.4.5.0.nupkg.sha512",
     "C:\\Users\\CAUPD-BJ141\\.nuget\\packages\\microsoft.netcore.platforms\\5.0.0\\microsoft.netcore.platforms.5.0.0.nupkg.sha512",
     "C:\\Users\\CAUPD-BJ141\\.nuget\\packages\\microsoft.win32.registry\\5.0.0\\microsoft.win32.registry.5.0.0.nupkg.sha512",
     "C:\\Users\\CAUPD-BJ141\\.nuget\\packages\\microsoft.win32.systemevents\\5.0.0\\microsoft.win32.systemevents.5.0.0.nupkg.sha512",

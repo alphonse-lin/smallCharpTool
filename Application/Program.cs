@@ -8,9 +8,11 @@ using System.Xml;
 using System.IO;
 using System.Data.OleDb;
 using System.Xml.Linq;
+using CsvHelper;
 using Npgsql;
 using UrbanX.Calculation;
 using UrbanXX.IO.GeoJSON;
+using System.Globalization;
 
 namespace UrbanX.Application
 {
@@ -453,17 +455,15 @@ namespace UrbanX.Application
             #endregion
 
             #region 测试计算整体内容
-            string connectionString = "Host=39.107.177.223;Username=postgres;Password=admin;Database=urbanxlab_db";
-            string city = "北京";
-            string jsonFile = @"E:\114_temp\008_代码集\002_extras\smallCharpTool\Application\data\geojson\building.geojson";
-            double hqratio = 0.5;
+            //string connectionString = "Host=39.107.177.223;Username=postgres;Password=admin;Database=urbanxlab_db";
+            //string city = "北京";
+            //string jsonFile = @"E:\114_temp\008_代码集\002_extras\smallCharpTool\Application\data\geojson\building.geojson";
+            //double hqratio = 0.5;
 
-            Sustainable_calculation calc = new Sustainable_calculation(connectionString, city, jsonFile,hqratio);
+            //Sustainable_calculation calc = new Sustainable_calculation(connectionString, city, jsonFile,hqratio);
 
-            //Console.WriteLine("城市为{0}, 经度为{1},纬度{2}", cityInfo.CityName, cityInfo.Lat.ToString(), cityInfo.Lon.ToString());
+            ////Console.WriteLine("城市为{0}, 经度为{1},纬度{2}", cityInfo.CityName, cityInfo.Lat.ToString(), cityInfo.Lon.ToString());
             #endregion
-
-            Console.WriteLine("完成");
 
 
 
@@ -510,13 +510,117 @@ namespace UrbanX.Application
             //Console.WriteLine(result);
             #endregion
 
+            #region 005_读取CSV
+            //读取
+            DateTime start = System.DateTime.Now;
+            string filePath = @"E:\114_temp\015_DEMData\tets003\CASER\force\QGIS_Pt_Cut1.xyz";
+            
+            using var streamReader = File.OpenText(filePath);
+            using var csvReader = new CsvReader(streamReader, CultureInfo.CurrentCulture);
+
+            Dictionary<string, List<int>> csvDic = new Dictionary<string, List<int>>();
+
+            while (csvReader.Read())
+            {
+                var readingString = csvReader.GetField(0).Split(" ");
+                var y = readingString[1];
+                var z = int.Parse(readingString[2]);
+
+                //var y = csvReader.GetField(1);
+                //var z = int.Parse(csvReader.GetField(2));
+
+                if (csvDic.ContainsKey(y))
+                    csvDic[y].Add(z);
+                else
+                    csvDic.Add(y, new List<int>() {z});
+            }
+            ToolManagers.TimeCalculation(start, "读取并整理结束");
+            
+            //写入
+            string exportfilePath = @"E:\114_temp\015_DEMData\tets003\CASER\force\QGIS_Pt_output2.csv";
+            var columnsLength = csvDic.ElementAt(0).Value.Count;
+            var rowLength = csvDic.Keys.Count;
+
+            Console.WriteLine("columnsLength : {0}\nrowLength : {1} ", columnsLength, rowLength);
+
+            DataTable dt = new DataTable("NewDt");
+
+            //创建其它列表
+            for (int i = 0; i < columnsLength; i++)
+            {
+                dt.Columns.Add(new DataColumn($"{i}", Type.GetType("System.Int32")));
+            }
+            ToolManagers.TimeCalculation(start, "建立空表结束");
+
+            for (int i = 0; i < rowLength; i++)
+            {
+                var singleList = csvDic.ElementAt(i).Value;
+                DataRow dr = dt.NewRow();
+                for (int j = 0; j < singleList.Count; j++)
+                {
+                    dr[j] = singleList[j];
+                }
+                dt.Rows.Add(dr);
+            }
+            ToolManagers.TimeCalculation(start, "建表结束");
+
+            SaveCSV(dt, exportfilePath);
+
+            #endregion
             #endregion
 
-
-
-            Console.WriteLine("完成");
+            ToolManagers.TimeCalculation(start, "完成");
             Console.ReadLine();
         }
+
+        public static void SaveCSV(DataTable dt, string fullPath)//table数据写入csv
+        {
+            System.IO.FileInfo fi = new System.IO.FileInfo(fullPath);
+            if (!fi.Directory.Exists)
+            {
+                fi.Directory.Create();
+            }
+            System.IO.FileStream fs = new System.IO.FileStream(fullPath, System.IO.FileMode.Create,
+                System.IO.FileAccess.Write);
+            System.IO.StreamWriter sw = new System.IO.StreamWriter(fs, System.Text.Encoding.UTF8);
+            string data = "";
+
+            for (int i = 0; i < dt.Columns.Count; i++)//写入列名
+            {
+                data += dt.Columns[i].ColumnName.ToString();
+                if (i < dt.Columns.Count - 1)
+                {
+                    data += ",";
+                }
+            }
+            sw.WriteLine(data);
+
+            for (int i = 0; i < dt.Rows.Count; i++) //写入各行数据
+            {
+                data = "";
+                for (int j = 0; j < dt.Columns.Count; j++)
+                {
+                    string str = dt.Rows[i][j].ToString();
+                    str = str.Replace("\"", "\"\"");//替换英文冒号 英文冒号需要换成两个冒号
+                    if (str.Contains(',') || str.Contains('"')
+                        || str.Contains('\r') || str.Contains('\n')) //含逗号 冒号 换行符的需要放到引号中
+                    {
+                        str = string.Format("\"{0}\"", str);
+                    }
+
+                    data += str;
+                    if (j < dt.Columns.Count - 1)
+                    {
+                        data += ",";
+                    }
+                }
+                sw.WriteLine(data);
+            }
+            sw.Close();
+            fs.Close();
+        }
+
+        
 
     }
 }

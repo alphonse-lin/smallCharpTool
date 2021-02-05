@@ -1,6 +1,7 @@
 ﻿using NetTopologySuite.Features;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -194,6 +195,17 @@ namespace UrbanX.Application
             return ss;
         }
 
-        
+        public static void TimeCalculation(DateTime beforDT, string topic)
+        {
+            DateTime afterDT = System.DateTime.Now;
+            TimeSpan ts = afterDT.Subtract(beforDT);
+            double spanTotalSeconds = double.Parse(ts.TotalSeconds.ToString()); //执行时间的总秒数
+            Console.WriteLine("{0}模块：计算用时  {1}s", topic, Math.Round(spanTotalSeconds, 2));
+        }
+
+        public static void convert(double value)
+        {
+            var temp = value.ToString("#,#", CultureInfo.InvariantCulture);
+        }
     }
-}
+    }

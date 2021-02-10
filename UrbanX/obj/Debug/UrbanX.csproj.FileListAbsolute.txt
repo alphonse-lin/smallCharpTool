@@ -43,3 +43,17 @@ E:\114_temp\008_代码集\002_extras\UrbanXFireFly_GH\UrbanX\obj\Debug\UrbanX.cs
 E:\114_temp\008_代码集\002_extras\UrbanXFireFly_GH\UrbanX\obj\Debug\UrbanX.csproj.CopyComplete
 E:\114_temp\008_代码集\002_extras\UrbanXFireFly_GH\UrbanX\obj\Debug\UrbanX.dll
 E:\114_temp\008_代码集\002_extras\UrbanXFireFly_GH\UrbanX\obj\Debug\UrbanX.pdb
+E:\114_temp\008_代码集\002_extras\smallCharpTool\UrbanX\obj\Debug\UrbanX.csproj.GenerateResource.cache
+E:\114_temp\008_代码集\002_extras\smallCharpTool\UrbanX\obj\Debug\UrbanX.dll
+E:\114_temp\008_代码集\002_extras\smallCharpTool\UrbanX\obj\Debug\UrbanX.pdb
+E:\114_temp\008_代码集\002_extras\smallCharpTool\UrbanX\bin\Debug\UrbanX.dll
+E:\114_temp\008_代码集\002_extras\smallCharpTool\UrbanX\bin\Debug\UrbanX.pdb
+E:\114_temp\008_代码集\002_extras\smallCharpTool\UrbanX\bin\Debug\Microsoft.Solver.Foundation.dll
+E:\114_temp\008_代码集\002_extras\smallCharpTool\UrbanX\bin\Debug\Newtonsoft.Json.dll
+E:\114_temp\008_代码集\002_extras\smallCharpTool\UrbanX\bin\Debug\RhinoCommon.dll
+E:\114_temp\008_代码集\002_extras\smallCharpTool\UrbanX\bin\Debug\Microsoft.Solver.Foundation.xml
+E:\114_temp\008_代码集\002_extras\smallCharpTool\UrbanX\bin\Debug\Newtonsoft.Json.xml
+E:\114_temp\008_代码集\002_extras\smallCharpTool\UrbanX\bin\Debug\RhinoCommon.xml
+E:\114_temp\008_代码集\002_extras\smallCharpTool\UrbanX\obj\Debug\UrbanX.Properties.Resources.resources
+E:\114_temp\008_代码集\002_extras\smallCharpTool\UrbanX\obj\Debug\UrbanX.csproj.CoreCompileInputs.cache
+E:\114_temp\008_代码集\002_extras\smallCharpTool\UrbanX\obj\Debug\UrbanX.csproj.CopyComplete

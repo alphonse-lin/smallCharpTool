@@ -131,3 +131,23 @@ FROM construction_cost cc, cities c, building_functions bf, quality_functions qf
 where cc.city_id=c.code and cc.func_id=bf.id and cc.quality_id=qf.quality_id and c.name='北京';
 
 update building_population set bp_name='4' where bp_id=5;
+
+create table tree_co2_index(
+	id serial primary key,
+	name char(40),
+	latin_name char(40),
+	DBH_min int,
+	DHB_max int,
+	VE_index_01 numeric(9,7),
+	VE_index_02 numeric(9,7),
+	htm numeric(4,3),
+	DW_density int,
+	equation_source char(60),
+	root_index numeric(3,2),
+	DWB_C_index numeric(2,1),
+	C_CO2_weight_ration numeric(3,2)
+);
+
+select * from tree_co2_index
+
+ALTER TABLE tree_co2_index ADD htm numeric(4,3);

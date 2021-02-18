@@ -35,7 +35,6 @@ E:\114_temp\008_代码集\002_extras\smallCharpTool\Application\bin\Debug\netcor
 E:\114_temp\008_代码集\002_extras\smallCharpTool\Application\obj\Debug\netcoreapp3.1\Application.dll
 E:\114_temp\008_代码集\002_extras\smallCharpTool\Application\obj\Debug\netcoreapp3.1\Application.pdb
 E:\114_temp\008_代码集\002_extras\smallCharpTool\Application\obj\Debug\netcoreapp3.1\Application.genruntimeconfig.cache
-E:\114_temp\008_代码集\002_extras\smallCharpTool\Application\bin\Debug\netcoreapp3.1\Calculation.exe
 E:\114_temp\008_代码集\002_extras\smallCharpTool\Application\bin\Debug\netcoreapp3.1\MathNet.Numerics.dll
 E:\114_temp\008_代码集\002_extras\smallCharpTool\Application\bin\Debug\netcoreapp3.1\Calculation.dll
 E:\114_temp\008_代码集\002_extras\smallCharpTool\Application\bin\Debug\netcoreapp3.1\Calculation.pdb

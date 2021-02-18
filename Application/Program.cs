@@ -460,13 +460,21 @@ namespace UrbanX.Application
             //string jsonFile = @"E:\114_temp\008_代码集\002_extras\smallCharpTool\Application\data\geojson\building.geojson";
             //double hqratio = 0.5;
 
-            //Sustainable_calculation calc = new Sustainable_calculation(connectionString, city, jsonFile,hqratio);
+            //Sustainable_calculation calc = new Sustainable_calculation(connectionString, city, jsonFile, hqratio);
 
-            ////Console.WriteLine("城市为{0}, 经度为{1},纬度{2}", cityInfo.CityName, cityInfo.Lat.ToString(), cityInfo.Lon.ToString());
+            //Console.WriteLine("建设成本为{0}, 人口为{1},垃圾量为{2}", calc.Result.ConstructionCost,calc.Result.Population,calc.Result.WConsumption);
             #endregion
 
 
+            #region 计算行道树CO2吸收量
+            DateTime start = System.DateTime.Now;
+            string connectionString = "Host=39.107.177.223;Username=postgres;Password=admin;Database=urbanxlab_db";
+            string treeName = "毛白杨";
+            var DBH = new List<double>() { 6d,12d };
 
+            var calc = new TreeCO2_calculation(connectionString, treeName, DBH);
+            Console.WriteLine("树木体积为{0}m³, Biomass为{2}kg, 总吸收二氧化碳量为{2}kg", calc.totalVolume, calc.totalDWB, calc.totalCO2);
+            #endregion
 
             #endregion
 
@@ -511,60 +519,60 @@ namespace UrbanX.Application
             #endregion
 
             #region 005_读取CSV
-            //读取
-            DateTime start = System.DateTime.Now;
-            string filePath = @"E:\114_temp\015_DEMData\tets003\CASER\force\QGIS_Pt_Cut1.xyz";
-            
-            using var streamReader = File.OpenText(filePath);
-            using var csvReader = new CsvReader(streamReader, CultureInfo.CurrentCulture);
+            ////读取
+            //DateTime start = System.DateTime.Now;
+            //string filePath = @"E:\114_temp\015_DEMData\tets003\CASER\force\QGIS_Pt_Cut1.xyz";
 
-            Dictionary<string, List<int>> csvDic = new Dictionary<string, List<int>>();
+            //using var streamReader = File.OpenText(filePath);
+            //using var csvReader = new CsvReader(streamReader, CultureInfo.CurrentCulture);
 
-            while (csvReader.Read())
-            {
-                var readingString = csvReader.GetField(0).Split(" ");
-                var y = readingString[1];
-                var z = int.Parse(readingString[2]);
+            //Dictionary<string, List<int>> csvDic = new Dictionary<string, List<int>>();
 
-                //var y = csvReader.GetField(1);
-                //var z = int.Parse(csvReader.GetField(2));
+            //while (csvReader.Read())
+            //{
+            //    var readingString = csvReader.GetField(0).Split(" ");
+            //    var y = readingString[1];
+            //    var z = int.Parse(readingString[2]);
 
-                if (csvDic.ContainsKey(y))
-                    csvDic[y].Add(z);
-                else
-                    csvDic.Add(y, new List<int>() {z});
-            }
-            ToolManagers.TimeCalculation(start, "读取并整理结束");
-            
-            //写入
-            string exportfilePath = @"E:\114_temp\015_DEMData\tets003\CASER\force\QGIS_Pt_output2.csv";
-            var columnsLength = csvDic.ElementAt(0).Value.Count;
-            var rowLength = csvDic.Keys.Count;
+            //    //var y = csvReader.GetField(1);
+            //    //var z = int.Parse(csvReader.GetField(2));
 
-            Console.WriteLine("columnsLength : {0}\nrowLength : {1} ", columnsLength, rowLength);
+            //    if (csvDic.ContainsKey(y))
+            //        csvDic[y].Add(z);
+            //    else
+            //        csvDic.Add(y, new List<int>() {z});
+            //}
+            //ToolManagers.TimeCalculation(start, "读取并整理结束");
 
-            DataTable dt = new DataTable("NewDt");
+            ////写入
+            //string exportfilePath = @"E:\114_temp\015_DEMData\tets003\CASER\force\QGIS_Pt_output2.csv";
+            //var columnsLength = csvDic.ElementAt(0).Value.Count;
+            //var rowLength = csvDic.Keys.Count;
 
-            //创建其它列表
-            for (int i = 0; i < columnsLength; i++)
-            {
-                dt.Columns.Add(new DataColumn($"{i}", Type.GetType("System.Int32")));
-            }
-            ToolManagers.TimeCalculation(start, "建立空表结束");
+            //Console.WriteLine("columnsLength : {0}\nrowLength : {1} ", columnsLength, rowLength);
 
-            for (int i = 0; i < rowLength; i++)
-            {
-                var singleList = csvDic.ElementAt(i).Value;
-                DataRow dr = dt.NewRow();
-                for (int j = 0; j < singleList.Count; j++)
-                {
-                    dr[j] = singleList[j];
-                }
-                dt.Rows.Add(dr);
-            }
-            ToolManagers.TimeCalculation(start, "建表结束");
+            //DataTable dt = new DataTable("NewDt");
 
-            SaveCSV(dt, exportfilePath);
+            ////创建其它列表
+            //for (int i = 0; i < columnsLength; i++)
+            //{
+            //    dt.Columns.Add(new DataColumn($"{i}", Type.GetType("System.Int32")));
+            //}
+            //ToolManagers.TimeCalculation(start, "建立空表结束");
+
+            //for (int i = 0; i < rowLength; i++)
+            //{
+            //    var singleList = csvDic.ElementAt(i).Value;
+            //    DataRow dr = dt.NewRow();
+            //    for (int j = 0; j < singleList.Count; j++)
+            //    {
+            //        dr[j] = singleList[j];
+            //    }
+            //    dt.Rows.Add(dr);
+            //}
+            //ToolManagers.TimeCalculation(start, "建表结束");
+
+            //SaveCSV(dt, exportfilePath);
 
             #endregion
             #endregion

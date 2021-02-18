@@ -510,7 +510,6 @@ namespace UrbanX.Application
         public double PopulationAll { get; set; }
         public IEnumerable<double> Population { get; set; }
 
-        
         public double[] EConsumptionAll { get; set; }
         public IEnumerable<int[]> EConsumption { get; set; }
         public double[] WConsumptionAll { get; set; }

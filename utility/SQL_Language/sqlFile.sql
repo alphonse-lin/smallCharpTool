@@ -145,9 +145,13 @@ create table tree_co2_index(
 	equation_source char(60),
 	root_index numeric(3,2),
 	DWB_C_index numeric(2,1),
-	C_CO2_weight_ration numeric(3,2)
+	C_CO2_weight_ratio numeric(3,2)
 );
 
 select * from tree_co2_index
 
+select * from tree_co2_index where name='毛白杨';
+
 ALTER TABLE tree_co2_index ADD htm numeric(4,3);
+
+ALTER TABLE tree_co2_index RENAME htm TO htm_index;

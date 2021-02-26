@@ -45,3 +45,7 @@ E:\114_temp\008_代码集\002_extras\smallCharpTool\Application\obj\Debug\netcor
 E:\114_temp\008_代码集\002_extras\smallCharpTool\Application\bin\Debug\netcoreapp3.1\CliWrap.dll
 E:\114_temp\008_代码集\002_extras\smallCharpTool\Application\obj\Debug\netcoreapp3.1\Application.csproj.CoreCompileInputs.cache
 E:\114_temp\008_代码集\002_extras\smallCharpTool\Application\bin\Debug\netcoreapp3.1\CsvHelper.dll
+E:\114_temp\008_代码集\002_extras\smallCharpTool\Application\bin\Debug\netcoreapp3.1\Microsoft.Office.Interop.Excel.dll
+E:\114_temp\008_代码集\002_extras\smallCharpTool\Application\bin\Debug\netcoreapp3.1\Microsoft.Office.Interop.PowerPoint.dll
+E:\114_temp\008_代码集\002_extras\smallCharpTool\Application\bin\Debug\netcoreapp3.1\Microsoft.Office.Interop.Word.dll
+E:\114_temp\008_代码集\002_extras\smallCharpTool\Application\bin\Debug\netcoreapp3.1\Office.dll

@@ -1872,7 +1872,20 @@
           "lib/netstandard1.3/System.Xml.XDocument.dll": {}
         }
       },
-      "Application/1.0.0": {
+      "Calculation/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v3.1",
+        "dependencies": {
+          "MathNet.Numerics": "4.15.0"
+        },
+        "compile": {
+          "bin/placeholder/Calculation.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Calculation.dll": {}
+        }
+      },
+      "UrbanXApplication/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v3.1",
         "dependencies": {
@@ -1890,23 +1903,10 @@
           "System.Data.OleDb": "5.0.0"
         },
         "compile": {
-          "bin/placeholder/Application.dll": {}
+          "bin/placeholder/UrbanXApplication.dll": {}
         },
         "runtime": {
-          "bin/placeholder/Application.dll": {}
-        }
-      },
-      "Calculation/1.0.0": {
-        "type": "project",
-        "framework": ".NETCoreApp,Version=v3.1",
-        "dependencies": {
-          "MathNet.Numerics": "4.15.0"
-        },
-        "compile": {
-          "bin/placeholder/Calculation.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/Calculation.dll": {}
+          "bin/placeholder/UrbanXApplication.dll": {}
         }
       }
     }
@@ -6462,23 +6462,23 @@
         "system.xml.xdocument.nuspec"
       ]
     },
-    "Application/1.0.0": {
-      "type": "project",
-      "path": "../Application/Application.csproj",
-      "msbuildProject": "../Application/Application.csproj"
-    },
     "Calculation/1.0.0": {
       "type": "project",
       "path": "../Calculation/Calculation.csproj",
       "msbuildProject": "../Calculation/Calculation.csproj"
+    },
+    "UrbanXApplication/1.0.0": {
+      "type": "project",
+      "path": "../Application/Application.csproj",
+      "msbuildProject": "../Application/Application.csproj"
     }
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v3.1": [
-      "Application >= 1.0.0",
       "MSTest.TestAdapter >= 2.1.0",
       "MSTest.TestFramework >= 2.1.0",
       "Microsoft.NET.Test.Sdk >= 16.5.0",
+      "UrbanXApplication >= 1.0.0",
       "coverlet.collector >= 1.2.0"
     ]
   },

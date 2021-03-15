@@ -12,12 +12,10 @@ using CsvHelper;
 using Npgsql;
 using System.Globalization;
 
-using UrbanX.Calculation;
 using UrbanX.Application.Office;
+using UrbanX.Application.Geometry;
 using UrbanXX.IO.GeoJSON;
-
-
-
+using g3;
 
 namespace UrbanX.Application
 {
@@ -614,10 +612,53 @@ namespace UrbanX.Application
             #endregion
 
             #region 三维计算
+            #region 练习
+            #region 001_Mesh Creation
+            //var vertices = new List<Vector3f>() { new Vector3f(0,0,0), new Vector3f(10,0,0), new Vector3f(0,10,0) } ;
+            //var triangles = new int[] {0,1,2};
+            //var normals= new List<Vector3f>() { new Vector3f(0,0,1), new Vector3f(0, 0, 1), new Vector3f(0, 0, 1) };
+
+            //MeshCreation.CreateMesh(vertices,triangles,normals,out DMesh3 meshResult);
+            //Console.WriteLine(meshResult.EdgeCount);
+            #endregion
+
+            #region 002_Basic Mesh File I/O
+            //string filePath = @"E:\114_temp\008_代码集\002_extras\smallCharpTool\Application\data\geometryTest\export.obj";
+            //string message=MeshCreation.ExportMesh(filePath, meshResult);
+            //Console.WriteLine(message);
+            #endregion
+            #endregion
+
+            #region 开始测试
+            var jsonFilePath = @"E:\114_temp\008_代码集\002_extras\smallCharpTool\Application\data\geojson\building.geojson";
+            StreamReader sr = File.OpenText(jsonFilePath);
+            var feactureCollection = GeoJsonReader.GetFeatureCollectionFromJson(sr.ReadToEnd());
+
+            for (int i = 0; i < 1; i++)
+            {
+                //var jsonDic = feactureCollection[i].Attributes["function"];
+                var jsonDic = feactureCollection[i].Geometry;
+                int geoCount = jsonDic.Coordinates.Length;
+                VectorArray3d verticesCollection = new VectorArray3d(geoCount);
+                Vector3d[] verticesArray = new Vector3d[geoCount];
+                int[] triangles = new int[geoCount];
+                for (int num = 0; num < jsonDic.Coordinates.Length; num++)
+                {
+                    triangles[num] = num;
+                    verticesCollection[num] = new Vector3d(jsonDic.Coordinates[num].X, jsonDic.Coordinates[num].Y, jsonDic.Coordinates[num].Z);
+                    verticesArray[num] = new Vector3d(jsonDic.Coordinates[num].X, jsonDic.Coordinates[num].Y, jsonDic.Coordinates[num].Z);
+                }
+                
+                var meshResult = MeshCreation.BoundarySrfFromPts(verticesArray);
+
+                string filePath = @"E:\114_temp\008_代码集\002_extras\smallCharpTool\Application\data\geometryTest\export.obj";
+                string message=MeshCreation.ExportMesh(filePath, meshResult);
+                //MeshCreation.CreateMesh(verticesCollection, triangles, normals, out DMesh3 meshResult);
+            }
 
             #endregion
 
-            Console.WriteLine(path);
+            #endregion
             ToolManagers.TimeCalculation(start, "完成");
             Console.ReadLine();
         }
@@ -669,7 +710,7 @@ namespace UrbanX.Application
             fs.Close();
         }
 
-        
+
 
     }
 }

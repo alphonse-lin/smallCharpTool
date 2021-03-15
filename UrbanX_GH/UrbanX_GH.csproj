@@ -63,6 +63,7 @@
     <Compile Include="Analysis\ExposureRate\CuttingPreparation.cs" />
     <Compile Include="Analysis\ExposureRate\UrbanX_Sustainability_ExposureRate_Component.cs" />
     <Compile Include="Analysis\UrbanX_Sustainability_CustomComponent\CalculatePopulation.cs" />
+    <Compile Include="Geometry3D\CreateMeshComponent.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

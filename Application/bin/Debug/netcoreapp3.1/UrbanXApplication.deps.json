@@ -8,9 +8,9 @@
     ".NETCoreApp,Version=v3.1": {
       "UrbanXApplication/1.0.0": {
         "dependencies": {
-          "Calculation": "1.0.0",
           "CliWrap": "3.3.0",
           "CsvHelper": "22.1.0",
+          "MathNet.Numerics": "4.15.0",
           "Microsoft.Office.Interop.Excel": "15.0.4795.1000",
           "Microsoft.Office.Interop.PowerPoint": "15.0.4420.1017",
           "Microsoft.Office.Interop.Word": "15.0.4797.1003",
@@ -19,7 +19,8 @@
           "NetTopologySuite.Features": "2.1.0",
           "Newtonsoft.Json": "12.0.3",
           "Npgsql": "5.0.1.1",
-          "System.Data.OleDb": "5.0.0"
+          "System.Data.OleDb": "5.0.0",
+          "geometry3Sharp": "1.0.324"
         },
         "runtime": {
           "UrbanXApplication.dll": {}
@@ -41,6 +42,14 @@
           "lib/netstandard2.1/CsvHelper.dll": {
             "assemblyVersion": "22.0.0.0",
             "fileVersion": "22.1.0.0"
+          }
+        }
+      },
+      "geometry3Sharp/1.0.324": {
+        "runtime": {
+          "lib/netstandard2.0/geometry3Sharp.dll": {
+            "assemblyVersion": "1.0.324.0",
+            "fileVersion": "1.0.324.0"
           }
         }
       },
@@ -337,14 +346,6 @@
             "fileVersion": "5.0.20.51904"
           }
         }
-      },
-      "Calculation/1.0.0": {
-        "dependencies": {
-          "MathNet.Numerics": "4.15.0"
-        },
-        "runtime": {
-          "Calculation.dll": {}
-        }
       }
     }
   },
@@ -367,6 +368,13 @@
       "sha512": "sha512-nATAi2R9g/jvJ8fZjLmMpp45eKj4PJvM7FHhRauv9ZpTr4HJCRu9OZH8sCNxEOTQS85964s3ATJar9gyeKcq8w==",
       "path": "csvhelper/22.1.0",
       "hashPath": "csvhelper.22.1.0.nupkg.sha512"
+    },
+    "geometry3Sharp/1.0.324": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-vdEC1zaX6lV8LI9BvqizplraEJ6zFE98rMM+hDZqVPXMtwDIIY/RpTQQtxe043E9gsSdx0Xyz1TbSqIYQnBPaw==",
+      "path": "geometry3sharp/1.0.324",
+      "hashPath": "geometry3sharp.1.0.324.nupkg.sha512"
     },
     "MathNet.Numerics/4.15.0": {
       "type": "package",
@@ -535,11 +543,6 @@
       "sha512": "sha512-c1ho9WU9ZxMZawML+ssPKZfdnrg/OjR3pe0m9v8230z3acqphwvPJqzAkH54xRYm5ntZHGG1EPP3sux9H3qSPg==",
       "path": "system.windows.extensions/5.0.0",
       "hashPath": "system.windows.extensions.5.0.0.nupkg.sha512"
-    },
-    "Calculation/1.0.0": {
-      "type": "project",
-      "serviceable": false,
-      "sha512": ""
     }
   }
 }

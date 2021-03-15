@@ -1,0 +1,15 @@
+D:\实验室\010_CAAD\002_插件\UrbanXFireFly\IndexCalc\bin\IndexCalc.dll
+D:\实验室\010_CAAD\002_插件\UrbanXFireFly\IndexCalc\bin\IndexCalc.pdb
+D:\实验室\010_CAAD\002_插件\UrbanXFireFly\IndexCalc\obj\Debug\IndexCalc.csprojAssemblyReference.cache
+D:\实验室\010_CAAD\002_插件\UrbanXFireFly\IndexCalc\obj\Debug\IndexCalc.dll
+D:\实验室\010_CAAD\002_插件\UrbanXFireFly\IndexCalc\obj\Debug\IndexCalc.pdb
+D:\实验室\010_CAAD\002_插件\UrbanXFireFly\IndexCalc\bin\UrbanX.dll
+D:\实验室\010_CAAD\002_插件\UrbanXFireFly\IndexCalc\bin\Microsoft.Solver.Foundation.dll
+D:\实验室\010_CAAD\002_插件\UrbanXFireFly\IndexCalc\bin\Newtonsoft.Json.dll
+D:\实验室\010_CAAD\002_插件\UrbanXFireFly\IndexCalc\bin\UrbanX.pdb
+D:\实验室\010_CAAD\002_插件\UrbanXFireFly\IndexCalc\bin\Microsoft.Solver.Foundation.xml
+D:\实验室\010_CAAD\002_插件\UrbanXFireFly\IndexCalc\bin\Newtonsoft.Json.xml
+D:\实验室\010_CAAD\002_插件\UrbanXFireFly\IndexCalc\obj\Debug\IndexCalc.csproj.CopyComplete
+D:\实验室\010_CAAD\002_插件\UrbanXFireFly\IndexCalc\bin\SharedResources.dll
+D:\实验室\010_CAAD\002_插件\UrbanXFireFly\IndexCalc\bin\SharedResources.pdb
+D:\实验室\010_CAAD\002_插件\UrbanXFireFly\IndexCalc\bin\SharedResources.dll.config

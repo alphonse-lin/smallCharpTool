@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using Microsoft.Office.Core;
 using Microsoft.Office.Interop.PowerPoint;
 using MicroPPt=Microsoft.Office.Interop.PowerPoint;
+using System.Linq;
 
-namespace Application.Office
+namespace UrbanX.Application.Office
 {
     public class PowerPointHelper
     {
-        public static string ReplacePowerPoint(string filePath, Dictionary<string,string>keyValues)
+        
+        public static string ReplacePowerPoint(string filePath, string savedFilePath, Dictionary<string,string>keyValues)
         {
             string path = "";
             MicroPPt.Application pptApp;
@@ -25,23 +27,59 @@ namespace Application.Office
                 {
                     foreach (MicroPPt.Shape shape in slide.Shapes)
                     {
-                        ReplaceShapeText();
+                        ReplaceShapeText(shape,keyValues);
                     }
                 }
+
+                //保持文件
+                //path=AppDomain.CurrentDomain.BaseDirectory+"PPT/test-"+ DateTime.Now.ToString("yyyyMMddhhmmss") + ".pptx";
+                path= savedFilePath + "/"+DateTime.Now.ToString("yyyyMMddhhmmss") + ".pptx";
+                presentation.SaveAs(path);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
-                throw;
+                throw new Exception(ex.Message);
             }
+            finally
+            {
+                try
+                {
+                    presentation.Close();
+                    pptApp.Quit();
+                }
+                catch (Exception) { }
+            }
+            return path;
         }
 
         /// <summary>
         /// 替换PowerPoint TextBox的内容
         /// </summary>
-        public static void ReplaceShapeText()
+        public static void ReplaceShapeText(MicroPPt.Shape shape, Dictionary<string, string> dicKeyWordList)
         {
-            throw new NotImplementedException();
+            if (dicKeyWordList !=null && dicKeyWordList.Count>0)
+            {
+                if (shape.Type==MsoShapeType.msoGroup)
+                {
+                    foreach (MicroPPt.Shape sh in shape.GroupItems)
+                    {
+                        ReplaceShapeText(sh, dicKeyWordList);
+                    }
+                }
+                if (shape.HasTextFrame != Microsoft.Office.Core.MsoTriState.msoTrue)
+                {
+                    return;
+                }
+                foreach (string strKeyWord in dicKeyWordList.Keys)
+                {
+                    TextRange textRange = shape.TextFrame.TextRange.Find(strKeyWord, 0, MsoTriState.msoTriStateMixed, MsoTriState.msoFalse);
+                    if (textRange !=null)
+                    {
+                        shape.TextFrame.TextRange.Text = shape.TextFrame.TextRange.Text.Replace(strKeyWord, dicKeyWordList[strKeyWord]);
+                    }
+                }
+            }
         }
     }
 }

@@ -92,7 +92,6 @@ E:\114_temp\008_代码集\002_extras\smallCharpTool\UnitTestProject1\obj\Debug\n
 E:\114_temp\008_代码集\002_extras\smallCharpTool\UnitTestProject1\obj\Debug\netcoreapp3.1\UnitTestProject1.dll
 E:\114_temp\008_代码集\002_extras\smallCharpTool\UnitTestProject1\obj\Debug\netcoreapp3.1\UnitTestProject1.pdb
 E:\114_temp\008_代码集\002_extras\smallCharpTool\UnitTestProject1\obj\Debug\netcoreapp3.1\UnitTestProject1.genruntimeconfig.cache
-E:\114_temp\008_代码集\002_extras\smallCharpTool\UnitTestProject1\bin\Debug\netcoreapp3.1\Application.exe
 E:\114_temp\008_代码集\002_extras\smallCharpTool\UnitTestProject1\bin\Debug\netcoreapp3.1\Microsoft.Win32.Registry.dll
 E:\114_temp\008_代码集\002_extras\smallCharpTool\UnitTestProject1\bin\Debug\netcoreapp3.1\Microsoft.Win32.SystemEvents.dll
 E:\114_temp\008_代码集\002_extras\smallCharpTool\UnitTestProject1\bin\Debug\netcoreapp3.1\Npgsql.dll
@@ -116,9 +115,6 @@ E:\114_temp\008_代码集\002_extras\smallCharpTool\UnitTestProject1\bin\Debug\n
 E:\114_temp\008_代码集\002_extras\smallCharpTool\UnitTestProject1\bin\Debug\netcoreapp3.1\runtimes\unix\lib\netcoreapp2.1\System.Security.Principal.Windows.dll
 E:\114_temp\008_代码集\002_extras\smallCharpTool\UnitTestProject1\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp2.1\System.Security.Principal.Windows.dll
 E:\114_temp\008_代码集\002_extras\smallCharpTool\UnitTestProject1\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp3.0\System.Windows.Extensions.dll
-E:\114_temp\008_代码集\002_extras\smallCharpTool\UnitTestProject1\bin\Debug\netcoreapp3.1\Application.dll
-E:\114_temp\008_代码集\002_extras\smallCharpTool\UnitTestProject1\bin\Debug\netcoreapp3.1\Application.pdb
-E:\114_temp\008_代码集\002_extras\smallCharpTool\UnitTestProject1\bin\Debug\netcoreapp3.1\Calculation.exe
 E:\114_temp\008_代码集\002_extras\smallCharpTool\UnitTestProject1\bin\Debug\netcoreapp3.1\CliWrap.dll
 E:\114_temp\008_代码集\002_extras\smallCharpTool\UnitTestProject1\bin\Debug\netcoreapp3.1\CsvHelper.dll
 E:\114_temp\008_代码集\002_extras\smallCharpTool\UnitTestProject1\bin\Debug\netcoreapp3.1\MathNet.Numerics.dll
@@ -126,3 +122,10 @@ E:\114_temp\008_代码集\002_extras\smallCharpTool\UnitTestProject1\bin\Debug\n
 E:\114_temp\008_代码集\002_extras\smallCharpTool\UnitTestProject1\bin\Debug\netcoreapp3.1\NetTopologySuite.Features.dll
 E:\114_temp\008_代码集\002_extras\smallCharpTool\UnitTestProject1\bin\Debug\netcoreapp3.1\Calculation.dll
 E:\114_temp\008_代码集\002_extras\smallCharpTool\UnitTestProject1\bin\Debug\netcoreapp3.1\Calculation.pdb
+E:\114_temp\008_代码集\002_extras\smallCharpTool\UnitTestProject1\bin\Debug\netcoreapp3.1\UrbanXApplication.exe
+E:\114_temp\008_代码集\002_extras\smallCharpTool\UnitTestProject1\bin\Debug\netcoreapp3.1\Microsoft.Office.Interop.Excel.dll
+E:\114_temp\008_代码集\002_extras\smallCharpTool\UnitTestProject1\bin\Debug\netcoreapp3.1\Microsoft.Office.Interop.PowerPoint.dll
+E:\114_temp\008_代码集\002_extras\smallCharpTool\UnitTestProject1\bin\Debug\netcoreapp3.1\Microsoft.Office.Interop.Word.dll
+E:\114_temp\008_代码集\002_extras\smallCharpTool\UnitTestProject1\bin\Debug\netcoreapp3.1\Office.dll
+E:\114_temp\008_代码集\002_extras\smallCharpTool\UnitTestProject1\bin\Debug\netcoreapp3.1\UrbanXApplication.dll
+E:\114_temp\008_代码集\002_extras\smallCharpTool\UnitTestProject1\bin\Debug\netcoreapp3.1\UrbanXApplication.pdb

@@ -17,8 +17,6 @@ E:\114_temp\008_代码集\002_extras\smallCharpTool\UrbanXToolsAPI\obj\Debug\net
 E:\114_temp\008_代码集\002_extras\smallCharpTool\UrbanXToolsAPI\obj\Debug\netcoreapp3.1\UrbanXToolsAPI.dll
 E:\114_temp\008_代码集\002_extras\smallCharpTool\UrbanXToolsAPI\obj\Debug\netcoreapp3.1\UrbanXToolsAPI.pdb
 E:\114_temp\008_代码集\002_extras\smallCharpTool\UrbanXToolsAPI\obj\Debug\netcoreapp3.1\UrbanXToolsAPI.genruntimeconfig.cache
-E:\114_temp\008_代码集\002_extras\smallCharpTool\UrbanXToolsAPI\bin\Debug\netcoreapp3.1\Calculation.exe
-E:\114_temp\008_代码集\002_extras\smallCharpTool\UrbanXToolsAPI\bin\Debug\netcoreapp3.1\Application.exe
 E:\114_temp\008_代码集\002_extras\smallCharpTool\UrbanXToolsAPI\bin\Debug\netcoreapp3.1\CliWrap.dll
 E:\114_temp\008_代码集\002_extras\smallCharpTool\UrbanXToolsAPI\bin\Debug\netcoreapp3.1\CsvHelper.dll
 E:\114_temp\008_代码集\002_extras\smallCharpTool\UrbanXToolsAPI\bin\Debug\netcoreapp3.1\MathNet.Numerics.dll
@@ -48,9 +46,14 @@ E:\114_temp\008_代码集\002_extras\smallCharpTool\UrbanXToolsAPI\bin\Debug\net
 E:\114_temp\008_代码集\002_extras\smallCharpTool\UrbanXToolsAPI\bin\Debug\netcoreapp3.1\runtimes\unix\lib\netcoreapp2.1\System.Security.Principal.Windows.dll
 E:\114_temp\008_代码集\002_extras\smallCharpTool\UrbanXToolsAPI\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp2.1\System.Security.Principal.Windows.dll
 E:\114_temp\008_代码集\002_extras\smallCharpTool\UrbanXToolsAPI\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp3.0\System.Windows.Extensions.dll
-E:\114_temp\008_代码集\002_extras\smallCharpTool\UrbanXToolsAPI\bin\Debug\netcoreapp3.1\Application.dll
 E:\114_temp\008_代码集\002_extras\smallCharpTool\UrbanXToolsAPI\bin\Debug\netcoreapp3.1\Calculation.dll
-E:\114_temp\008_代码集\002_extras\smallCharpTool\UrbanXToolsAPI\bin\Debug\netcoreapp3.1\Application.pdb
 E:\114_temp\008_代码集\002_extras\smallCharpTool\UrbanXToolsAPI\bin\Debug\netcoreapp3.1\Calculation.pdb
 E:\114_temp\008_代码集\002_extras\smallCharpTool\UrbanXToolsAPI\obj\Debug\netcoreapp3.1\scopedcss\bundle\UrbanXToolsAPI.styles.css
 E:\114_temp\008_代码集\002_extras\smallCharpTool\UrbanXToolsAPI\obj\Debug\netcoreapp3.1\UrbanXToolsAPI.csproj.CopyComplete
+E:\114_temp\008_代码集\002_extras\smallCharpTool\UrbanXToolsAPI\bin\Debug\netcoreapp3.1\UrbanXApplication.exe
+E:\114_temp\008_代码集\002_extras\smallCharpTool\UrbanXToolsAPI\bin\Debug\netcoreapp3.1\Microsoft.Office.Interop.Excel.dll
+E:\114_temp\008_代码集\002_extras\smallCharpTool\UrbanXToolsAPI\bin\Debug\netcoreapp3.1\Microsoft.Office.Interop.PowerPoint.dll
+E:\114_temp\008_代码集\002_extras\smallCharpTool\UrbanXToolsAPI\bin\Debug\netcoreapp3.1\Microsoft.Office.Interop.Word.dll
+E:\114_temp\008_代码集\002_extras\smallCharpTool\UrbanXToolsAPI\bin\Debug\netcoreapp3.1\Office.dll
+E:\114_temp\008_代码集\002_extras\smallCharpTool\UrbanXToolsAPI\bin\Debug\netcoreapp3.1\UrbanXApplication.dll
+E:\114_temp\008_代码集\002_extras\smallCharpTool\UrbanXToolsAPI\bin\Debug\netcoreapp3.1\UrbanXApplication.pdb

@@ -10,9 +10,14 @@ using System.Data.OleDb;
 using System.Xml.Linq;
 using CsvHelper;
 using Npgsql;
-using UrbanX.Calculation;
-using UrbanXX.IO.GeoJSON;
 using System.Globalization;
+
+using UrbanX.Calculation;
+using UrbanX.Application.Office;
+using UrbanXX.IO.GeoJSON;
+
+
+
 
 namespace UrbanX.Application
 {
@@ -20,6 +25,7 @@ namespace UrbanX.Application
     {
         static void Main(string[] args)
         {
+            DateTime start = System.DateTime.Now;
             #region 读取excel数据，转为citiesCostModel 类
             //string excelPath = @"E:\114_temp\008_代码集\002_extras\smallCharpTool\utility\data\造价表2.xlsx";
             //string xmlPath = @"E:\114_temp\008_代码集\002_extras\smallCharpTool\utility\data\test_1124.xml";
@@ -465,15 +471,28 @@ namespace UrbanX.Application
             //Console.WriteLine("建设成本为{0}, 人口为{1},垃圾量为{2}", calc.Result.ConstructionCost,calc.Result.Population,calc.Result.WConsumption);
             #endregion
 
-
             #region 计算行道树CO2吸收量
-            DateTime start = System.DateTime.Now;
-            string connectionString = "Host=39.107.177.223;Username=postgres;Password=admin;Database=urbanxlab_db";
-            string treeName = "毛白杨";
-            var DBH = new List<double>() { 6d,12d };
+            //DateTime start = System.DateTime.Now;
+            //string connectionString = "Host=39.107.177.223;Username=postgres;Password=admin;Database=urbanxlab_db";
+            //string treeName = "毛白杨";
+            //var DBH = new List<double>() { 6d,12d };
 
-            var calc = new TreeCO2_calculation(connectionString, treeName, DBH);
-            Console.WriteLine("树木体积为{0}m³, Biomass为{2}kg, 总吸收二氧化碳量为{2}kg", calc.totalVolume, calc.totalDWB, calc.totalCO2);
+            //var calc = new TreeCO2_calculation(connectionString, treeName, DBH);
+            //Console.WriteLine("树木体积为{0}m³, Biomass为{2}kg, 总吸收二氧化碳量为{2}kg", calc.totalVolume, calc.totalDWB, calc.totalCO2);
+            #endregion
+
+            #region 测试自动生成ppt
+            //string strPath = @"E:\114_temp\008_代码集\002_extras\smallCharpTool\Application\data\测试ppt.pptx";
+            //string savedPath = @"E:\114_temp\008_代码集\002_extras\smallCharpTool\Application\data\PPT_Test";
+            //Dictionary<string, string> keyValues = new Dictionary<string, string>();
+            //keyValues.Add("idField", "101");
+            //keyValues.Add("titleField", "测试101");
+            //keyValues.Add("nameField", "郑同学");
+            //keyValues.Add("funField", "");
+            //keyValues.Add("proField", "");
+            //keyValues.Add("sproField", "");
+
+            //var path=PowerPointHelper.ReplacePowerPoint(strPath, savedPath, keyValues);
             #endregion
 
             #endregion
@@ -575,8 +594,30 @@ namespace UrbanX.Application
             //SaveCSV(dt, exportfilePath);
 
             #endregion
+
+            #region 006_创建多种分布函数
+            //var mean = 10d;
+            //var min = -10d;
+            //var max = 40d;
+            //var count = 20;
+            //var seed = DateTime.Now.Second;
+            //var result = StatisticsModel.NormalDistribution(mean, min, max, count, seed);
+
+            //foreach (var item in result)
+            //{
+            //    Console.WriteLine(item);
+            //}
+
+            //Console.WriteLine("Mean = {0}\nSum = {1}", result.Average(), result.Sum());
+            //Console.ReadLine();
+            #endregion
             #endregion
 
+            #region 三维计算
+
+            #endregion
+
+            Console.WriteLine(path);
             ToolManagers.TimeCalculation(start, "完成");
             Console.ReadLine();
         }

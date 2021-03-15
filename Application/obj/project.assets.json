@@ -23,6 +23,15 @@
           "lib/netstandard2.1/CsvHelper.dll": {}
         }
       },
+      "geometry3Sharp/1.0.324": {
+        "type": "package",
+        "compile": {
+          "lib/netstandard2.0/geometry3Sharp.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/geometry3Sharp.dll": {}
+        }
+      },
       "MathNet.Numerics/4.15.0": {
         "type": "package",
         "compile": {
@@ -346,19 +355,6 @@
             "rid": "win"
           }
         }
-      },
-      "Calculation/1.0.0": {
-        "type": "project",
-        "framework": ".NETCoreApp,Version=v3.1",
-        "dependencies": {
-          "MathNet.Numerics": "4.15.0"
-        },
-        "compile": {
-          "bin/placeholder/Calculation.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/Calculation.dll": {}
-        }
       }
     }
   },
@@ -403,6 +399,19 @@
         "lib/netstandard2.0/CsvHelper.xml",
         "lib/netstandard2.1/CsvHelper.dll",
         "lib/netstandard2.1/CsvHelper.xml"
+      ]
+    },
+    "geometry3Sharp/1.0.324": {
+      "sha512": "vdEC1zaX6lV8LI9BvqizplraEJ6zFE98rMM+hDZqVPXMtwDIIY/RpTQQtxe043E9gsSdx0Xyz1TbSqIYQnBPaw==",
+      "type": "package",
+      "path": "geometry3sharp/1.0.324",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "geometry3sharp.1.0.324.nupkg.sha512",
+        "geometry3sharp.nuspec",
+        "lib/net45/geometry3Sharp.dll",
+        "lib/netstandard2.0/geometry3Sharp.dll"
       ]
     },
     "MathNet.Numerics/4.15.0": {
@@ -1089,18 +1098,13 @@
         "useSharedDesignerContext.txt",
         "version.txt"
       ]
-    },
-    "Calculation/1.0.0": {
-      "type": "project",
-      "path": "../Calculation/Calculation.csproj",
-      "msbuildProject": "../Calculation/Calculation.csproj"
     }
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v3.1": [
-      "Calculation >= 1.0.0",
       "CliWrap >= 3.3.0",
       "CsvHelper >= 22.1.0",
+      "MathNet.Numerics >= 4.15.0",
       "Microsoft.Office.Interop.Excel >= 15.0.4795.1000",
       "Microsoft.Office.Interop.PowerPoint >= 15.0.4420.1017",
       "Microsoft.Office.Interop.Word >= 15.0.4797.1003",
@@ -1109,7 +1113,8 @@
       "NetTopologySuite.Features >= 2.1.0",
       "Newtonsoft.Json >= 12.0.3",
       "Npgsql >= 5.0.1.1",
-      "System.Data.OleDb >= 5.0.0"
+      "System.Data.OleDb >= 5.0.0",
+      "geometry3Sharp >= 1.0.324"
     ]
   },
   "packageFolders": {
@@ -1142,11 +1147,7 @@
       "frameworks": {
         "netcoreapp3.1": {
           "targetAlias": "netcoreapp3.1",
-          "projectReferences": {
-            "E:\\114_temp\\008_代码集\\002_extras\\smallCharpTool\\Calculation\\Calculation.csproj": {
-              "projectPath": "E:\\114_temp\\008_代码集\\002_extras\\smallCharpTool\\Calculation\\Calculation.csproj"
-            }
-          }
+          "projectReferences": {}
         }
       },
       "warningProperties": {
@@ -1166,6 +1167,10 @@
           "CsvHelper": {
             "target": "Package",
             "version": "[22.1.0, )"
+          },
+          "MathNet.Numerics": {
+            "target": "Package",
+            "version": "[4.15.0, )"
           },
           "Microsoft.Office.Interop.Excel": {
             "target": "Package",
@@ -1202,6 +1207,10 @@
           "System.Data.OleDb": {
             "target": "Package",
             "version": "[5.0.0, )"
+          },
+          "geometry3Sharp": {
+            "target": "Package",
+            "version": "[1.0.324, )"
           }
         },
         "imports": [

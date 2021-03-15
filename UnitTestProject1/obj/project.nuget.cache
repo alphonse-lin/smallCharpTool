@@ -1,12 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "asyuNHy7ceMFQFE05WDkho5Ir+ikx8fikyxZFeGrBh8qVbq8rLy+z1LUBY7vOK3T6lv0zLDqmRuu5PlOr4OTMg==",
+  "dgSpecHash": "v2mDfkaelS/8NpJLSXBOOJl9Mw28FdWPaiEL/JsD1cGLLL4OLa8CIuswoCkUH0DV1tqGbfBw5yfiPl+ruEJ9Fw==",
   "success": true,
   "projectFilePath": "E:\\114_temp\\008_代码集\\002_extras\\smallCharpTool\\UnitTestProject1\\UnitTestProject1.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\CAUPD-BJ141\\.nuget\\packages\\cliwrap\\3.3.0\\cliwrap.3.3.0.nupkg.sha512",
     "C:\\Users\\CAUPD-BJ141\\.nuget\\packages\\coverlet.collector\\1.2.0\\coverlet.collector.1.2.0.nupkg.sha512",
     "C:\\Users\\CAUPD-BJ141\\.nuget\\packages\\csvhelper\\22.1.0\\csvhelper.22.1.0.nupkg.sha512",
+    "C:\\Users\\CAUPD-BJ141\\.nuget\\packages\\geometry3sharp\\1.0.324\\geometry3sharp.1.0.324.nupkg.sha512",
     "C:\\Users\\CAUPD-BJ141\\.nuget\\packages\\mathnet.numerics\\4.15.0\\mathnet.numerics.4.15.0.nupkg.sha512",
     "C:\\Users\\CAUPD-BJ141\\.nuget\\packages\\microsoft.codecoverage\\16.5.0\\microsoft.codecoverage.16.5.0.nupkg.sha512",
     "C:\\Users\\CAUPD-BJ141\\.nuget\\packages\\microsoft.csharp\\4.5.0\\microsoft.csharp.4.5.0.nupkg.sha512",

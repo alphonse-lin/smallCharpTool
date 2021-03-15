@@ -8,10 +8,10 @@
     ".NETCoreApp,Version=v3.1": {
       "UnitTestProject1/1.0.0": {
         "dependencies": {
-          "Application": "1.0.0",
           "MSTest.TestAdapter": "2.1.0",
           "MSTest.TestFramework": "2.1.0",
           "Microsoft.NET.Test.Sdk": "16.5.0",
+          "UrbanXApplication": "1.0.0",
           "coverlet.collector": "1.2.0"
         },
         "runtime": {
@@ -63,6 +63,30 @@
       },
       "Microsoft.NETCore.Platforms/5.0.0": {},
       "Microsoft.NETCore.Targets/1.1.0": {},
+      "Microsoft.Office.Interop.Excel/15.0.4795.1000": {
+        "runtime": {
+          "lib/net20/Microsoft.Office.Interop.Excel.dll": {
+            "assemblyVersion": "15.0.0.0",
+            "fileVersion": "15.0.4795.1000"
+          }
+        }
+      },
+      "Microsoft.Office.Interop.PowerPoint/15.0.4420.1017": {
+        "runtime": {
+          "lib/net20/Microsoft.Office.Interop.PowerPoint.dll": {
+            "assemblyVersion": "15.0.0.0",
+            "fileVersion": "15.0.4420.1017"
+          }
+        }
+      },
+      "Microsoft.Office.Interop.Word/15.0.4797.1003": {
+        "runtime": {
+          "lib/net20/Microsoft.Office.Interop.Word.dll": {
+            "assemblyVersion": "15.0.0.0",
+            "fileVersion": "15.0.4797.1003"
+          }
+        }
+      },
       "Microsoft.TestPlatform.ObjectModel/16.5.0": {
         "dependencies": {
           "NuGet.Frameworks": "5.0.0"
@@ -352,6 +376,14 @@
             "assetType": "runtime",
             "assemblyVersion": "5.0.0.0",
             "fileVersion": "5.0.20.51904"
+          }
+        }
+      },
+      "MicrosoftOfficeCore/15.0.0": {
+        "runtime": {
+          "lib/net35/Office.dll": {
+            "assemblyVersion": "15.0.0.0",
+            "fileVersion": "15.0.4420.1017"
           }
         }
       },
@@ -1274,11 +1306,23 @@
           "System.Xml.ReaderWriter": "4.3.0"
         }
       },
-      "Application/1.0.0": {
+      "Calculation/1.0.0": {
+        "dependencies": {
+          "MathNet.Numerics": "4.15.0"
+        },
+        "runtime": {
+          "Calculation.dll": {}
+        }
+      },
+      "UrbanXApplication/1.0.0": {
         "dependencies": {
           "Calculation": "1.0.0",
           "CliWrap": "3.3.0",
           "CsvHelper": "22.1.0",
+          "Microsoft.Office.Interop.Excel": "15.0.4795.1000",
+          "Microsoft.Office.Interop.PowerPoint": "15.0.4420.1017",
+          "Microsoft.Office.Interop.Word": "15.0.4797.1003",
+          "MicrosoftOfficeCore": "15.0.0",
           "NetTopologySuite": "2.1.0",
           "NetTopologySuite.Features": "2.1.0",
           "Newtonsoft.Json": "12.0.3",
@@ -1286,15 +1330,7 @@
           "System.Data.OleDb": "5.0.0"
         },
         "runtime": {
-          "Application.dll": {}
-        }
-      },
-      "Calculation/1.0.0": {
-        "dependencies": {
-          "MathNet.Numerics": "4.15.0"
-        },
-        "runtime": {
-          "Calculation.dll": {}
+          "UrbanXApplication.dll": {}
         }
       }
     }
@@ -1368,6 +1404,27 @@
       "path": "microsoft.netcore.targets/1.1.0",
       "hashPath": "microsoft.netcore.targets.1.1.0.nupkg.sha512"
     },
+    "Microsoft.Office.Interop.Excel/15.0.4795.1000": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-DfceS96ustwfL8EOJNNRtpk6b0RylhjNpgeeemuvi9X4GYks2UTeAimjSrdFEfuqRo5ibZ4Sd0gJIeDr9gMa6Q==",
+      "path": "microsoft.office.interop.excel/15.0.4795.1000",
+      "hashPath": "microsoft.office.interop.excel.15.0.4795.1000.nupkg.sha512"
+    },
+    "Microsoft.Office.Interop.PowerPoint/15.0.4420.1017": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-8/C095a6ojqtWJzLFPYbHAjBM6C4koAcZ4NW50N1L7HHsFAAqN1RpEhE8tFry2fjJLMwz1hYOm2A4MS9DS7n2A==",
+      "path": "microsoft.office.interop.powerpoint/15.0.4420.1017",
+      "hashPath": "microsoft.office.interop.powerpoint.15.0.4420.1017.nupkg.sha512"
+    },
+    "Microsoft.Office.Interop.Word/15.0.4797.1003": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-p22pljmHaQjDxNLqO+uO5vi3y0TK5t1mAtSAg93K28/e12Hw3qzfflAo6XHvNXxnvz9HZGv59vLCwIaC9xbXNQ==",
+      "path": "microsoft.office.interop.word/15.0.4797.1003",
+      "hashPath": "microsoft.office.interop.word.15.0.4797.1003.nupkg.sha512"
+    },
     "Microsoft.TestPlatform.ObjectModel/16.5.0": {
       "type": "package",
       "serviceable": true,
@@ -1402,6 +1459,13 @@
       "sha512": "sha512-Bh6blKG8VAKvXiLe2L+sEsn62nc1Ij34MrNxepD2OCrS5cpCwQa9MeLyhVQPQ/R4Wlzwuy6wMK8hLb11QPDRsQ==",
       "path": "microsoft.win32.systemevents/5.0.0",
       "hashPath": "microsoft.win32.systemevents.5.0.0.nupkg.sha512"
+    },
+    "MicrosoftOfficeCore/15.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-/KgYw8uvv0Ut8FPvyEa1XJ/TrLSRgvTv3JgC2IT0/8NwoICzbEJWfmfwsE6Dwi8WH0jVkTEO7zRvGvaKqUOhqQ==",
+      "path": "microsoftofficecore/15.0.0",
+      "hashPath": "microsoftofficecore.15.0.0.nupkg.sha512"
     },
     "MSTest.TestAdapter/2.1.0": {
       "type": "package",
@@ -2033,12 +2097,12 @@
       "path": "system.xml.xdocument/4.3.0",
       "hashPath": "system.xml.xdocument.4.3.0.nupkg.sha512"
     },
-    "Application/1.0.0": {
+    "Calculation/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
     },
-    "Calculation/1.0.0": {
+    "UrbanXApplication/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

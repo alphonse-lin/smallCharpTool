@@ -1,11 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "Uf02tWwhyXATaVb4zo9vbeJ5FS0rKRfE0s2+PbeaJiQkgrD4KTUDHv9th0Suh4KfnNc+hA7qzaITbtY0FBw8YQ==",
+  "dgSpecHash": "yOX1ib3grtiEF1IzoZrr9Y68ou9fLMIaC1blZfbKhwSPr7T+TR2sW349nTw5Gy9DH8U/GHZOx4ZpH6DFotLgaA==",
   "success": true,
   "projectFilePath": "E:\\114_temp\\008_代码集\\002_extras\\smallCharpTool\\Application\\Application.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\CAUPD-BJ141\\.nuget\\packages\\cliwrap\\3.3.0\\cliwrap.3.3.0.nupkg.sha512",
     "C:\\Users\\CAUPD-BJ141\\.nuget\\packages\\csvhelper\\22.1.0\\csvhelper.22.1.0.nupkg.sha512",
+    "C:\\Users\\CAUPD-BJ141\\.nuget\\packages\\geometry3sharp\\1.0.324\\geometry3sharp.1.0.324.nupkg.sha512",
     "C:\\Users\\CAUPD-BJ141\\.nuget\\packages\\mathnet.numerics\\4.15.0\\mathnet.numerics.4.15.0.nupkg.sha512",
     "C:\\Users\\CAUPD-BJ141\\.nuget\\packages\\microsoft.csharp\\4.5.0\\microsoft.csharp.4.5.0.nupkg.sha512",
     "C:\\Users\\CAUPD-BJ141\\.nuget\\packages\\microsoft.netcore.platforms\\5.0.0\\microsoft.netcore.platforms.5.0.0.nupkg.sha512",

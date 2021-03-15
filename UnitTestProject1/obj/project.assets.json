@@ -29,6 +29,15 @@
           "lib/netstandard2.1/CsvHelper.dll": {}
         }
       },
+      "geometry3Sharp/1.0.324": {
+        "type": "package",
+        "compile": {
+          "lib/netstandard2.0/geometry3Sharp.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/geometry3Sharp.dll": {}
+        }
+      },
       "MathNet.Numerics/4.15.0": {
         "type": "package",
         "compile": {
@@ -1872,26 +1881,13 @@
           "lib/netstandard1.3/System.Xml.XDocument.dll": {}
         }
       },
-      "Calculation/1.0.0": {
-        "type": "project",
-        "framework": ".NETCoreApp,Version=v3.1",
-        "dependencies": {
-          "MathNet.Numerics": "4.15.0"
-        },
-        "compile": {
-          "bin/placeholder/Calculation.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/Calculation.dll": {}
-        }
-      },
       "UrbanXApplication/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v3.1",
         "dependencies": {
-          "Calculation": "1.0.0",
           "CliWrap": "3.3.0",
           "CsvHelper": "22.1.0",
+          "MathNet.Numerics": "4.15.0",
           "Microsoft.Office.Interop.Excel": "15.0.4795.1000",
           "Microsoft.Office.Interop.PowerPoint": "15.0.4420.1017",
           "Microsoft.Office.Interop.Word": "15.0.4797.1003",
@@ -1900,7 +1896,8 @@
           "NetTopologySuite.Features": "2.1.0",
           "Newtonsoft.Json": "12.0.3",
           "Npgsql": "5.0.1.1",
-          "System.Data.OleDb": "5.0.0"
+          "System.Data.OleDb": "5.0.0",
+          "geometry3Sharp": "1.0.324"
         },
         "compile": {
           "bin/placeholder/UrbanXApplication.dll": {}
@@ -1983,6 +1980,19 @@
         "lib/netstandard2.0/CsvHelper.xml",
         "lib/netstandard2.1/CsvHelper.dll",
         "lib/netstandard2.1/CsvHelper.xml"
+      ]
+    },
+    "geometry3Sharp/1.0.324": {
+      "sha512": "vdEC1zaX6lV8LI9BvqizplraEJ6zFE98rMM+hDZqVPXMtwDIIY/RpTQQtxe043E9gsSdx0Xyz1TbSqIYQnBPaw==",
+      "type": "package",
+      "path": "geometry3sharp/1.0.324",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "geometry3sharp.1.0.324.nupkg.sha512",
+        "geometry3sharp.nuspec",
+        "lib/net45/geometry3Sharp.dll",
+        "lib/netstandard2.0/geometry3Sharp.dll"
       ]
     },
     "MathNet.Numerics/4.15.0": {
@@ -6461,11 +6471,6 @@
         "system.xml.xdocument.4.3.0.nupkg.sha512",
         "system.xml.xdocument.nuspec"
       ]
-    },
-    "Calculation/1.0.0": {
-      "type": "project",
-      "path": "../Calculation/Calculation.csproj",
-      "msbuildProject": "../Calculation/Calculation.csproj"
     },
     "UrbanXApplication/1.0.0": {
       "type": "project",

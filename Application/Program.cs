@@ -630,11 +630,13 @@ namespace UrbanX.Application
             #endregion
 
             #region 开始测试
-            var jsonFilePath = @"E:\114_temp\008_代码集\002_extras\smallCharpTool\Application\data\geojson\building.geojson";
+            var jsonFilePath = @"E:\114_temp\008_代码集\002_extras\smallCharpTool\Application\data\geometryTest\test.geojson";
+            string exportPath = @"E:\114_temp\008_代码集\002_extras\smallCharpTool\Application\data\geometryTest\export2.obj";
+
             StreamReader sr = File.OpenText(jsonFilePath);
             var feactureCollection = GeoJsonReader.GetFeatureCollectionFromJson(sr.ReadToEnd());
 
-            for (int i = 0; i < 1; i++)
+            for (int i = 1; i < 2; i++)
             {
                 //var jsonDic = feactureCollection[i].Attributes["function"];
                 var jsonDic = feactureCollection[i].Geometry;
@@ -646,13 +648,15 @@ namespace UrbanX.Application
                 {
                     triangles[num] = num;
                     verticesCollection[num] = new Vector3d(jsonDic.Coordinates[num].X, jsonDic.Coordinates[num].Y, jsonDic.Coordinates[num].Z);
-                    verticesArray[num] = new Vector3d(jsonDic.Coordinates[num].X, jsonDic.Coordinates[num].Y, jsonDic.Coordinates[num].Z);
+                    verticesArray[num] = new Vector3d(jsonDic.Coordinates[num].X, jsonDic.Coordinates[num].Y, 0);
                 }
-                
-                var meshResult = MeshCreation.BoundarySrfFromPts(verticesArray);
+                 
+                var meshSrf = MeshCreation.BoundarySrfFromPts(verticesArray,out int[] indices);
+                var meshResult=MeshCreation.ExtrudeMeshFromMesh(meshSrf,1);
 
-                string filePath = @"E:\114_temp\008_代码集\002_extras\smallCharpTool\Application\data\geometryTest\export.obj";
-                string message=MeshCreation.ExportMesh(filePath, meshResult);
+                var meshRemesher = MeshCreation.SimpleRemesher(meshResult);
+                string message = MeshCreation.ExportMesh(exportPath, meshRemesher);
+
                 //MeshCreation.CreateMesh(verticesCollection, triangles, normals, out DMesh3 meshResult);
             }
 

@@ -120,8 +120,6 @@ E:\114_temp\008_代码集\002_extras\smallCharpTool\UnitTestProject1\bin\Debug\n
 E:\114_temp\008_代码集\002_extras\smallCharpTool\UnitTestProject1\bin\Debug\netcoreapp3.1\MathNet.Numerics.dll
 E:\114_temp\008_代码集\002_extras\smallCharpTool\UnitTestProject1\bin\Debug\netcoreapp3.1\NetTopologySuite.dll
 E:\114_temp\008_代码集\002_extras\smallCharpTool\UnitTestProject1\bin\Debug\netcoreapp3.1\NetTopologySuite.Features.dll
-E:\114_temp\008_代码集\002_extras\smallCharpTool\UnitTestProject1\bin\Debug\netcoreapp3.1\Calculation.dll
-E:\114_temp\008_代码集\002_extras\smallCharpTool\UnitTestProject1\bin\Debug\netcoreapp3.1\Calculation.pdb
 E:\114_temp\008_代码集\002_extras\smallCharpTool\UnitTestProject1\bin\Debug\netcoreapp3.1\UrbanXApplication.exe
 E:\114_temp\008_代码集\002_extras\smallCharpTool\UnitTestProject1\bin\Debug\netcoreapp3.1\Microsoft.Office.Interop.Excel.dll
 E:\114_temp\008_代码集\002_extras\smallCharpTool\UnitTestProject1\bin\Debug\netcoreapp3.1\Microsoft.Office.Interop.PowerPoint.dll
@@ -129,3 +127,4 @@ E:\114_temp\008_代码集\002_extras\smallCharpTool\UnitTestProject1\bin\Debug\n
 E:\114_temp\008_代码集\002_extras\smallCharpTool\UnitTestProject1\bin\Debug\netcoreapp3.1\Office.dll
 E:\114_temp\008_代码集\002_extras\smallCharpTool\UnitTestProject1\bin\Debug\netcoreapp3.1\UrbanXApplication.dll
 E:\114_temp\008_代码集\002_extras\smallCharpTool\UnitTestProject1\bin\Debug\netcoreapp3.1\UrbanXApplication.pdb
+E:\114_temp\008_代码集\002_extras\smallCharpTool\UnitTestProject1\bin\Debug\netcoreapp3.1\geometry3Sharp.dll

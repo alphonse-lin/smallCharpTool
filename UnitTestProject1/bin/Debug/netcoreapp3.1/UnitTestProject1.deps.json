@@ -38,6 +38,14 @@
           }
         }
       },
+      "geometry3Sharp/1.0.324": {
+        "runtime": {
+          "lib/netstandard2.0/geometry3Sharp.dll": {
+            "assemblyVersion": "1.0.324.0",
+            "fileVersion": "1.0.324.0"
+          }
+        }
+      },
       "MathNet.Numerics/4.15.0": {
         "runtime": {
           "lib/netstandard2.0/MathNet.Numerics.dll": {
@@ -1306,19 +1314,11 @@
           "System.Xml.ReaderWriter": "4.3.0"
         }
       },
-      "Calculation/1.0.0": {
-        "dependencies": {
-          "MathNet.Numerics": "4.15.0"
-        },
-        "runtime": {
-          "Calculation.dll": {}
-        }
-      },
       "UrbanXApplication/1.0.0": {
         "dependencies": {
-          "Calculation": "1.0.0",
           "CliWrap": "3.3.0",
           "CsvHelper": "22.1.0",
+          "MathNet.Numerics": "4.15.0",
           "Microsoft.Office.Interop.Excel": "15.0.4795.1000",
           "Microsoft.Office.Interop.PowerPoint": "15.0.4420.1017",
           "Microsoft.Office.Interop.Word": "15.0.4797.1003",
@@ -1327,7 +1327,8 @@
           "NetTopologySuite.Features": "2.1.0",
           "Newtonsoft.Json": "12.0.3",
           "Npgsql": "5.0.1.1",
-          "System.Data.OleDb": "5.0.0"
+          "System.Data.OleDb": "5.0.0",
+          "geometry3Sharp": "1.0.324"
         },
         "runtime": {
           "UrbanXApplication.dll": {}
@@ -1361,6 +1362,13 @@
       "sha512": "sha512-nATAi2R9g/jvJ8fZjLmMpp45eKj4PJvM7FHhRauv9ZpTr4HJCRu9OZH8sCNxEOTQS85964s3ATJar9gyeKcq8w==",
       "path": "csvhelper/22.1.0",
       "hashPath": "csvhelper.22.1.0.nupkg.sha512"
+    },
+    "geometry3Sharp/1.0.324": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-vdEC1zaX6lV8LI9BvqizplraEJ6zFE98rMM+hDZqVPXMtwDIIY/RpTQQtxe043E9gsSdx0Xyz1TbSqIYQnBPaw==",
+      "path": "geometry3sharp/1.0.324",
+      "hashPath": "geometry3sharp.1.0.324.nupkg.sha512"
     },
     "MathNet.Numerics/4.15.0": {
       "type": "package",
@@ -2096,11 +2104,6 @@
       "sha512": "sha512-5zJ0XDxAIg8iy+t4aMnQAu0MqVbqyvfoUVl1yDV61xdo3Vth45oA2FoY4pPkxYAH5f8ixpmTqXeEIya95x0aCQ==",
       "path": "system.xml.xdocument/4.3.0",
       "hashPath": "system.xml.xdocument.4.3.0.nupkg.sha512"
-    },
-    "Calculation/1.0.0": {
-      "type": "project",
-      "serviceable": false,
-      "sha512": ""
     },
     "UrbanXApplication/1.0.0": {
       "type": "project",

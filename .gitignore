@@ -49,3 +49,7 @@ packages/FreeSpire.XLS.10.10.0/.signature.p7s
 *.obj
 *.3dm
 *.gh
+*.geojson
+*.3dmbak
+*.rhl
+*.3dmbak

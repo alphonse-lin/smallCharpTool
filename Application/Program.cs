@@ -630,33 +630,56 @@ namespace UrbanX.Application
             #endregion
 
             #region 开始测试
-            //var jsonFilePath = @"E:\114_temp\008_代码集\002_extras\smallCharpTool\Application\data\geometryTest\test.geojson";
-            var jsonFilePath = @"C:\Users\CAUPD-BJ141\Desktop\西安建筑基底_32650.geojson";
-            string exportPath = @"E:\114_temp\008_代码集\002_extras\smallCharpTool\Application\data\geometryTest\export_collection.obj";
+            //var jsonFilePath = @"E:\114_temp\008_代码集\002_extras\smallCharpTool\Application\data\geometryTest\building01.geojson";
+            ////var jsonFilePath = @"C:\Users\CAUPD-BJ141\Desktop\西安建筑基底_32650.geojson";
+            //string exportPath = @"E:\114_temp\008_代码集\002_extras\smallCharpTool\Application\data\geometryTest\export_collection.obj";
 
-            var inputDataCollection=MeshCreation.ReadJsonData(jsonFilePath, "floor", out double[] heightCollection);
-            var extrudedMesh=MeshCreation.ExtrudeMeshFromPt(inputDataCollection, heightCollection);
+            ////读取mesh
+            //var inputDataCollection = MeshCreation.ReadJsonData(jsonFilePath, "floors", out double[] heightCollection);
+            //ToolManagers.TimeCalculation(start, "读取");
 
-            var meshRemesher = MeshCreation.SimpleRemesher(extrudedMesh, 2);
-            string message = MeshCreation.ExportMesh(exportPath, meshRemesher, false);
-            ////创建基础Mesh
-            //MeshCreation.BoundarySrfFromPts(verticesArray, out int[] indices);
-            //var meshResult = MeshCreation.ExtrudeMeshFromMesh(meshSrf, 1);
-            
+            ////创建mesh
+            //var extrudedMesh = MeshCreation.ExtrudeRemeshMeshFromPt(inputDataCollection, heightCollection, 10, 0.5);
+            //ToolManagers.TimeCalculation(start, "成面+细分");
 
-            ////初始化颜色
-            //MeshCreation.InitiateColor(meshRemesher);
+            ////输出细分Mesh
+            //MeshCreation.ExportMesh(exportPath, extrudedMesh, false);
+            //ToolManagers.TimeCalculation(start, "输出模型");
 
 
-            ////计算射线
-            //var rayResultDic = MeshCreation.CalcRays(meshRemesher, new Vector3d(0, 0, 0), 31, 33, 7, 85);
-            //var meshFromRays = MeshCreation.ApplyColorsBasedOnRays(meshRemesher, rayResultDic, Colorf.White, Colorf.Red);
+            //加载细分后模型
+            var importPath = @"E:\114_temp\008_代码集\002_extras\smallCharpTool\Application\data\geometryTest\export_collection.obj";
+            var loadedMesh = MeshCreation.ImportMesh(importPath);
+            ToolManagers.TimeCalculation(start, "加载模型");
 
-            ////输出Mesh
-            //string message = MeshCreation.ExportMesh(exportPath, meshFromRays, true);
+            //初始化颜色
+            MeshCreation.InitiateColor(loadedMesh);
 
-            ////MeshCreation.CreateMesh(verticesCollection, triangles, normals, out DMesh3 meshResult);
+            //计算射线
+            var ptOrigin = new Vector3d[] { 
+                new Vector3d(448222.34214,4410631.793928,0),
+                new Vector3d(448084.822782,4410256.155238,0),
+                new Vector3d(448557.527164,4410000.52232,0),
+                new Vector3d(448548.077951,4410634.381701,0),
+                new Vector3d(447829.673727,4410882.658433,0),
+            };
+            var count = 40;
+            var ptLargeList = new List<Vector3d>(count*5);
+            for (int i = 0; i < count; i++)
+            {
+                ptLargeList.AddRange(ptOrigin.ToList());
+            }
+            ToolManagers.TimeCalculation(start, "初始化数据");
 
+
+            var rayResultDic = MeshCreation.CalcRays(loadedMesh, ptLargeList, 10,100,360,200,14);
+            var meshFromRays = MeshCreation.ApplyColorsBasedOnRays(loadedMesh, rayResultDic, Colorf.White, Colorf.Red);
+            ToolManagers.TimeCalculation(start, "计算射线");
+
+            //输出计算后Mesh
+            var exportPath_Calc = @"E:\114_temp\008_代码集\002_extras\smallCharpTool\Application\data\geometryTest\export_calc.obj";
+            MeshCreation.ExportMesh(exportPath_Calc, meshFromRays, true);
+            ToolManagers.TimeCalculation(start, "输出计算后模型");
             #endregion
 
             #endregion

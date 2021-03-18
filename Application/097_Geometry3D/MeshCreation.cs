@@ -67,7 +67,7 @@ namespace UrbanX.Application.Geometry
             return vectorResult;
         }
 
-        public static string ExportMesh(string path, DMesh3 mesh, bool color = false)
+        public static void ExportMesh(string path, DMesh3 mesh, bool color = false)
         {
             WriteOptions writeOption = new WriteOptions()
             {
@@ -84,9 +84,12 @@ namespace UrbanX.Application.Geometry
                                                //RealPrecisionDigits = 7        // float
             };
             IOWriteResult result = StandardMeshWriter.WriteFile(path, new List<WriteMesh>() { new WriteMesh(mesh) }, writeOption);
-            return result.message;
         }
 
+        public static DMesh3 ImportMesh(string path)
+        {
+            return StandardMeshReader.ReadMesh(path);
+        }
         public static void InitiateColor(DMesh3 mesh)
         {
             mesh.EnableVertexColors(new Colorf(Colorf.White));
@@ -154,7 +157,35 @@ namespace UrbanX.Application.Geometry
             {
                 var meshSrf = BoundarySrfFromPts(OriginalData[i]);
                 var meshExtruded = ExtrudeMeshFromMesh(meshSrf, height);
+
                 MeshEditor.Append(meshCollection, meshExtruded);
+            }
+            return meshCollection;
+        }
+
+        public static DMesh3 ExtrudeRemeshMeshFromPt(Vector3d[][] OriginalData, double height = 10d, double targetEdgeLength = 1d, double smoothSpeedT = 0.5d)
+        {
+            DMesh3 meshCollection = new DMesh3();
+            for (int i = 0; i < OriginalData.Length; i++)
+            {
+                var meshSrf = BoundarySrfFromPts(OriginalData[i]);
+                var meshExtruded = ExtrudeMeshFromMesh(meshSrf, height);
+                var meshRemesher = MeshCreation.SimpleRemesher(meshExtruded, targetEdgeLength, smoothSpeedT);
+
+                MeshEditor.Append(meshCollection, meshRemesher);
+            }
+            return meshCollection;
+        }
+
+        public static DMesh3 ExtrudeRemeshMeshFromPt(Vector3d[][] OriginalData, double[] height, double targetEdgeLength = 1d, double smoothSpeedT = 0.5d)
+        {
+            DMesh3 meshCollection = new DMesh3();
+            for (int i = 0; i < OriginalData.Length; i++)
+            {
+                var meshSrf = BoundarySrfFromPts(OriginalData[i]);
+                var meshExtruded = ExtrudeMeshFromMesh(meshSrf, height[i]);
+                var meshRemesher = MeshCreation.SimpleRemesher(meshExtruded, targetEdgeLength, smoothSpeedT);                
+                MeshEditor.Append(meshCollection, meshRemesher);
             }
             return meshCollection;
         }
@@ -305,13 +336,13 @@ namespace UrbanX.Application.Geometry
         #endregion
 
         #region 003_Intersection
-        public static Dictionary<int, int> CalcRays(DMesh3 mesh, Vector3d origin, int segment = 10, double angle = 360, double radius = 100, double angleHeight = 90)
+        public static Dictionary<int, int> CalcRays(DMesh3 mesh, Vector3d origin, int segmentHeight = 10, int segment = 10, double angle = 360, double radius = 100, double angleHeight = 90)
         {
             DMesh3 meshIn = new DMesh3(mesh);
             DMeshAABBTree3 spatial = new DMeshAABBTree3(meshIn);
             spatial.Build();
 
-            var direction = CreateSphereDirection(origin, segment,angle,radius,angleHeight);
+            var direction = CreateSphereDirection(origin, segmentHeight,segment, angle,radius,angleHeight);
             //number of hitted vertex
             Dictionary<int, int> hitIndexDic = new Dictionary<int, int>();
             for (int i = 0; i < direction.Length; i++)
@@ -354,6 +385,61 @@ namespace UrbanX.Application.Geometry
             //return hitTrianglesDic;
         }
 
+        public static Dictionary<int, int> CalcRays(DMesh3 mesh, IEnumerable<Vector3d> originList, int segmentHeight = 10, int segment = 10, double angle = 360, double radius = 100, double angleHeight = 90)
+        {
+            DMesh3 meshIn = new DMesh3(mesh);
+            DMeshAABBTree3 spatial = new DMeshAABBTree3(meshIn);
+            spatial.Build();
+            Dictionary<int, int> hitIndexDic = new Dictionary<int, int>();
+
+            for (int ptIndex = 0; ptIndex < originList.Count(); ptIndex++)
+            {
+                var origin = originList.ElementAt(ptIndex);
+                var direction = CreateSphereDirection(origin, segmentHeight, segment, angle, radius, angleHeight);
+                //number of hitted vertex
+                for (int i = 0; i < direction.Length; i++)
+                {
+                    Ray3d ray = new Ray3d(origin, direction[i]);
+
+                    #region 计算被击中的次数
+                    int hit_tid = spatial.FindNearestHitTriangle(ray);
+                    if (hit_tid != DMesh3.InvalidID)
+                    {
+                        #region 计算射线距离
+                        double hit_dist = -1d;
+                        IntrRay3Triangle3 intr = MeshQueries.TriangleIntersection(mesh, hit_tid, ray);
+                        hit_dist = origin.Distance(ray.PointAt(intr.RayParameter));
+                        #endregion
+
+                        #region 判定是否在距离内，如果是，提取三角形的顶点序号
+                        if (hit_dist <= radius)
+                        {
+                            var tempTri = meshIn.GetTriangle(hit_tid);
+                            for (int eachVertex = 0; eachVertex < tempTri.array.Length; eachVertex++)
+                            {
+                                var hit_vid = tempTri[eachVertex];
+                                if (hitIndexDic.ContainsKey(hit_vid))
+                                {
+                                    var temp_amount = hitIndexDic[hit_vid];
+                                    hitIndexDic[hit_vid] = temp_amount + 1;
+                                }
+                                else
+                                {
+                                    hitIndexDic.Add(hit_vid, 1);
+                                }
+                            }
+                        }
+                        #endregion
+                    }
+                    #endregion
+                }
+            }
+            
+            
+            return hitIndexDic;
+            //return hitTrianglesDic;
+        }
+
         /// <summary>
         /// based on origin, create a sphere
         /// </summary>
@@ -362,7 +448,7 @@ namespace UrbanX.Application.Geometry
         /// <param name="angle">horizontal visible angle</param>
         /// <param name="radius">how far could we see</param>
         /// <param name="angleHeight">vertical visible angle, <=90</param>
-        public static Vector3d[] CreateSphereDirection(Vector3d origin, int segment,double angle, double radius,double angleHeight)
+        public static Vector3d[] CreateSphereDirection(Vector3d origin, int segmentHeight, int segment, double angle, double radius,double angleHeight)
         {
             if (angleHeight > 90)
                 angleHeight = 90;
@@ -371,10 +457,10 @@ namespace UrbanX.Application.Geometry
             double _angleHeight = Math.PI * angleHeight / 180 / segment;
             double _angle = Math.PI * angle / 180 / segment;
 
-            Vector3d[] vertices = new Vector3d[(segment) * (segment)];
+            Vector3d[] vertices = new Vector3d[(segmentHeight) * (segment)];
             int index = 0;
 
-            for (int y = 0; y < segment; y++)
+            for (int y = 0; y < segmentHeight; y++)
             {
                 for (int x = 0; x < segment; x++)
                 {

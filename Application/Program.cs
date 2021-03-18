@@ -630,47 +630,32 @@ namespace UrbanX.Application
             #endregion
 
             #region 开始测试
-            var jsonFilePath = @"E:\114_temp\008_代码集\002_extras\smallCharpTool\Application\data\geometryTest\test.geojson";
-            string exportPath = @"E:\114_temp\008_代码集\002_extras\smallCharpTool\Application\data\geometryTest\export2.obj";
+            //var jsonFilePath = @"E:\114_temp\008_代码集\002_extras\smallCharpTool\Application\data\geometryTest\test.geojson";
+            var jsonFilePath = @"C:\Users\CAUPD-BJ141\Desktop\西安建筑基底_32650.geojson";
+            string exportPath = @"E:\114_temp\008_代码集\002_extras\smallCharpTool\Application\data\geometryTest\export_collection.obj";
 
-            StreamReader sr = File.OpenText(jsonFilePath);
-            var feactureCollection = GeoJsonReader.GetFeatureCollectionFromJson(sr.ReadToEnd());
+            var inputDataCollection=MeshCreation.ReadJsonData(jsonFilePath, "floor", out double[] heightCollection);
+            var extrudedMesh=MeshCreation.ExtrudeMeshFromPt(inputDataCollection, heightCollection);
 
-            for (int i = 1; i < 2; i++)
-            {
-                //读取数据
-                //var jsonDic = feactureCollection[i].Attributes["function"];
-                var jsonDic = feactureCollection[i].Geometry;
-                int geoCount = jsonDic.Coordinates.Length;
-                VectorArray3d verticesCollection = new VectorArray3d(geoCount);
-                Vector3d[] verticesArray = new Vector3d[geoCount];
-                int[] triangles = new int[geoCount];
-                for (int num = 0; num < jsonDic.Coordinates.Length; num++)
-                {
-                    triangles[num] = num;
-                    verticesCollection[num] = new Vector3d(jsonDic.Coordinates[num].X, jsonDic.Coordinates[num].Y, jsonDic.Coordinates[num].Z);
-                    verticesArray[num] = new Vector3d(jsonDic.Coordinates[num].X, jsonDic.Coordinates[num].Y, 0);
-                }
-                
-                //创建基础Mesh
-                var meshSrf = MeshCreation.BoundarySrfFromPts(verticesArray,out int[] indices);
-                var meshResult=MeshCreation.ExtrudeMeshFromMesh(meshSrf,1);
-                var meshRemesher = MeshCreation.SimpleRemesher(meshResult,1);
-                
-                string message = MeshCreation.ExportMesh(exportPath, meshRemesher, true);
+            var meshRemesher = MeshCreation.SimpleRemesher(extrudedMesh, 2);
+            string message = MeshCreation.ExportMesh(exportPath, meshRemesher, false);
+            ////创建基础Mesh
+            //MeshCreation.BoundarySrfFromPts(verticesArray, out int[] indices);
+            //var meshResult = MeshCreation.ExtrudeMeshFromMesh(meshSrf, 1);
+            
 
-                //初始化颜色
-                MeshCreation.InitiateColor(meshRemesher);
+            ////初始化颜色
+            //MeshCreation.InitiateColor(meshRemesher);
 
 
-                //计算射线
-                var rayResultDic = MeshCreation.CalcRays(meshRemesher, new Vector3d(0, 0, 0),10,42,17,90);
-                //var meshFromRays = MeshCreation.ApplyColorsBasedOnRays(meshRemesher, rayResultDic, Colorf.White, Colorf.Red);
+            ////计算射线
+            //var rayResultDic = MeshCreation.CalcRays(meshRemesher, new Vector3d(0, 0, 0), 31, 33, 7, 85);
+            //var meshFromRays = MeshCreation.ApplyColorsBasedOnRays(meshRemesher, rayResultDic, Colorf.White, Colorf.Red);
 
-                
+            ////输出Mesh
+            //string message = MeshCreation.ExportMesh(exportPath, meshFromRays, true);
 
-                //MeshCreation.CreateMesh(verticesCollection, triangles, normals, out DMesh3 meshResult);
-            }
+            ////MeshCreation.CreateMesh(verticesCollection, triangles, normals, out DMesh3 meshResult);
 
             #endregion
 

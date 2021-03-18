@@ -4,6 +4,8 @@ using System.Text;
 using System.Linq;
 using g3;
 using gs;
+using System.IO;
+using UrbanXX.IO.GeoJSON;
 
 namespace UrbanX.Application.Geometry
 {
@@ -17,6 +19,54 @@ namespace UrbanX.Application.Geometry
     {
 
         #region 000_Basic Function
+        public static Vector3d[][] ReadJsonData(string jsonFilePath, string heightAttribute, out double[] heightCollection)
+        {
+            StreamReader sr = File.OpenText(jsonFilePath);
+            var feactureCollection = GeoJsonReader.GetFeatureCollectionFromJson(sr.ReadToEnd());
+            Vector3d[][] vectorResult = new Vector3d[feactureCollection.Count][];
+            double[] heightResult = new double[feactureCollection.Count];
+            
+            for (int i = 0; i < feactureCollection.Count; i++)
+            {
+                //读取数据
+                var jsonDic = feactureCollection[i].Geometry;
+                int geoCount = jsonDic.Coordinates.Length;
+                vectorResult[i] = new Vector3d[geoCount];
+                for (int num = 0; num < jsonDic.Coordinates.Length; num++)
+                {
+                    vectorResult[i][num] = new Vector3d(jsonDic.Coordinates[num].X, jsonDic.Coordinates[num].Y, 0);
+                }
+
+
+                var jsonDic_height = feactureCollection[i].Attributes[heightAttribute];
+                heightResult[i] = double.Parse(jsonDic_height.ToString())*3d;
+            }
+
+            heightCollection = heightResult;
+            return vectorResult;
+        }
+
+        public static Vector3d[][] ReadJsonData(string jsonFilePath)
+        {
+            StreamReader sr = File.OpenText(jsonFilePath);
+            var feactureCollection = GeoJsonReader.GetFeatureCollectionFromJson(sr.ReadToEnd());
+            Vector3d[][] vectorResult = new Vector3d[feactureCollection.Count][];
+            double[] heightResult = new double[feactureCollection.Count];
+
+            for (int i = 0; i < feactureCollection.Count; i++)
+            {
+                //读取数据
+                var jsonDic = feactureCollection[i].Geometry;
+                int geoCount = jsonDic.Coordinates.Length;
+                vectorResult[i] = new Vector3d[geoCount];
+                for (int num = 0; num < jsonDic.Coordinates.Length; num++)
+                {
+                    vectorResult[i][num] = new Vector3d(jsonDic.Coordinates[num].X, jsonDic.Coordinates[num].Y, 0);
+                }
+            }
+            return vectorResult;
+        }
+
         public static string ExportMesh(string path, DMesh3 mesh, bool color = false)
         {
             WriteOptions writeOption = new WriteOptions()
@@ -75,7 +125,6 @@ namespace UrbanX.Application.Geometry
             meshResult = mesh;
             return mesh.CheckValidity();
         }
-
         public static void CreateMesh(IEnumerable<Vector3d> vertices, int[] triangles, out DMesh3 meshResult)
         {
             List<Vector3d> normals = new List<Vector3d>();
@@ -87,13 +136,35 @@ namespace UrbanX.Application.Geometry
             
         }
 
+        public static DMesh3 ExtrudeMeshFromPt(Vector3d[][] OriginalData, double[] height)
+        {
+            DMesh3 meshCollection = new DMesh3();
+            for (int i = 0; i < OriginalData.Length; i++)
+            {
+                var meshSrf = BoundarySrfFromPts(OriginalData[i]);
+                var meshExtruded = ExtrudeMeshFromMesh(meshSrf, height[i]);
+                MeshEditor.Append(meshCollection, meshExtruded);
+            }
+            return meshCollection;
+        }
+        public static DMesh3 ExtrudeMeshFromPt(Vector3d[][] OriginalData, double height=10d)
+        {
+            DMesh3 meshCollection = new DMesh3();
+            for (int i = 0; i < OriginalData.Length; i++)
+            {
+                var meshSrf = BoundarySrfFromPts(OriginalData[i]);
+                var meshExtruded = ExtrudeMeshFromMesh(meshSrf, height);
+                MeshEditor.Append(meshCollection, meshExtruded);
+            }
+            return meshCollection;
+        }
         /// <summary>
         /// Create mesh from a list of points
         /// </summary>
         /// <param name="vectorListInput"></param>
         /// <param name="indicesResult"></param>
         /// <returns></returns>
-        public static DMesh3 BoundarySrfFromPts(Vector3d[] vectorListInput, out int[] indicesResult)
+        public static DMesh3 BoundarySrfFromPts(Vector3d[] vectorListInput)
         {
             // Use the triangulator to get indices for creating triangles
             var vectorList = new Vector3d[vectorListInput.Length - 1];
@@ -102,9 +173,19 @@ namespace UrbanX.Application.Geometry
 
             Triangulator tri = new Triangulator(vectorList);
             int[] indices = tri.Triangulate();
-            indicesResult = indices;
             CreateMesh(vectorList, indices, out DMesh3 meshResult);
             return meshResult;
+        }
+
+        public static void BoundarySrfFromPts(Vector3d[] vectorListInput, out int[] indicesResult)
+        {
+            // Use the triangulator to get indices for creating triangles
+            var vectorList = new Vector3d[vectorListInput.Length - 1];
+            for (int i = 0; i < vectorListInput.Length - 1; i++)
+                vectorList[i] = vectorListInput[i];
+
+            Triangulator tri = new Triangulator(vectorList);
+            indicesResult = tri.Triangulate();
         }
 
         /// <summary>
@@ -218,7 +299,8 @@ namespace UrbanX.Application.Geometry
                  });
             }
 
-            return meshIn;
+            DMesh3 meshOut = new DMesh3(meshIn,true);
+            return meshOut;
         }
         #endregion
 
@@ -230,8 +312,7 @@ namespace UrbanX.Application.Geometry
             spatial.Build();
 
             var direction = CreateSphereDirection(origin, segment,angle,radius,angleHeight);
-            //ind of hit triangles
-            Dictionary<Triangle3d, int> hitTrianglesDic = new Dictionary<Triangle3d, int>();
+            //number of hitted vertex
             Dictionary<int, int> hitIndexDic = new Dictionary<int, int>();
             for (int i = 0; i < direction.Length; i++)
             {
@@ -241,41 +322,32 @@ namespace UrbanX.Application.Geometry
                 int hit_tid = spatial.FindNearestHitTriangle(ray);
                 if (hit_tid != DMesh3.InvalidID)
                 {
+                    #region 计算射线距离
+                    double hit_dist = -1d;
                     IntrRay3Triangle3 intr = MeshQueries.TriangleIntersection(mesh, hit_tid, ray);
-                    var debug05 = spatial.Mesh.GetTriVertex(hit_tid, 0);
-                    var debug06 = spatial.Mesh.GetTriVertex(hit_tid, 1);
-                    var debug07 = spatial.Mesh.GetTriVertex(hit_tid, 2);
-                    var debug08 = spatial.Mesh.GetTriangle(hit_tid);
-                    spatial.Mesh.
+                    hit_dist = origin.Distance(ray.PointAt(intr.RayParameter));
+                    #endregion
 
-                    var debug01 = intr.Ray;
-                    var debug02 = intr.Quantity;
-                    var debug03 = intr.Result;
-                    var hit_tri = intr.Triangle;
-                    var debug04 = intr.Compute();
-                    if (hitTrianglesDic.ContainsKey(hit_tri))
+                    #region 判定是否在距离内，如果是，提取三角形的顶点序号
+                    if (hit_dist <= radius)
                     {
-                        var temp_amount = hitTrianglesDic[hit_tri];
-                        hitTrianglesDic[hit_tri] = temp_amount + 1;
-
-                        hitIndexDic[hit_tid] = temp_amount + 1;
+                        var tempTri = meshIn.GetTriangle(hit_tid);
+                        for (int eachVertex = 0; eachVertex < tempTri.array.Length; eachVertex++)
+                        {
+                            var hit_vid = tempTri[eachVertex];
+                            if (hitIndexDic.ContainsKey(hit_vid))
+                            {
+                                var temp_amount = hitIndexDic[hit_vid];
+                                hitIndexDic[hit_vid] = temp_amount + 1;
+                            }
+                            else
+                            {
+                                hitIndexDic.Add(hit_vid, 1);
+                            }
+                        }
                     }
-                    else
-                    {
-                        hitTrianglesDic.Add(hit_tri, 1);
-                        hitIndexDic.Add(hit_tid,1);
-                    }
+                    #endregion
                 }
-                
-                #endregion
-                #region 计算距离
-                //double hit_dist = -1d;
-
-                //if (hit_tid != DMesh3.InvalidID)
-                //{
-                //    IntrRay3Triangle3 intr = MeshQueries.TriangleIntersection(mesh, hit_tid, ray);
-                //    hit_dist = origin.Distance(ray.PointAt(intr.RayParameter));
-                //}
                 #endregion
             }
             return hitIndexDic;
@@ -321,6 +393,7 @@ namespace UrbanX.Application.Geometry
         {
             DMesh3 meshIn = new DMesh3(mesh);
             var maxNumber = hitTrianglesDic.Values.Max();
+            
             foreach (var item in hitTrianglesDic)
             {
                 var tempColor= Colorf.Lerp(originColor, DestnationColor, (float)item.Value / maxNumber);

@@ -44,3 +44,8 @@ packages/FreeSpire.XLS.10.10.0/lib/MonoAndroid/Spire.License.xml
 packages/FreeSpire.XLS.10.10.0/lib/MonoAndroid/Spire.License.dll
 packages/FreeSpire.XLS.10.10.0/FreeSpire.XLS.10.10.0.nupkg
 packages/FreeSpire.XLS.10.10.0/.signature.p7s
+*.obj
+*.mtl
+*.obj
+*.3dm
+*.gh

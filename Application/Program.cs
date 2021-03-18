@@ -638,6 +638,7 @@ namespace UrbanX.Application
 
             for (int i = 1; i < 2; i++)
             {
+                //读取数据
                 //var jsonDic = feactureCollection[i].Attributes["function"];
                 var jsonDic = feactureCollection[i].Geometry;
                 int geoCount = jsonDic.Coordinates.Length;
@@ -650,12 +651,23 @@ namespace UrbanX.Application
                     verticesCollection[num] = new Vector3d(jsonDic.Coordinates[num].X, jsonDic.Coordinates[num].Y, jsonDic.Coordinates[num].Z);
                     verticesArray[num] = new Vector3d(jsonDic.Coordinates[num].X, jsonDic.Coordinates[num].Y, 0);
                 }
-                 
+                
+                //创建基础Mesh
                 var meshSrf = MeshCreation.BoundarySrfFromPts(verticesArray,out int[] indices);
                 var meshResult=MeshCreation.ExtrudeMeshFromMesh(meshSrf,1);
+                var meshRemesher = MeshCreation.SimpleRemesher(meshResult,1);
+                
+                string message = MeshCreation.ExportMesh(exportPath, meshRemesher, true);
 
-                var meshRemesher = MeshCreation.SimpleRemesher(meshResult);
-                string message = MeshCreation.ExportMesh(exportPath, meshRemesher);
+                //初始化颜色
+                MeshCreation.InitiateColor(meshRemesher);
+
+
+                //计算射线
+                var rayResultDic = MeshCreation.CalcRays(meshRemesher, new Vector3d(0, 0, 0),10,42,17,90);
+                //var meshFromRays = MeshCreation.ApplyColorsBasedOnRays(meshRemesher, rayResultDic, Colorf.White, Colorf.Red);
+
+                
 
                 //MeshCreation.CreateMesh(verticesCollection, triangles, normals, out DMesh3 meshResult);
             }

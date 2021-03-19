@@ -7,6 +7,10 @@
     <AssemblyName>UrbanXApplication</AssemblyName>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+  </PropertyGroup>
+
   <ItemGroup>
     <PackageReference Include="CliWrap" Version="3.3.0" />
     <PackageReference Include="CsvHelper" Version="22.1.0" />
@@ -41,6 +45,16 @@
   <ItemGroup>
     <Folder Include="data\geojson\" />
     <Folder Include="data\geometryTest\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\SketchUpNETConsole\Rhino_SUManager.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="SketchUpNET">
+      <HintPath>lib\SketchUpNET-build-260520\SketchUpNET.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
 </Project>

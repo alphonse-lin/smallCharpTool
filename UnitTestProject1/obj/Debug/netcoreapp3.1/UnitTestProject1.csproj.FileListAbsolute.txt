@@ -128,3 +128,10 @@ E:\114_temp\008_代码集\002_extras\smallCharpTool\UnitTestProject1\bin\Debug\n
 E:\114_temp\008_代码集\002_extras\smallCharpTool\UnitTestProject1\bin\Debug\netcoreapp3.1\UrbanXApplication.dll
 E:\114_temp\008_代码集\002_extras\smallCharpTool\UnitTestProject1\bin\Debug\netcoreapp3.1\UrbanXApplication.pdb
 E:\114_temp\008_代码集\002_extras\smallCharpTool\UnitTestProject1\bin\Debug\netcoreapp3.1\geometry3Sharp.dll
+E:\114_temp\008_代码集\002_extras\smallCharpTool\UnitTestProject1\bin\Debug\netcoreapp3.1\SketchUpAPI.dll
+E:\114_temp\008_代码集\002_extras\smallCharpTool\UnitTestProject1\bin\Debug\netcoreapp3.1\SketchUpCommonPreferences.dll
+E:\114_temp\008_代码集\002_extras\smallCharpTool\UnitTestProject1\bin\Debug\netcoreapp3.1\SketchUpAPI.lib
+E:\114_temp\008_代码集\002_extras\smallCharpTool\UnitTestProject1\bin\Debug\netcoreapp3.1\SketchUpNET.dll
+E:\114_temp\008_代码集\002_extras\smallCharpTool\UnitTestProject1\bin\Debug\netcoreapp3.1\SketchUpNETConsole.dll
+E:\114_temp\008_代码集\002_extras\smallCharpTool\UnitTestProject1\bin\Debug\netcoreapp3.1\SketchUpNETConsole.pdb
+E:\114_temp\008_代码集\002_extras\smallCharpTool\UnitTestProject1\bin\Debug\netcoreapp3.1\SketchUpNETConsole.dll.config

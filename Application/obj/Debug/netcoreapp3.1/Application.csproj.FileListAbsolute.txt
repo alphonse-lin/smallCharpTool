@@ -1,4 +1,3 @@
-E:\114_temp\008_代码集\002_extras\smallCharpTool\Application\obj\Debug\netcoreapp3.1\Application.csprojAssemblyReference.cache
 E:\114_temp\008_代码集\002_extras\smallCharpTool\Application\obj\Debug\netcoreapp3.1\Application.AssemblyInfoInputs.cache
 E:\114_temp\008_代码集\002_extras\smallCharpTool\Application\obj\Debug\netcoreapp3.1\Application.AssemblyInfo.cs
 E:\114_temp\008_代码集\002_extras\smallCharpTool\Application\bin\Debug\netcoreapp3.1\Npgsql.dll
@@ -48,3 +47,9 @@ E:\114_temp\008_代码集\002_extras\smallCharpTool\Application\obj\Debug\netcor
 E:\114_temp\008_代码集\002_extras\smallCharpTool\Application\obj\Debug\netcoreapp3.1\UrbanXApplication.dll
 E:\114_temp\008_代码集\002_extras\smallCharpTool\Application\obj\Debug\netcoreapp3.1\UrbanXApplication.pdb
 E:\114_temp\008_代码集\002_extras\smallCharpTool\Application\bin\Debug\netcoreapp3.1\geometry3Sharp.dll
+E:\114_temp\008_代码集\002_extras\smallCharpTool\Application\bin\Debug\netcoreapp3.1\SketchUpNET.dll
+E:\114_temp\008_代码集\002_extras\smallCharpTool\Application\bin\Debug\netcoreapp3.1\SketchUpNET.pdb
+E:\114_temp\008_代码集\002_extras\smallCharpTool\Application\bin\Debug\netcoreapp3.1\097_Geometry3D\SketchUpAPI.dll
+E:\114_temp\008_代码集\002_extras\smallCharpTool\Application\bin\Debug\netcoreapp3.1\097_Geometry3D\SketchUpCommonPreferences.dll
+E:\114_temp\008_代码集\002_extras\smallCharpTool\Application\bin\Debug\netcoreapp3.1\097_Geometry3D\SketchUpAPI.lib
+E:\114_temp\008_代码集\002_extras\smallCharpTool\Application\obj\Debug\netcoreapp3.1\Application.csprojAssemblyReference.cache

@@ -67,11 +67,51 @@ namespace UrbanX.Application.Geometry
             return vectorResult;
         }
 
-        public static void ExportMesh(string path, DMesh3 mesh, bool color = false)
+        public static Vector2d[][] ReadJsonData2D(string jsonFilePath)
+        {
+            StreamReader sr = File.OpenText(jsonFilePath);
+            var feactureCollection = GeoJsonReader.GetFeatureCollectionFromJson(sr.ReadToEnd());
+            Vector2d[][] vectorResult = new Vector2d[feactureCollection.Count][];
+            double[] heightResult = new double[feactureCollection.Count];
+
+            for (int i = 0; i < feactureCollection.Count; i++)
+            {
+                //读取数据
+                var jsonDic = feactureCollection[i].Geometry;
+                int geoCount = jsonDic.Coordinates.Length;
+                vectorResult[i] = new Vector2d[geoCount];
+                for (int num = 0; num < jsonDic.Coordinates.Length; num++)
+                {
+                    vectorResult[i][num] = new Vector2d(jsonDic.Coordinates[num].X, jsonDic.Coordinates[num].Y);
+                }
+            }
+            return vectorResult;
+        }
+
+        public static void ExportMeshAsObj(string path, DMesh3 mesh, bool color = false)
         {
             WriteOptions writeOption = new WriteOptions()
             {
                 bWriteBinary = false,
+                bPerVertexNormals = false,
+                bPerVertexColors = color,
+                bWriteGroups = false,
+                bPerVertexUVs = false,
+                bCombineMeshes = false,
+                bWriteMaterials = false,
+                ProgressFunc = null,
+                //MaterialFilePath = @"E:\114_temp\008_代码集\002_extras\smallCharpTool\Application\data\geometryTest\exportColor2.mtl",
+                RealPrecisionDigits = 15       // double
+                                               //RealPrecisionDigits = 7        // float
+            };
+            IOWriteResult result = StandardMeshWriter.WriteFile(path, new List<WriteMesh>() { new WriteMesh(mesh) }, writeOption);
+        }
+
+        public static void ExportMeshAsStl(string path, DMesh3 mesh, bool color = false)
+        {
+            WriteOptions writeOption = new WriteOptions()
+            {
+                bWriteBinary = true,
                 bPerVertexNormals = false,
                 bPerVertexColors = color,
                 bWriteGroups = false,
@@ -486,6 +526,52 @@ namespace UrbanX.Application.Geometry
                 meshIn.SetVertexColor(item.Key, tempColor);
             }
             return meshIn;
+        }
+        #endregion
+
+        #region 004_Generating polyline
+        public static Polygon2d[] CreatePolygon(string jsonFilePath)
+        {
+            var jsonData=ReadJsonData2D(jsonFilePath);
+            var polygonList = new Polygon2d[jsonData.Length];
+            for (int i = 0; i < jsonData.Length; i++)
+            {
+                Polygon2d polygon = new Polygon2d(jsonData[i]);
+                polygonList[i] = polygon;
+            }
+            return polygonList;
+        }
+
+        public static Circle2d[] CreateCircle(Vector2d[] origin, double radius)
+        {
+            var circleList = new Circle2d[origin.Length];
+            for (int i = 0; i < origin.Length; i++)
+            {
+                Circle2d circle = new Circle2d(origin[i], radius);
+                circleList[i] = circle;
+            }
+            return circleList;
+            
+        }
+
+        public static Vector2d[] ConvertV3toV2(Vector3d[] origin)
+        {
+            var result = new Vector2d[origin.Length];
+            for (int i = 0; i < origin.Length; i++)
+            {
+                result[i] = new Vector2d(origin[i].x, origin[i].y);
+            }
+            return result;
+        }
+
+        public static Vector3d[] ConvertV2toV3(Vector2d[] origin, double[] zValue)
+        {
+            var result = new Vector3d[origin.Length];
+            for (int i = 0; i < origin.Length; i++)
+            {
+                result[i] = new Vector3d(origin[i].x, origin[i].y, zValue[i]);
+            }
+            return result;
         }
         #endregion
     }

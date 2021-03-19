@@ -1,0 +1,12 @@
+C:\Users\CAUPD-BJ141\Downloads\SketchUpNET-master\SketchUpNET-master\SketchUpNETConsole\obj\Debug\SketchUpNETConsole.csproj.CoreCompileInputs.cache
+C:\Users\CAUPD-BJ141\Downloads\SketchUpNET-master\SketchUpNET-master\SketchUpNETConsole\bin\Debug\SketchUpAPI.dll
+C:\Users\CAUPD-BJ141\Downloads\SketchUpNET-master\SketchUpNET-master\SketchUpNETConsole\bin\Debug\SketchUpCommonPreferences.dll
+C:\Users\CAUPD-BJ141\Downloads\SketchUpNET-master\SketchUpNET-master\SketchUpNETConsole\bin\Debug\SketchUpAPI.lib
+C:\Users\CAUPD-BJ141\Downloads\SketchUpNET-master\SketchUpNET-master\SketchUpNETConsole\bin\Debug\SketchUpNETConsole.pdb
+C:\Users\CAUPD-BJ141\Downloads\SketchUpNET-master\SketchUpNET-master\SketchUpNETConsole\bin\Debug\SketchUpNET.dll
+C:\Users\CAUPD-BJ141\Downloads\SketchUpNET-master\SketchUpNET-master\SketchUpNETConsole\obj\Debug\SketchUpNETConsole.csproj.CopyComplete
+C:\Users\CAUPD-BJ141\Downloads\SketchUpNET-master\SketchUpNET-master\SketchUpNETConsole\obj\Debug\SketchUpNETConsole.pdb
+C:\Users\CAUPD-BJ141\Downloads\SketchUpNET-master\SketchUpNET-master\SketchUpNETConsole\bin\Debug\SketchUpNETConsole.dll.config
+C:\Users\CAUPD-BJ141\Downloads\SketchUpNET-master\SketchUpNET-master\SketchUpNETConsole\bin\Debug\SketchUpNETConsole.dll
+C:\Users\CAUPD-BJ141\Downloads\SketchUpNET-master\SketchUpNET-master\SketchUpNETConsole\obj\Debug\SketchUpNETConsole.dll
+C:\Users\CAUPD-BJ141\Downloads\SketchUpNET-master\SketchUpNET-master\SketchUpNETConsole\obj\Debug\SketchUpNETConsole.csprojAssemblyReference.cache

@@ -1881,6 +1881,27 @@
           "lib/netstandard1.3/System.Xml.XDocument.dll": {}
         }
       },
+      "Rhino_SUManager/1.0.0": {
+        "type": "project",
+        "dependencies": {
+          "SketchUpNET": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/Rhino_SUManager.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Rhino_SUManager.dll": {}
+        }
+      },
+      "SketchUpNET/1.0.0": {
+        "type": "project",
+        "compile": {
+          "bin/placeholder/SketchUpNET.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/SketchUpNET.dll": {}
+        }
+      },
       "UrbanXApplication/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v3.1",
@@ -1896,6 +1917,7 @@
           "NetTopologySuite.Features": "2.1.0",
           "Newtonsoft.Json": "12.0.3",
           "Npgsql": "5.0.1.1",
+          "Rhino_SUManager": "1.0.0",
           "System.Data.OleDb": "5.0.0",
           "geometry3Sharp": "1.0.324"
         },
@@ -6471,6 +6493,16 @@
         "system.xml.xdocument.4.3.0.nupkg.sha512",
         "system.xml.xdocument.nuspec"
       ]
+    },
+    "Rhino_SUManager/1.0.0": {
+      "type": "project",
+      "path": "../SketchUpNETConsole/Rhino_SUManager.csproj",
+      "msbuildProject": "../SketchUpNETConsole/Rhino_SUManager.csproj"
+    },
+    "SketchUpNET/1.0.0": {
+      "type": "project",
+      "path": "../SketchUpNET/SketchUpNET.vcxproj",
+      "msbuildProject": "../SketchUpNET/SketchUpNET.vcxproj"
     },
     "UrbanXApplication/1.0.0": {
       "type": "project",

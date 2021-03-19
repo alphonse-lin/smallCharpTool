@@ -355,6 +355,27 @@
             "rid": "win"
           }
         }
+      },
+      "Rhino_SUManager/1.0.0": {
+        "type": "project",
+        "dependencies": {
+          "SketchUpNET": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/Rhino_SUManager.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Rhino_SUManager.dll": {}
+        }
+      },
+      "SketchUpNET/1.0.0": {
+        "type": "project",
+        "compile": {
+          "bin/placeholder/SketchUpNET.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/SketchUpNET.dll": {}
+        }
       }
     }
   },
@@ -1098,6 +1119,16 @@
         "useSharedDesignerContext.txt",
         "version.txt"
       ]
+    },
+    "Rhino_SUManager/1.0.0": {
+      "type": "project",
+      "path": "../SketchUpNETConsole/Rhino_SUManager.csproj",
+      "msbuildProject": "../SketchUpNETConsole/Rhino_SUManager.csproj"
+    },
+    "SketchUpNET/1.0.0": {
+      "type": "project",
+      "path": "../SketchUpNET/SketchUpNET.vcxproj",
+      "msbuildProject": "../SketchUpNET/SketchUpNET.vcxproj"
     }
   },
   "projectFileDependencyGroups": {
@@ -1113,6 +1144,7 @@
       "NetTopologySuite.Features >= 2.1.0",
       "Newtonsoft.Json >= 12.0.3",
       "Npgsql >= 5.0.1.1",
+      "Rhino_SUManager >= 1.0.0",
       "System.Data.OleDb >= 5.0.0",
       "geometry3Sharp >= 1.0.324"
     ]
@@ -1147,7 +1179,11 @@
       "frameworks": {
         "netcoreapp3.1": {
           "targetAlias": "netcoreapp3.1",
-          "projectReferences": {}
+          "projectReferences": {
+            "E:\\114_temp\\008_代码集\\002_extras\\smallCharpTool\\SketchUpNETConsole\\Rhino_SUManager.csproj": {
+              "projectPath": "E:\\114_temp\\008_代码集\\002_extras\\smallCharpTool\\SketchUpNETConsole\\Rhino_SUManager.csproj"
+            }
+          }
         }
       },
       "warningProperties": {

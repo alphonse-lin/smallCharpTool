@@ -30,7 +30,11 @@
         "frameworks": {
           "netcoreapp3.1": {
             "targetAlias": "netcoreapp3.1",
-            "projectReferences": {}
+            "projectReferences": {
+              "E:\\114_temp\\008_代码集\\002_extras\\smallCharpTool\\SketchUpNETConsole\\Rhino_SUManager.csproj": {
+                "projectPath": "E:\\114_temp\\008_代码集\\002_extras\\smallCharpTool\\SketchUpNETConsole\\Rhino_SUManager.csproj"
+              }
+            }
           }
         },
         "warningProperties": {
@@ -113,6 +117,35 @@
           },
           "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.102\\RuntimeIdentifierGraph.json"
         }
+      }
+    },
+    "E:\\114_temp\\008_代码集\\002_extras\\smallCharpTool\\SketchUpNETConsole\\Rhino_SUManager.csproj": {
+      "restore": {
+        "projectUniqueName": "E:\\114_temp\\008_代码集\\002_extras\\smallCharpTool\\SketchUpNETConsole\\Rhino_SUManager.csproj",
+        "projectName": "Rhino_SUManager",
+        "projectPath": "E:\\114_temp\\008_代码集\\002_extras\\smallCharpTool\\SketchUpNETConsole\\Rhino_SUManager.csproj",
+        "frameworks": {
+          "net452": {
+            "projectReferences": {
+              "E:\\114_temp\\008_代码集\\002_extras\\smallCharpTool\\SketchUpNET\\SketchUpNET.vcxproj": {
+                "projectPath": "E:\\114_temp\\008_代码集\\002_extras\\smallCharpTool\\SketchUpNET\\SketchUpNET.vcxproj"
+              }
+            }
+          }
+        }
+      },
+      "frameworks": {
+        "net452": {}
+      }
+    },
+    "E:\\114_temp\\008_代码集\\002_extras\\smallCharpTool\\SketchUpNET\\SketchUpNET.vcxproj": {
+      "restore": {
+        "projectUniqueName": "E:\\114_temp\\008_代码集\\002_extras\\smallCharpTool\\SketchUpNET\\SketchUpNET.vcxproj",
+        "projectName": "SketchUpNET",
+        "projectPath": "E:\\114_temp\\008_代码集\\002_extras\\smallCharpTool\\SketchUpNET\\SketchUpNET.vcxproj"
+      },
+      "frameworks": {
+        "native": {}
       }
     },
     "E:\\114_temp\\008_代码集\\002_extras\\smallCharpTool\\UnitTestProject1\\UnitTestProject1.csproj": {

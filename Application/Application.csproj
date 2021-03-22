@@ -48,7 +48,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\SketchUpNETConsole\Rhino_SUManager.csproj" />
+    <ProjectReference Include="..\SketchUpNET\SketchUpNETConsole\Rhino_SUManager.csproj" />
+    <ProjectReference Include="..\SketchUpNET\SketchUpNET\SketchUpNET.vcxproj" />
   </ItemGroup>
 
   <ItemGroup>

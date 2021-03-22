@@ -49,7 +49,10 @@ E:\114_temp\008_代码集\002_extras\smallCharpTool\Application\obj\Debug\netcor
 E:\114_temp\008_代码集\002_extras\smallCharpTool\Application\bin\Debug\netcoreapp3.1\geometry3Sharp.dll
 E:\114_temp\008_代码集\002_extras\smallCharpTool\Application\bin\Debug\netcoreapp3.1\SketchUpNET.dll
 E:\114_temp\008_代码集\002_extras\smallCharpTool\Application\bin\Debug\netcoreapp3.1\SketchUpNET.pdb
-E:\114_temp\008_代码集\002_extras\smallCharpTool\Application\bin\Debug\netcoreapp3.1\097_Geometry3D\SketchUpAPI.dll
-E:\114_temp\008_代码集\002_extras\smallCharpTool\Application\bin\Debug\netcoreapp3.1\097_Geometry3D\SketchUpCommonPreferences.dll
-E:\114_temp\008_代码集\002_extras\smallCharpTool\Application\bin\Debug\netcoreapp3.1\097_Geometry3D\SketchUpAPI.lib
 E:\114_temp\008_代码集\002_extras\smallCharpTool\Application\obj\Debug\netcoreapp3.1\Application.csprojAssemblyReference.cache
+E:\114_temp\008_代码集\002_extras\smallCharpTool\Application\bin\Debug\netcoreapp3.1\SketchUpAPI.dll
+E:\114_temp\008_代码集\002_extras\smallCharpTool\Application\bin\Debug\netcoreapp3.1\SketchUpCommonPreferences.dll
+E:\114_temp\008_代码集\002_extras\smallCharpTool\Application\bin\Debug\netcoreapp3.1\SketchUpAPI.lib
+E:\114_temp\008_代码集\002_extras\smallCharpTool\Application\bin\Debug\netcoreapp3.1\Rhino_SUManager.dll
+E:\114_temp\008_代码集\002_extras\smallCharpTool\Application\bin\Debug\netcoreapp3.1\Rhino_SUManager.pdb
+E:\114_temp\008_代码集\002_extras\smallCharpTool\Application\bin\Debug\netcoreapp3.1\Rhino_SUManager.dll.config

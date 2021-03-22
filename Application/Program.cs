@@ -630,80 +630,80 @@ namespace UrbanX.Application
             #endregion
 
             #region 开始测试
-            //var jsonFilePath = @"E:\114_temp\008_代码集\002_extras\smallCharpTool\Application\data\geometryTest\building_center.geojson";
-            ////var jsonFilePath = @"C:\Users\CAUPD-BJ141\Desktop\西安建筑基底_32650.geojson";
-            //string exportPath = @"E:\114_temp\008_代码集\002_extras\smallCharpTool\Application\data\geometryTest\export_collection_center.obj";
+            var jsonFilePath = @"E:\114_temp\008_代码集\002_extras\smallCharpTool\Application\data\geometryTest\building_center.geojson";
+            //var jsonFilePath = @"C:\Users\CAUPD-BJ141\Desktop\西安建筑基底_32650.geojson";
+            string exportPath = @"E:\114_temp\008_代码集\002_extras\smallCharpTool\Application\data\geometryTest\export_collection_center.obj";
 
-            ////读取mesh
-            //var inputDataCollection = MeshCreation.ReadJsonData(jsonFilePath, "floors", out double[] heightCollection);
-            //ToolManagers.TimeCalculation(start, "读取");
+            //读取mesh
+            var inputDataCollection = MeshCreation.ReadJsonData(jsonFilePath, "floors", out double[] heightCollection);
+            ToolManagers.TimeCalculation(start, "读取");
 
-            ////创建mesh simple
-            //var extrudedMeshSimple = MeshCreation.ExtrudeMeshFromPt(inputDataCollection, heightCollection);
-            //ToolManagers.TimeCalculation(start, "成面");
+            //创建mesh simple
+            var extrudedMeshSimple = MeshCreation.ExtrudeMeshFromPt(inputDataCollection, heightCollection);
+            ToolManagers.TimeCalculation(start, "成面");
 
-            ////输出原始Mesh
+            //输出原始Mesh
             //string exportPath01 = @"E:\114_temp\008_代码集\002_extras\smallCharpTool\Application\data\geometryTest\export_simple.stl";
             //MeshCreation.ExportMeshAsStl(exportPath01, extrudedMeshSimple, false);
             //ToolManagers.TimeCalculation(start, "输出模型");
 
 
-            ////创建mesh
-            //var extrudedMesh = MeshCreation.ExtrudeRemeshMeshFromPt(inputDataCollection, heightCollection, 10, 0.5);
-            //ToolManagers.TimeCalculation(start, "成面+细分");
+            //////创建mesh
+            ////var extrudedMesh = MeshCreation.ExtrudeRemeshMeshFromPt(inputDataCollection, heightCollection, 10, 0.5);
+            ////ToolManagers.TimeCalculation(start, "成面+细分");
 
-            ////输出细分Mesh
-            //MeshCreation.ExportMeshAsObj(exportPath, extrudedMesh, false);
-            //ToolManagers.TimeCalculation(start, "输出模型");
+            //////输出细分Mesh
+            ////MeshCreation.ExportMeshAsObj(exportPath, extrudedMesh, false);
+            ////ToolManagers.TimeCalculation(start, "输出模型");
 
 
-            //加载细分后模型
-            var importPath = @"E:\114_temp\008_代码集\002_extras\smallCharpTool\Application\data\geometryTest\export_collection_center.obj";
-            var loadedMesh = MeshCreation.ImportMesh(importPath);
-            ToolManagers.TimeCalculation(start, "加载模型");
+            ////加载细分后模型
+            //var importPath = @"E:\114_temp\008_代码集\002_extras\smallCharpTool\Application\data\geometryTest\export_collection_center.obj";
+            //var loadedMesh = MeshCreation.ImportMesh(importPath);
+            //ToolManagers.TimeCalculation(start, "加载模型");
 
-            //初始化颜色
-            MeshCreation.InitiateColor(loadedMesh);
+            ////初始化颜色
+            //MeshCreation.InitiateColor(loadedMesh);
 
-            //计算射线
-            //var ptOrigin = new Vector3d[] { 
-            //    new Vector3d(448222.34214,4410631.793928,0),
-            //    new Vector3d(448084.822782,4410256.155238,0),
-            //    new Vector3d(448557.527164,4410000.52232,0),
-            //    new Vector3d(448548.077951,4410634.381701,0),
+            ////计算射线
+            ////var ptOrigin = new Vector3d[] { 
+            ////    new Vector3d(448222.34214,4410631.793928,0),
+            ////    new Vector3d(448084.822782,4410256.155238,0),
+            ////    new Vector3d(448557.527164,4410000.52232,0),
+            ////    new Vector3d(448548.077951,4410634.381701,0),
+            ////    new Vector3d(447829.673727,4410882.658433,0),
+            ////};
+
+            //var ptOrigin = new Vector3d[] {
+            //    new Vector3d(0,0,0),
+            //    new Vector3d(1,1,0),
+            //    new Vector3d(2,2,0),
+            //    new Vector3d(3,3,0),
             //    new Vector3d(447829.673727,4410882.658433,0),
             //};
-
-            var ptOrigin = new Vector3d[] {
-                new Vector3d(0,0,0),
-                new Vector3d(1,1,0),
-                new Vector3d(2,2,0),
-                new Vector3d(3,3,0),
-                new Vector3d(447829.673727,4410882.658433,0),
-            };
-            var count = 1;
-            var ptLargeList = new List<Vector3d>(count * 5);
-            for (int i = 0; i < count; i++)
-            {
-                ptLargeList.AddRange(ptOrigin.ToList());
-            }
-            ToolManagers.TimeCalculation(start, "初始化数据");
+            //var count = 1;
+            //var ptLargeList = new List<Vector3d>(count * 5);
+            //for (int i = 0; i < count; i++)
+            //{
+            //    ptLargeList.AddRange(ptOrigin.ToList());
+            //}
+            //ToolManagers.TimeCalculation(start, "初始化数据");
 
 
-            var rayResultDic = MeshCreation.CalcRays(loadedMesh, ptLargeList, 10, 100, 360, 200, 14);
-            var meshFromRays = MeshCreation.ApplyColorsBasedOnRays(loadedMesh, rayResultDic, Colorf.White, Colorf.Red);
-            ToolManagers.TimeCalculation(start, "计算射线");
+            //var rayResultDic = MeshCreation.CalcRays(loadedMesh, ptLargeList, 10, 100, 360, 200, 14);
+            //var meshFromRays = MeshCreation.ApplyColorsBasedOnRays(loadedMesh, rayResultDic, Colorf.White, Colorf.Red);
+            //ToolManagers.TimeCalculation(start, "计算射线");
 
-            //输出计算后Mesh
-            var exportPath_Calc = @"E:\114_temp\008_代码集\002_extras\smallCharpTool\Application\data\geometryTest\export_calc.stl";
-            MeshCreation.ExportMeshAsStl(exportPath_Calc, meshFromRays, true);
-            ToolManagers.TimeCalculation(start, "输出计算后模型");
+            ////输出计算后Mesh
+            //var exportPath_Calc = @"E:\114_temp\008_代码集\002_extras\smallCharpTool\Application\data\geometryTest\export_calc.stl";
+            //MeshCreation.ExportMeshAsStl(exportPath_Calc, meshFromRays, true);
+            //ToolManagers.TimeCalculation(start, "输出计算后模型");
             #endregion
 
             #region SketchUp测试
-            var filePath = @"E:\114_temp\008_代码集\002_extras\smallCharpTool\Application\data\geometryTest\exportFromRhino.skp";
-            
-            var result= SketchUpManager.GetMeshFromSkp(filePath);
+            //var filePath = @"E:\114_temp\008_代码集\002_extras\smallCharpTool\Application\data\geometryTest\exportFromRhino.skp";
+
+            //var result= SketchUpManager.GetMeshFromSkp(filePath);
             #endregion
 
 

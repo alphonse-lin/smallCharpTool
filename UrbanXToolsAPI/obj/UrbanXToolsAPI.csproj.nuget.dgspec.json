@@ -31,8 +31,11 @@
           "netcoreapp3.1": {
             "targetAlias": "netcoreapp3.1",
             "projectReferences": {
-              "E:\\114_temp\\008_代码集\\002_extras\\smallCharpTool\\SketchUpNETConsole\\Rhino_SUManager.csproj": {
-                "projectPath": "E:\\114_temp\\008_代码集\\002_extras\\smallCharpTool\\SketchUpNETConsole\\Rhino_SUManager.csproj"
+              "E:\\114_temp\\008_代码集\\002_extras\\smallCharpTool\\SketchUpNET\\SketchUpNETConsole\\Rhino_SUManager.csproj": {
+                "projectPath": "E:\\114_temp\\008_代码集\\002_extras\\smallCharpTool\\SketchUpNET\\SketchUpNETConsole\\Rhino_SUManager.csproj"
+              },
+              "E:\\114_temp\\008_代码集\\002_extras\\smallCharpTool\\SketchUpNET\\SketchUpNET\\SketchUpNET.vcxproj": {
+                "projectPath": "E:\\114_temp\\008_代码集\\002_extras\\smallCharpTool\\SketchUpNET\\SketchUpNET\\SketchUpNET.vcxproj"
               }
             }
           }
@@ -119,16 +122,16 @@
         }
       }
     },
-    "E:\\114_temp\\008_代码集\\002_extras\\smallCharpTool\\SketchUpNETConsole\\Rhino_SUManager.csproj": {
+    "E:\\114_temp\\008_代码集\\002_extras\\smallCharpTool\\SketchUpNET\\SketchUpNETConsole\\Rhino_SUManager.csproj": {
       "restore": {
-        "projectUniqueName": "E:\\114_temp\\008_代码集\\002_extras\\smallCharpTool\\SketchUpNETConsole\\Rhino_SUManager.csproj",
+        "projectUniqueName": "E:\\114_temp\\008_代码集\\002_extras\\smallCharpTool\\SketchUpNET\\SketchUpNETConsole\\Rhino_SUManager.csproj",
         "projectName": "Rhino_SUManager",
-        "projectPath": "E:\\114_temp\\008_代码集\\002_extras\\smallCharpTool\\SketchUpNETConsole\\Rhino_SUManager.csproj",
+        "projectPath": "E:\\114_temp\\008_代码集\\002_extras\\smallCharpTool\\SketchUpNET\\SketchUpNETConsole\\Rhino_SUManager.csproj",
         "frameworks": {
           "net452": {
             "projectReferences": {
-              "E:\\114_temp\\008_代码集\\002_extras\\smallCharpTool\\SketchUpNET\\SketchUpNET.vcxproj": {
-                "projectPath": "E:\\114_temp\\008_代码集\\002_extras\\smallCharpTool\\SketchUpNET\\SketchUpNET.vcxproj"
+              "E:\\114_temp\\008_代码集\\002_extras\\smallCharpTool\\SketchUpNET\\SketchUpNET\\SketchUpNET.vcxproj": {
+                "projectPath": "E:\\114_temp\\008_代码集\\002_extras\\smallCharpTool\\SketchUpNET\\SketchUpNET\\SketchUpNET.vcxproj"
               }
             }
           }
@@ -138,11 +141,11 @@
         "net452": {}
       }
     },
-    "E:\\114_temp\\008_代码集\\002_extras\\smallCharpTool\\SketchUpNET\\SketchUpNET.vcxproj": {
+    "E:\\114_temp\\008_代码集\\002_extras\\smallCharpTool\\SketchUpNET\\SketchUpNET\\SketchUpNET.vcxproj": {
       "restore": {
-        "projectUniqueName": "E:\\114_temp\\008_代码集\\002_extras\\smallCharpTool\\SketchUpNET\\SketchUpNET.vcxproj",
+        "projectUniqueName": "E:\\114_temp\\008_代码集\\002_extras\\smallCharpTool\\SketchUpNET\\SketchUpNET\\SketchUpNET.vcxproj",
         "projectName": "SketchUpNET",
-        "projectPath": "E:\\114_temp\\008_代码集\\002_extras\\smallCharpTool\\SketchUpNET\\SketchUpNET.vcxproj"
+        "projectPath": "E:\\114_temp\\008_代码集\\002_extras\\smallCharpTool\\SketchUpNET\\SketchUpNET\\SketchUpNET.vcxproj"
       },
       "frameworks": {
         "native": {}

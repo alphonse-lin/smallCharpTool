@@ -6,6 +6,7 @@ using g3;
 using gs;
 using System.IO;
 using UrbanXX.IO.GeoJSON;
+using NTS = NetTopologySuite;
 
 namespace UrbanX.Application.Geometry
 {
@@ -190,6 +191,33 @@ namespace UrbanX.Application.Geometry
             }
             return meshCollection;
         }
+
+        public static void ExtrudeMeshFromPt(Vector3d[][] OriginalData, double[] height, out Dictionary<NTS.Geometries.Point, double> centerPtDic)
+        {
+            Dictionary<NTS.Geometries.Point, double> temp_centerPtDic = new Dictionary<NTS.Geometries.Point, double>();
+            for (int i = 0; i < OriginalData.Length; i++)
+            {
+                var meshSrf = BoundarySrfFromPts(OriginalData[i],out NTS.Geometries.Point centerPt);
+                var meshExtruded = ExtrudeMeshFromMesh(meshSrf, height[i]);
+
+                var triAreaList = new List<double>(meshExtruded.TriangleCount);
+                for (int j = 0; j < meshExtruded.TriangleCount; j++)
+                {
+                    triAreaList.Add(meshExtruded.GetTriArea(j));
+                }
+                var tempArea=triAreaList.Sum();
+
+                if (temp_centerPtDic.ContainsKey(centerPt))
+                {
+                    var tempAreaInDic = temp_centerPtDic[centerPt];
+                    temp_centerPtDic[centerPt] = tempArea + tempAreaInDic;
+                }
+                else
+                    temp_centerPtDic.Add(centerPt, tempArea);
+            }
+
+            centerPtDic = temp_centerPtDic;
+        }
         public static DMesh3 ExtrudeMeshFromPt(Vector3d[][] OriginalData, double height=10d)
         {
             DMesh3 meshCollection = new DMesh3();
@@ -247,7 +275,32 @@ namespace UrbanX.Application.Geometry
             CreateMesh(vectorList, indices, out DMesh3 meshResult);
             return meshResult;
         }
+        public static DMesh3 BoundarySrfFromPts(Vector3d[] vectorListInput, out Vector3d centerPt)
+        {
+            // Use the triangulator to get indices for creating triangles
+            var vectorList = new Vector3d[vectorListInput.Length - 1];
+            for (int i = 0; i < vectorListInput.Length - 1; i++)
+                vectorList[i] = vectorListInput[i];
 
+            Triangulator tri = new Triangulator(vectorList);
+            int[] indices = tri.Triangulate();
+            CreateMesh(vectorList, indices, out DMesh3 meshResult);
+            centerPt=meshResult.CachedBounds.Center;
+            return meshResult;
+        }
+        public static DMesh3 BoundarySrfFromPts(Vector3d[] vectorListInput, out NTS.Geometries.Point centerPt)
+        {
+            // Use the triangulator to get indices for creating triangles
+            var vectorList = new Vector3d[vectorListInput.Length - 1];
+            for (int i = 0; i < vectorListInput.Length - 1; i++)
+                vectorList[i] = vectorListInput[i];
+
+            Triangulator tri = new Triangulator(vectorList);
+            int[] indices = tri.Triangulate();
+            CreateMesh(vectorList, indices, out DMesh3 meshResult);
+            centerPt = new NTS.Geometries.Point(meshResult.CachedBounds.Center.x, meshResult.CachedBounds.Center.y);
+            return meshResult;
+        }
         public static void BoundarySrfFromPts(Vector3d[] vectorListInput, out int[] indicesResult)
         {
             // Use the triangulator to get indices for creating triangles

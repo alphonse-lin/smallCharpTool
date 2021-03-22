@@ -1,9 +1,0 @@
-E:\114_temp\008_代码集\002_extras\smallCharpTool\SketchUpNETConsole\bin\Debug\SketchUpAPI.dll
-E:\114_temp\008_代码集\002_extras\smallCharpTool\SketchUpNETConsole\bin\Debug\SketchUpCommonPreferences.dll
-E:\114_temp\008_代码集\002_extras\smallCharpTool\SketchUpNETConsole\bin\Debug\SketchUpAPI.lib
-E:\114_temp\008_代码集\002_extras\smallCharpTool\SketchUpNETConsole\bin\Debug\SketchUpNET.dll
-E:\114_temp\008_代码集\002_extras\smallCharpTool\SketchUpNETConsole\obj\Debug\Rhino_SUManager.csprojAssemblyReference.cache
-E:\114_temp\008_代码集\002_extras\smallCharpTool\SketchUpNETConsole\obj\Debug\Rhino_SUManager.csproj.CoreCompileInputs.cache
-E:\114_temp\008_代码集\002_extras\smallCharpTool\SketchUpNETConsole\obj\Debug\Rhino_SUManager.csproj.CopyComplete
-E:\114_temp\008_代码集\002_extras\smallCharpTool\SketchUpNETConsole\obj\Debug\Rhino_SUManager.dll
-E:\114_temp\008_代码集\002_extras\smallCharpTool\SketchUpNETConsole\obj\Debug\Rhino_SUManager.pdb
